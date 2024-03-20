@@ -119,32 +119,42 @@ async function prueba() {
       photo: "",
       email: "usuario1@hotmail.com",
       password: "12345678",
+
       role: "DBA",
+
     });
     await user.create({
       photo: "photo.png",
       email: "usuario2@hotmail.com",
       password: "12345678",
+
       role: "DBA",
+
     });
     await user.create({
       photo: "photo.png",
       email: "usuario3@hotmail.com",
       password: "12345678",
+
       role: "DBA",
+
     });
     await user.create({
       photo: "photo.png",
       email: "usuario4@hotmail.com",
       password: "12345678",
+
       role: "DBA",
+
     });
 
     const prueba = await user.create({
       photo: "photo.png",
       email: "usuario4@hotmail.com",
       password: "12345678",
+
       role: "DBA",
+
     });
 
     await user.read();
