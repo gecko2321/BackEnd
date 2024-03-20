@@ -186,7 +186,7 @@ async function prueba() {
       price: 800000,
       stock: 5,
     });
-    
+
     const prueba = await product.create({
       title: "Borrar",
       photo: "borrar.png",
