@@ -1,5 +1,5 @@
-const fs = require("fs");
-const crypto = require("crypto");
+import fs from "fs";
+import crypto from "crypto";
 
 class ProductManager {
   constructor() {
@@ -14,9 +14,9 @@ class ProductManager {
 
       fs.writeFileSync(this.path, stringData);
 
-      console.log("ARCHIVO CREADO!");
+      console.log("ARCHIVO PRODUCTS CREADO!");
     } else {
-      console.log("ARCHIVO YA EXISTE!");
+      console.log("ARCHIVO PRODUCTS YA EXISTE!");
     }
   }
   async create(data) {
@@ -52,18 +52,12 @@ class ProductManager {
       console.log(error);
     }
   }
-  async read() {
+  async read(cat) {
     try {
       let all = await fs.promises.readFile(this.path, "utf-8");
-
       all = JSON.parse(all);
-
-      if (all.length === 0) {
-        throw new Error("NO HAY PRODUCTOS");
-      } else {
-        console.log(all);
-        return all;
-      }
+      cat && (all = all.filter((each) => each.category === cat));
+      return all;
     } catch (error) {
       console.log(error);
     }
@@ -111,6 +105,9 @@ class ProductManager {
     }
   }
 }
+
+const productsManager = new ProductManager();
+export default productsManager;
 
 async function prueba() {
   try {
@@ -187,18 +184,92 @@ async function prueba() {
       stock: 5,
     });
 
-    const prueba = await product.create({
-      title: "Borrar",
-      photo: "borrar.png",
-      category: "ninguna",
-      price: 0,
-      stock: 0,
+    // const prueba = await product.create({
+    //   title: "Borrar",
+    //   photo: "borrar.png",
+    //   category: "ninguna",
+    //   price: 0,
+    //   stock: 0,
+    // });
+    //hasta aca 10
+    await product.create({
+      title: "Radio",
+      photo: "radio.png",
+      category: "Electronicos",
+      price: 400000,
+      stock: 25,
     });
-    await product.read();
-    await product.readOne(prueba.id);
-    await product.destroy(prueba.id);
+    await product.create({
+      title: "Freidora",
+      photo: "freidora.png",
+      category: "Electrodomesticos",
+      price: 100000,
+      stock: 30,
+    });
+    await product.create({
+      title: "Heladera",
+      photo: "heladera.png",
+      category: "Electrodomesticos",
+      price: 45000,
+      stock: 10,
+    });
+    await product.create({
+      title: "Destapador",
+      photo: "destapador.png",
+      category: "Electrodomesticos",
+      price: 300000,
+      stock: 8,
+    });
+    await product.create({
+      title: "Cefetera",
+      photo: "cafetera.png",
+      category: "Electrodomesticos",
+      price: 500000,
+      stock: 18,
+    });
+    await product.create({
+      title: "Exprimidora",
+      photo: "exprimidora.png",
+      category: "Electro",
+      price: 60000,
+      stock: 10,
+    });
+    await product.create({
+      title: "Netbook",
+      photo: "netbook.png",
+      category: "Computacion",
+      price: 30000,
+      stock: 11,
+    });
+    await product.create({
+      title: "Router",
+      photo: "router.png",
+      category: "Redes",
+      price: 250000,
+      stock: 20,
+    });
+    await product.create({
+      title: "Mikrotik",
+      photo: "mikrotik.png",
+      category: "Redes",
+      price: 200000,
+      stock: 10,
+    });
+    await product.create({
+      title: "Firewall",
+      photo: "firewall.png",
+      category: "Redes",
+      price: 800000,
+      stock: 5,
+    });
+
+    // await product.read();
+    // await product.readOne(prueba.id);
+    // await product.destroy(prueba.id);
   } catch (error) {
     console.log(error);
   }
-}
-prueba();
+} 
+//prueba();
+
+

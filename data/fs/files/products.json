@@ -1,6 +1,6 @@
 [
   {
-    "id": "491fb28f425ce57bbf158b12",
+    "id": "3b80f206a680938f4449eaae",
     "title": "Celular",
     "photo": "celular.png",
     "category": "Electronicos",
@@ -8,7 +8,7 @@
     "stock": 25
   },
   {
-    "id": "b7b23989e85c490a97922011",
+    "id": "7490b80262de1befe9230bd6",
     "title": "Monitor",
     "photo": "monitor.png",
     "category": "Electronicos",
@@ -16,7 +16,7 @@
     "stock": 30
   },
   {
-    "id": "4183fdf48cb8b9f7a5d10adf",
+    "id": "7c92a04bed309afdc1ba9f20",
     "title": "Headphones",
     "photo": "headphones.png",
     "category": "Audio",
@@ -24,7 +24,7 @@
     "stock": 10
   },
   {
-    "id": "8980fc2a3e83bd1810a910a5",
+    "id": "3573a6c8f52b88c591a3c85f",
     "title": "Microondas",
     "photo": "microondas.png",
     "category": "Electrodomesticos",
@@ -32,7 +32,7 @@
     "stock": 8
   },
   {
-    "id": "34f9de9985dadaee821546cc",
+    "id": "ef2fd9f0fbde86a73fe41e8f",
     "title": "Televisor",
     "photo": "televisor.png",
     "category": "Video",
@@ -40,7 +40,7 @@
     "stock": 18
   },
   {
-    "id": "7b8263099b8fc7d1e1f8b664",
+    "id": "4f10cde913fdb935296a0fe7",
     "title": "Licuadora",
     "photo": "licuadora.png",
     "category": "Electro",
@@ -48,7 +48,7 @@
     "stock": 10
   },
   {
-    "id": "97ead518b0bf8ba50155e1ac",
+    "id": "7a0c96e7140340343c465460",
     "title": "Juguera",
     "photo": "juguera.png",
     "category": "Electro",
@@ -56,7 +56,7 @@
     "stock": 11
   },
   {
-    "id": "21988e4b89ff010dc9fe450c",
+    "id": "282ab77431f838099f053aff",
     "title": "Impresora",
     "photo": "impresora.png",
     "category": "Perifericos",
@@ -64,7 +64,7 @@
     "stock": 20
   },
   {
-    "id": "9446dcdaf0baec1aa9dc179c",
+    "id": "7e395906e47d45030c884b05",
     "title": "Switch",
     "photo": "switch.png",
     "category": "Redes",
@@ -72,10 +72,730 @@
     "stock": 10
   },
   {
-    "id": "8abe9824136f76444772d3ba",
+    "id": "df99b23727cb83bdcc8c7645",
     "title": "CPU",
     "photo": "cpu.png",
     "category": "Computacion",
+    "price": 800000,
+    "stock": 5
+  },
+  {
+    "id": "9d88c42412a45d7635091d0e",
+    "title": "Radio",
+    "photo": "radio.png",
+    "category": "Electronicos",
+    "price": 400000,
+    "stock": 25
+  },
+  {
+    "id": "20947a603fd709d9823faa17",
+    "title": "Freidora",
+    "photo": "freidora.png",
+    "category": "Electrodomesticos",
+    "price": 100000,
+    "stock": 30
+  },
+  {
+    "id": "bd469ed5cd53bf4ef020dcba",
+    "title": "Heladera",
+    "photo": "heladera.png",
+    "category": "Electrodomesticos",
+    "price": 45000,
+    "stock": 10
+  },
+  {
+    "id": "f949b4ae3bb5ae61f74cf71a",
+    "title": "Destapador",
+    "photo": "destapador.png",
+    "category": "Electrodomesticos",
+    "price": 300000,
+    "stock": 8
+  },
+  {
+    "id": "c54bf9658a607fbc421baa40",
+    "title": "Cefetera",
+    "photo": "cafetera.png",
+    "category": "Electrodomesticos",
+    "price": 500000,
+    "stock": 18
+  },
+  {
+    "id": "a06942c929e32c9d453ee126",
+    "title": "Exprimidora",
+    "photo": "exprimidora.png",
+    "category": "Electro",
+    "price": 60000,
+    "stock": 10
+  },
+  {
+    "id": "c4e019e68bf951fa8246488e",
+    "title": "Netbook",
+    "photo": "netbook.png",
+    "category": "Computacion",
+    "price": 30000,
+    "stock": 11
+  },
+  {
+    "id": "150b63c9c2f41b06cd513e16",
+    "title": "Router",
+    "photo": "router.png",
+    "category": "Redes",
+    "price": 250000,
+    "stock": 20
+  },
+  {
+    "id": "e2ef717c1e41be99d4af97ea",
+    "title": "Mikrotik",
+    "photo": "mikrotik.png",
+    "category": "Redes",
+    "price": 200000,
+    "stock": 10
+  },
+  {
+    "id": "51ac0434b2c35875332f9ba2",
+    "title": "Firewall",
+    "photo": "firewall.png",
+    "category": "Redes",
+    "price": 800000,
+    "stock": 5
+  },
+  {
+    "id": "d625b7c797b7b9ad12920e41",
+    "title": "Celular",
+    "photo": "celular.png",
+    "category": "Electronicos",
+    "price": 400000,
+    "stock": 25
+  },
+  {
+    "id": "9b26fb078a82222e21893482",
+    "title": "Monitor",
+    "photo": "monitor.png",
+    "category": "Electronicos",
+    "price": 100000,
+    "stock": 30
+  },
+  {
+    "id": "5396cf6d87a3779f291efda2",
+    "title": "Headphones",
+    "photo": "headphones.png",
+    "category": "Audio",
+    "price": 45000,
+    "stock": 10
+  },
+  {
+    "id": "f1ee5ecdd7aa770bfaa9dc1b",
+    "title": "Microondas",
+    "photo": "microondas.png",
+    "category": "Electrodomesticos",
+    "price": 300000,
+    "stock": 8
+  },
+  {
+    "id": "e8ac2d924e9443ea3c6a49d6",
+    "title": "Televisor",
+    "photo": "televisor.png",
+    "category": "Video",
+    "price": 500000,
+    "stock": 18
+  },
+  {
+    "id": "34bf42955819d6fc18cb06ff",
+    "title": "Licuadora",
+    "photo": "licuadora.png",
+    "category": "Electro",
+    "price": 60000,
+    "stock": 10
+  },
+  {
+    "id": "23370579539b39c3fa6d2e24",
+    "title": "Juguera",
+    "photo": "juguera.png",
+    "category": "Electro",
+    "price": 30000,
+    "stock": 11
+  },
+  {
+    "id": "169ef82d84ac54d2f067ec38",
+    "title": "Impresora",
+    "photo": "impresora.png",
+    "category": "Perifericos",
+    "price": 250000,
+    "stock": 20
+  },
+  {
+    "id": "d0e0aaf1c77b4708e274cb8f",
+    "title": "Switch",
+    "photo": "switch.png",
+    "category": "Redes",
+    "price": 200000,
+    "stock": 10
+  },
+  {
+    "id": "427b5f4047e22d4942141945",
+    "title": "CPU",
+    "photo": "cpu.png",
+    "category": "Computacion",
+    "price": 800000,
+    "stock": 5
+  },
+  {
+    "id": "92d268c7969048e2897f3ffc",
+    "title": "Radio",
+    "photo": "radio.png",
+    "category": "Electronicos",
+    "price": 400000,
+    "stock": 25
+  },
+  {
+    "id": "ae36ddd8e63fc0ba9583bb42",
+    "title": "Freidora",
+    "photo": "freidora.png",
+    "category": "Electrodomesticos",
+    "price": 100000,
+    "stock": 30
+  },
+  {
+    "id": "b09e5c9dcf2d770673742690",
+    "title": "Heladera",
+    "photo": "heladera.png",
+    "category": "Electrodomesticos",
+    "price": 45000,
+    "stock": 10
+  },
+  {
+    "id": "7acaed40f7a4b6d89d58556c",
+    "title": "Destapador",
+    "photo": "destapador.png",
+    "category": "Electrodomesticos",
+    "price": 300000,
+    "stock": 8
+  },
+  {
+    "id": "bcf465cc5830324523775f26",
+    "title": "Cefetera",
+    "photo": "cafetera.png",
+    "category": "Electrodomesticos",
+    "price": 500000,
+    "stock": 18
+  },
+  {
+    "id": "8afd9b11c460a4a292e843e0",
+    "title": "Exprimidora",
+    "photo": "exprimidora.png",
+    "category": "Electro",
+    "price": 60000,
+    "stock": 10
+  },
+  {
+    "id": "9c03157c0fe53eb335f81e7e",
+    "title": "Netbook",
+    "photo": "netbook.png",
+    "category": "Computacion",
+    "price": 30000,
+    "stock": 11
+  },
+  {
+    "id": "cf51282d19172d96e70f88a2",
+    "title": "Router",
+    "photo": "router.png",
+    "category": "Redes",
+    "price": 250000,
+    "stock": 20
+  },
+  {
+    "id": "09449cbc2ab48a118e29f5fa",
+    "title": "Mikrotik",
+    "photo": "mikrotik.png",
+    "category": "Redes",
+    "price": 200000,
+    "stock": 10
+  },
+  {
+    "id": "b40c1ff854f761d45fef017b",
+    "title": "Firewall",
+    "photo": "firewall.png",
+    "category": "Redes",
+    "price": 800000,
+    "stock": 5
+  },
+  {
+    "id": "ccbc66711cc746cc834887d7",
+    "title": "Celular",
+    "photo": "celular.png",
+    "category": "Electronicos",
+    "price": 400000,
+    "stock": 25
+  },
+  {
+    "id": "ed09d21060ee310051a4e894",
+    "title": "Monitor",
+    "photo": "monitor.png",
+    "category": "Electronicos",
+    "price": 100000,
+    "stock": 30
+  },
+  {
+    "id": "aa735d1c657ef8826b1ddb32",
+    "title": "Headphones",
+    "photo": "headphones.png",
+    "category": "Audio",
+    "price": 45000,
+    "stock": 10
+  },
+  {
+    "id": "6c30a66d5817bde9b4e5b3a1",
+    "title": "Microondas",
+    "photo": "microondas.png",
+    "category": "Electrodomesticos",
+    "price": 300000,
+    "stock": 8
+  },
+  {
+    "id": "b4148c9f3becd2e9e0c3ac10",
+    "title": "Televisor",
+    "photo": "televisor.png",
+    "category": "Video",
+    "price": 500000,
+    "stock": 18
+  },
+  {
+    "id": "4d1a6446559fa372c4a2d1d6",
+    "title": "Licuadora",
+    "photo": "licuadora.png",
+    "category": "Electro",
+    "price": 60000,
+    "stock": 10
+  },
+  {
+    "id": "a5f54cf075508584b4a9277e",
+    "title": "Juguera",
+    "photo": "juguera.png",
+    "category": "Electro",
+    "price": 30000,
+    "stock": 11
+  },
+  {
+    "id": "30cd3f6856f8ad72a1b61031",
+    "title": "Impresora",
+    "photo": "impresora.png",
+    "category": "Perifericos",
+    "price": 250000,
+    "stock": 20
+  },
+  {
+    "id": "42b1f81ef3cc525b1ff06958",
+    "title": "Switch",
+    "photo": "switch.png",
+    "category": "Redes",
+    "price": 200000,
+    "stock": 10
+  },
+  {
+    "id": "56b0fe077bff731c7dbc6858",
+    "title": "CPU",
+    "photo": "cpu.png",
+    "category": "Computacion",
+    "price": 800000,
+    "stock": 5
+  },
+  {
+    "id": "3ba1a27bf4af303f260b0839",
+    "title": "Radio",
+    "photo": "radio.png",
+    "category": "Electronicos",
+    "price": 400000,
+    "stock": 25
+  },
+  {
+    "id": "8bb192747e18c0a4481d4e2c",
+    "title": "Freidora",
+    "photo": "freidora.png",
+    "category": "Electrodomesticos",
+    "price": 100000,
+    "stock": 30
+  },
+  {
+    "id": "6b43f28c3ee47498f496565f",
+    "title": "Heladera",
+    "photo": "heladera.png",
+    "category": "Electrodomesticos",
+    "price": 45000,
+    "stock": 10
+  },
+  {
+    "id": "b4747d38559673d112e7a0c2",
+    "title": "Destapador",
+    "photo": "destapador.png",
+    "category": "Electrodomesticos",
+    "price": 300000,
+    "stock": 8
+  },
+  {
+    "id": "af88130a0184c5d5305f9a71",
+    "title": "Cefetera",
+    "photo": "cafetera.png",
+    "category": "Electrodomesticos",
+    "price": 500000,
+    "stock": 18
+  },
+  {
+    "id": "efad076835a306ec259af8c1",
+    "title": "Exprimidora",
+    "photo": "exprimidora.png",
+    "category": "Electro",
+    "price": 60000,
+    "stock": 10
+  },
+  {
+    "id": "ed38fc6785f0ffae53a4fc14",
+    "title": "Netbook",
+    "photo": "netbook.png",
+    "category": "Computacion",
+    "price": 30000,
+    "stock": 11
+  },
+  {
+    "id": "a80184043e78c9b5d891405f",
+    "title": "Router",
+    "photo": "router.png",
+    "category": "Redes",
+    "price": 250000,
+    "stock": 20
+  },
+  {
+    "id": "71932ab81497952c60d66c41",
+    "title": "Mikrotik",
+    "photo": "mikrotik.png",
+    "category": "Redes",
+    "price": 200000,
+    "stock": 10
+  },
+  {
+    "id": "8a28c258aeec4cd6ceae707d",
+    "title": "Firewall",
+    "photo": "firewall.png",
+    "category": "Redes",
+    "price": 800000,
+    "stock": 5
+  },
+  {
+    "id": "9fcb166ed8f28e04b2bdbb8e",
+    "title": "Celular",
+    "photo": "celular.png",
+    "category": "Electronicos",
+    "price": 400000,
+    "stock": 25
+  },
+  {
+    "id": "1ff7d701e10384beaedc2424",
+    "title": "Monitor",
+    "photo": "monitor.png",
+    "category": "Electronicos",
+    "price": 100000,
+    "stock": 30
+  },
+  {
+    "id": "d0c0b168d03d1187d39946be",
+    "title": "Headphones",
+    "photo": "headphones.png",
+    "category": "Audio",
+    "price": 45000,
+    "stock": 10
+  },
+  {
+    "id": "e76b5b19ea1ad61dc0950126",
+    "title": "Microondas",
+    "photo": "microondas.png",
+    "category": "Electrodomesticos",
+    "price": 300000,
+    "stock": 8
+  },
+  {
+    "id": "99061fc70b275b4a7d909aea",
+    "title": "Televisor",
+    "photo": "televisor.png",
+    "category": "Video",
+    "price": 500000,
+    "stock": 18
+  },
+  {
+    "id": "5081edceacbdfeb060988016",
+    "title": "Licuadora",
+    "photo": "licuadora.png",
+    "category": "Electro",
+    "price": 60000,
+    "stock": 10
+  },
+  {
+    "id": "36dd0a15e1938d75a7c2f476",
+    "title": "Juguera",
+    "photo": "juguera.png",
+    "category": "Electro",
+    "price": 30000,
+    "stock": 11
+  },
+  {
+    "id": "0d41fdeb47b0f443ee5799a7",
+    "title": "Impresora",
+    "photo": "impresora.png",
+    "category": "Perifericos",
+    "price": 250000,
+    "stock": 20
+  },
+  {
+    "id": "69a352c075949d42f4371cd1",
+    "title": "Switch",
+    "photo": "switch.png",
+    "category": "Redes",
+    "price": 200000,
+    "stock": 10
+  },
+  {
+    "id": "ef21805d0b3962e438a65c54",
+    "title": "CPU",
+    "photo": "cpu.png",
+    "category": "Computacion",
+    "price": 800000,
+    "stock": 5
+  },
+  {
+    "id": "4ae817da570c0d9db6f8cda7",
+    "title": "Radio",
+    "photo": "radio.png",
+    "category": "Electronicos",
+    "price": 400000,
+    "stock": 25
+  },
+  {
+    "id": "6663ce2279a4e222f1e1031f",
+    "title": "Freidora",
+    "photo": "freidora.png",
+    "category": "Electrodomesticos",
+    "price": 100000,
+    "stock": 30
+  },
+  {
+    "id": "db0222b8f6d9abb89132080e",
+    "title": "Heladera",
+    "photo": "heladera.png",
+    "category": "Electrodomesticos",
+    "price": 45000,
+    "stock": 10
+  },
+  {
+    "id": "500d78bf832805bfc07a64b8",
+    "title": "Destapador",
+    "photo": "destapador.png",
+    "category": "Electrodomesticos",
+    "price": 300000,
+    "stock": 8
+  },
+  {
+    "id": "4d7565ac7c20c07de227a067",
+    "title": "Cefetera",
+    "photo": "cafetera.png",
+    "category": "Electrodomesticos",
+    "price": 500000,
+    "stock": 18
+  },
+  {
+    "id": "b520ccfa270b947f92c22ff9",
+    "title": "Exprimidora",
+    "photo": "exprimidora.png",
+    "category": "Electro",
+    "price": 60000,
+    "stock": 10
+  },
+  {
+    "id": "d161241ef656b547981a80db",
+    "title": "Netbook",
+    "photo": "netbook.png",
+    "category": "Computacion",
+    "price": 30000,
+    "stock": 11
+  },
+  {
+    "id": "e5ca110383d83cbf65628db0",
+    "title": "Router",
+    "photo": "router.png",
+    "category": "Redes",
+    "price": 250000,
+    "stock": 20
+  },
+  {
+    "id": "5dc0f46c1e97f7106c5e3320",
+    "title": "Mikrotik",
+    "photo": "mikrotik.png",
+    "category": "Redes",
+    "price": 200000,
+    "stock": 10
+  },
+  {
+    "id": "50ed609048f95e1bbaf33f89",
+    "title": "Firewall",
+    "photo": "firewall.png",
+    "category": "Redes",
+    "price": 800000,
+    "stock": 5
+  },
+  {
+    "id": "00cbc48ddcf03e5d1c129644",
+    "title": "Celular",
+    "photo": "celular.png",
+    "category": "Electronicos",
+    "price": 400000,
+    "stock": 25
+  },
+  {
+    "id": "4513000319008123a124771a",
+    "title": "Monitor",
+    "photo": "monitor.png",
+    "category": "Electronicos",
+    "price": 100000,
+    "stock": 30
+  },
+  {
+    "id": "17772aa8155176a498c65874",
+    "title": "Headphones",
+    "photo": "headphones.png",
+    "category": "Audio",
+    "price": 45000,
+    "stock": 10
+  },
+  {
+    "id": "aa93090f842c2c91ffffb774",
+    "title": "Microondas",
+    "photo": "microondas.png",
+    "category": "Electrodomesticos",
+    "price": 300000,
+    "stock": 8
+  },
+  {
+    "id": "4a3adf5b20ebeb6cde270018",
+    "title": "Televisor",
+    "photo": "televisor.png",
+    "category": "Video",
+    "price": 500000,
+    "stock": 18
+  },
+  {
+    "id": "237e1e82fe61d24a65239bf4",
+    "title": "Licuadora",
+    "photo": "licuadora.png",
+    "category": "Electro",
+    "price": 60000,
+    "stock": 10
+  },
+  {
+    "id": "840d65e86c4212bcda388a1a",
+    "title": "Juguera",
+    "photo": "juguera.png",
+    "category": "Electro",
+    "price": 30000,
+    "stock": 11
+  },
+  {
+    "id": "9adf589c7a1866e2638fe1ad",
+    "title": "Impresora",
+    "photo": "impresora.png",
+    "category": "Perifericos",
+    "price": 250000,
+    "stock": 20
+  },
+  {
+    "id": "bef964f86821ff1dd1024e38",
+    "title": "Switch",
+    "photo": "switch.png",
+    "category": "Redes",
+    "price": 200000,
+    "stock": 10
+  },
+  {
+    "id": "868d9ccfe47e56334777c4d3",
+    "title": "CPU",
+    "photo": "cpu.png",
+    "category": "Computacion",
+    "price": 800000,
+    "stock": 5
+  },
+  {
+    "id": "97642c5df42fdb7a9f564d11",
+    "title": "Radio",
+    "photo": "radio.png",
+    "category": "Electronicos",
+    "price": 400000,
+    "stock": 25
+  },
+  {
+    "id": "c8bf22a9a9565374bd834b87",
+    "title": "Freidora",
+    "photo": "freidora.png",
+    "category": "Electrodomesticos",
+    "price": 100000,
+    "stock": 30
+  },
+  {
+    "id": "753ee3f963a71938b24e2446",
+    "title": "Heladera",
+    "photo": "heladera.png",
+    "category": "Electrodomesticos",
+    "price": 45000,
+    "stock": 10
+  },
+  {
+    "id": "515e068cf50d28418685d2fc",
+    "title": "Destapador",
+    "photo": "destapador.png",
+    "category": "Electrodomesticos",
+    "price": 300000,
+    "stock": 8
+  },
+  {
+    "id": "10c0973087253b90cfbf5d01",
+    "title": "Cefetera",
+    "photo": "cafetera.png",
+    "category": "Electrodomesticos",
+    "price": 500000,
+    "stock": 18
+  },
+  {
+    "id": "807cb8a2d589027d36ae4a00",
+    "title": "Exprimidora",
+    "photo": "exprimidora.png",
+    "category": "Electro",
+    "price": 60000,
+    "stock": 10
+  },
+  {
+    "id": "c06c71b7222b006fa3bb027f",
+    "title": "Netbook",
+    "photo": "netbook.png",
+    "category": "Computacion",
+    "price": 30000,
+    "stock": 11
+  },
+  {
+    "id": "e3ae554cd1f84d1845aa3327",
+    "title": "Router",
+    "photo": "router.png",
+    "category": "Redes",
+    "price": 250000,
+    "stock": 20
+  },
+  {
+    "id": "513c7a84d9792d20da18315a",
+    "title": "Mikrotik",
+    "photo": "mikrotik.png",
+    "category": "Redes",
+    "price": 200000,
+    "stock": 10
+  },
+  {
+    "id": "3d200a84d68267ac9674cac3",
+    "title": "Firewall",
+    "photo": "firewall.png",
+    "category": "Redes",
     "price": 800000,
     "stock": 5
   }

@@ -11,7 +11,7 @@
     "photo": "photo.png",
     "email": "usuario2@hotmail.com",
     "password": "12345678",
-    "role": "DBA"
+    "role": "Funcional"
   },
   {
     "id": "2c255201cc9438c22134fdd8",
@@ -26,5 +26,12 @@
     "email": "usuario4@hotmail.com",
     "password": "12345678",
     "role": "DBA"
+  },
+  {
+    "id": "6e7fa8d68aa241a8eea95379",
+    "photo": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
+    "email": "mail@mail.com",
+    "password": "pass1234",
+    "role": "sisop"
   }
 ]
