@@ -1,5 +1,7 @@
-const fs = require("fs");
-const crypto = require("crypto");
+
+import fs from "fs";
+import crypto from "crypto";
+
 
 class UserManager {
   constructor() {
@@ -14,9 +16,11 @@ class UserManager {
 
       fs.writeFileSync(this.path, stringData);
 
-      console.log("ARCHIVO CREADO!");
+
+      console.log("ARCHIVO USERS CREADO!");
     } else {
-      console.log("ARCHIVO YA EXISTE!");
+      console.log("ARCHIVO USERS YA EXISTE!");
+
     }
   }
   async create(data) {
@@ -51,18 +55,18 @@ class UserManager {
       console.log(error);
     }
   }
-  async read() {
+
+  async read(role) {
+
     try {
       let all = await fs.promises.readFile(this.path, "utf-8");
 
       all = JSON.parse(all);
 
-      if (all.length === 0) {
-        throw new Error("NO HAY USUARIOS");
-      } else {
-        console.log(all);
-        return all;
-      }
+
+      role && (all = all.filter((each) => each.role === role));
+      return all;
+
     } catch (error) {
       console.log(error);
     }
@@ -110,6 +114,11 @@ class UserManager {
     }
   }
 }
+
+
+const usersManager = new UserManager();
+export default usersManager;
+
 
 async function prueba() {
   try {
@@ -164,4 +173,6 @@ async function prueba() {
     console.log(error);
   }
 }
-prueba();
+
+//prueba();
+
