@@ -1,5 +1,7 @@
+
 import fs from "fs";
 import crypto from "crypto";
+
 
 class UserManager {
   constructor() {
@@ -14,9 +16,11 @@ class UserManager {
 
       fs.writeFileSync(this.path, stringData);
 
+
       console.log("ARCHIVO USERS CREADO!");
     } else {
       console.log("ARCHIVO USERS YA EXISTE!");
+
     }
   }
   async create(data) {
@@ -51,14 +55,18 @@ class UserManager {
       console.log(error);
     }
   }
+
   async read(role) {
+
     try {
       let all = await fs.promises.readFile(this.path, "utf-8");
 
       all = JSON.parse(all);
 
+
       role && (all = all.filter((each) => each.role === role));
       return all;
+
     } catch (error) {
       console.log(error);
     }
@@ -107,8 +115,10 @@ class UserManager {
   }
 }
 
+
 const usersManager = new UserManager();
 export default usersManager;
+
 
 async function prueba() {
   try {
@@ -118,32 +128,42 @@ async function prueba() {
       photo: "",
       email: "usuario1@hotmail.com",
       password: "12345678",
+
       role: "DBA",
+
     });
     await user.create({
       photo: "photo.png",
       email: "usuario2@hotmail.com",
       password: "12345678",
+
       role: "DBA",
+
     });
     await user.create({
       photo: "photo.png",
       email: "usuario3@hotmail.com",
       password: "12345678",
+
       role: "DBA",
+
     });
     await user.create({
       photo: "photo.png",
       email: "usuario4@hotmail.com",
       password: "12345678",
+
       role: "DBA",
+
     });
 
     const prueba = await user.create({
       photo: "photo.png",
       email: "usuario4@hotmail.com",
       password: "12345678",
+
       role: "DBA",
+
     });
 
     await user.read();
@@ -153,4 +173,6 @@ async function prueba() {
     console.log(error);
   }
 }
+
 //prueba();
+
