@@ -11,7 +11,9 @@
     "photo": "photo.png",
     "email": "usuario2@hotmail.com",
     "password": "12345678",
+
     "role": "Funcional"
+
   },
   {
     "id": "2c255201cc9438c22134fdd8",
@@ -33,5 +35,6 @@
     "email": "mail@mail.com",
     "password": "pass1234",
     "role": "sisop"
+
   }
 ]

@@ -1,5 +1,7 @@
+
 import fs from "fs";
 import crypto from "crypto";
+
 
 class ProductManager {
   constructor() {
@@ -14,9 +16,11 @@ class ProductManager {
 
       fs.writeFileSync(this.path, stringData);
 
+
       console.log("ARCHIVO PRODUCTS CREADO!");
     } else {
       console.log("ARCHIVO PRODUCTS YA EXISTE!");
+
     }
   }
   async create(data) {
@@ -52,6 +56,7 @@ class ProductManager {
       console.log(error);
     }
   }
+
   async read(cat) {
     try {
       let all = await fs.promises.readFile(this.path, "utf-8");
@@ -105,6 +110,7 @@ class ProductManager {
     }
   }
 }
+
 
 const productsManager = new ProductManager();
 export default productsManager;
@@ -183,6 +189,7 @@ async function prueba() {
       price: 800000,
       stock: 5,
     });
+
 
     // const prueba = await product.create({
     //   title: "Borrar",
@@ -271,5 +278,4 @@ async function prueba() {
   }
 } 
 //prueba();
-
 
