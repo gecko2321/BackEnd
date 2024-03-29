@@ -9,10 +9,12 @@ class ProductManager {
             : ProductManager.#products[ProductManager.#products.length - 1].id +
               1,
         title: data.title,
-        photo: data.photo,
-        category: data.category,
-        price: data.price,
-        stock: data.stock,
+        photo:
+          data.photo ||
+          "https://http2.mlstatic.com/D_NQ_NP_709331-MLA28343762816_102018-O.webp",
+        category: data.category || "Electronicos",
+        price: data.price || 1,
+        stock: data.stock || 1,
       };
       ProductManager.#products.push(product);
       console.log("Producto Creado");
@@ -41,7 +43,24 @@ class ProductManager {
       console.log(error);
     }
   }
-
+  async update(id, data) {
+    try {
+      let all = await this.read();
+      let one = all.find((each) => each.id === id);
+      if (one) {
+        for (let prop in data) {
+          one[prop] = data[prop];
+        }
+        return one;
+      } else {
+        const error = new Error("Not found!!");
+        error.statusCode = 404;
+        throw error;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
   destroy(id) {
     try {
       this.readOne(id);
@@ -198,7 +217,6 @@ gestorDeProductos.create({
   price: 800000,
   stock: 5,
 });
-
 
 console.log(gestorDeProductos.read());
 console.log(gestorDeProductos.readOne(2));

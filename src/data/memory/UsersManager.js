@@ -7,10 +7,12 @@ class UserManager {
           UserManager.#users.length === 0
             ? 1
             : UserManager.#users[UserManager.#users.length - 1].id + 1,
-        photo: data.photo,
+        photo:
+          data.photo ||
+          "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
         email: data.email,
         password: data.password,
-        role: data.role,
+        role: data.role || 0,
       };
       UserManager.#users.push(user);
       console.log("Usuario Creado");
@@ -38,7 +40,24 @@ class UserManager {
       console.log(error);
     }
   }
-
+  async update(id, data) {
+    try {
+      let all = await this.read();
+      let one = all.find((each) => each.id === id);
+      if (one) {
+        for (let prop in data) {
+          one[prop] = data[prop];
+        }
+        return one;
+      } else {
+        const error = new Error("Not Found!!");
+        error.statusCode = 404;
+        throw error;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
   destroy(id) {
     try {
       this.readOne(id);
@@ -57,25 +76,25 @@ gestorDeUsuarios.create({
   photo: "photo.png",
   email: "usuario1@hotmail.com",
   password: "12345678",
-  role: "DBA"
+  role: "DBA",
 });
 gestorDeUsuarios.create({
   photo: "photo.png",
   email: "usuario2@hotmail.com",
   password: "12345678",
-  role: "DBA"
+  role: "DBA",
 });
 gestorDeUsuarios.create({
   photo: "photo.png",
   email: "usuario3@hotmail.com",
   password: "12345678",
-  role: "DBA"
+  role: "DBA",
 });
 gestorDeUsuarios.create({
   photo: "photo.png",
   email: "usuario4@hotmail.com",
   password: "12345678",
-  role: "DBA"
+  role: "DBA",
 });
 
 console.log(gestorDeUsuarios.read());
