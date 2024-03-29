@@ -1,11 +1,9 @@
-
 import fs from "fs";
 import crypto from "crypto";
 
-
 class ProductManager {
   constructor() {
-    this.path = "./data/fs/files/products.json";
+    this.path = "./src/data/fs/files/products.json";
 
     this.init();
   }
@@ -16,17 +14,15 @@ class ProductManager {
 
       fs.writeFileSync(this.path, stringData);
 
-
       console.log("ARCHIVO PRODUCTS CREADO!");
     } else {
       console.log("ARCHIVO PRODUCTS YA EXISTE!");
-
     }
   }
   async create(data) {
     try {
       if (!data.title) {
-        throw new Error("INGRESE TITULO");
+        throw new Error("Enter a Title");
       } else {
         const product = {
           id: crypto.randomBytes(12).toString("hex"),
@@ -34,9 +30,9 @@ class ProductManager {
           photo:
             data.photo ||
             "https://http2.mlstatic.com/D_NQ_NP_709331-MLA28343762816_102018-O.webp",
-          category: data.category,
-          price: data.price,
-          stock: data.stock,
+          category: data.category || "Electronicos",
+          price: data.price || 1,
+          stock: data.stock || 1,
         };
 
         let all = await fs.promises.readFile(this.path, "utf-8");
@@ -53,7 +49,7 @@ class ProductManager {
         return product;
       }
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   }
 
@@ -64,7 +60,7 @@ class ProductManager {
       cat && (all = all.filter((each) => each.category === cat));
       return all;
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   }
   async readOne(id) {
@@ -76,13 +72,33 @@ class ProductManager {
       let product = all.find((each) => each.id === id);
 
       if (!product) {
-        throw new Error("NO ENCONTRADO");
+        throw new Error("Not found!!");
       } else {
         console.log(product);
         return product;
       }
     } catch (error) {
-      console.log(error);
+      throw error;
+    }
+  }
+  async update(id, data) {
+    try {
+      let all = await this.read();
+      let one = all.find((each) => each.id === id);
+      if (one) {
+        for (let prop in data) {
+          one[prop] = data[prop];
+        }
+        all = JSON.stringify(all, null, 2);
+        await fs.promises.writeFile(this.path, all);
+        return one;
+      } else {
+        const error = new Error("Not found!!");
+        error.statusCode = 404;
+        throw error;
+      }
+    } catch (error) {
+      throw error;
     }
   }
   async destroy(id) {
@@ -94,7 +110,9 @@ class ProductManager {
       let product = all.find((each) => each.id === id);
 
       if (!product) {
-        throw new Error("NO ENCONTRADO");
+        const error = new Error("Not found!!");
+        error.statusCode = 404;
+        throw error;
       } else {
         let filtered = all.filter((each) => each.id !== id);
 
@@ -106,11 +124,10 @@ class ProductManager {
         return product;
       }
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   }
 }
-
 
 const productsManager = new ProductManager();
 export default productsManager;
@@ -189,7 +206,6 @@ async function prueba() {
       price: 800000,
       stock: 5,
     });
-
 
     // const prueba = await product.create({
     //   title: "Borrar",
@@ -276,6 +292,5 @@ async function prueba() {
   } catch (error) {
     console.log(error);
   }
-} 
+}
 //prueba();
-

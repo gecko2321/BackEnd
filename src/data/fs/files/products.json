@@ -1,8 +1,6 @@
 [
   {
-
     "id": "3b80f206a680938f4449eaae",
-
     "title": "Celular",
     "photo": "celular.png",
     "category": "Electronicos",
@@ -10,9 +8,7 @@
     "stock": 25
   },
   {
-
     "id": "7490b80262de1befe9230bd6",
-
     "title": "Monitor",
     "photo": "monitor.png",
     "category": "Electronicos",
@@ -20,9 +16,7 @@
     "stock": 30
   },
   {
-
     "id": "7c92a04bed309afdc1ba9f20",
-
     "title": "Headphones",
     "photo": "headphones.png",
     "category": "Audio",
@@ -30,9 +24,7 @@
     "stock": 10
   },
   {
-
     "id": "3573a6c8f52b88c591a3c85f",
-
     "title": "Microondas",
     "photo": "microondas.png",
     "category": "Electrodomesticos",
@@ -40,9 +32,7 @@
     "stock": 8
   },
   {
-
     "id": "ef2fd9f0fbde86a73fe41e8f",
-
     "title": "Televisor",
     "photo": "televisor.png",
     "category": "Video",
@@ -50,9 +40,7 @@
     "stock": 18
   },
   {
-
     "id": "4f10cde913fdb935296a0fe7",
-
     "title": "Licuadora",
     "photo": "licuadora.png",
     "category": "Electro",
@@ -60,9 +48,7 @@
     "stock": 10
   },
   {
-
     "id": "7a0c96e7140340343c465460",
-
     "title": "Juguera",
     "photo": "juguera.png",
     "category": "Electro",
@@ -70,9 +56,7 @@
     "stock": 11
   },
   {
-
     "id": "282ab77431f838099f053aff",
-
     "title": "Impresora",
     "photo": "impresora.png",
     "category": "Perifericos",
@@ -80,9 +64,7 @@
     "stock": 20
   },
   {
-
     "id": "7e395906e47d45030c884b05",
-
     "title": "Switch",
     "photo": "switch.png",
     "category": "Redes",
@@ -91,7 +73,6 @@
   },
   {
     "id": "df99b23727cb83bdcc8c7645",
-
     "title": "CPU",
     "photo": "cpu.png",
     "category": "Computacion",
@@ -815,7 +796,39 @@
     "title": "Firewall",
     "photo": "firewall.png",
     "category": "Redes",
-    "price": 800000,
-    "stock": 5
+    "price": 1,
+    "stock": 1
+  },
+  {
+    "id": "68e9a61666ebc7664bcb7b5f",
+    "title": "MicroSD",
+    "photo": "https://http2.mlstatic.com/D_NQ_NP_709331-MLA28343762816_102018-O.webp",
+    "category": "Memorias",
+    "price": 1,
+    "stock": 1
+  },
+  {
+    "id": "f540f5a78f8751e1e2f8ab68",
+    "title": "MicroSD2",
+    "photo": "https://http2.mlstatic.com/D_NQ_NP_709331-MLA28343762816_102018-O.webp",
+    "category": "Memorias",
+    "price": 1,
+    "stock": 1
+  },
+  {
+    "id": "eac9dd21be52a7e0c6cc505d",
+    "title": "MicroSD1",
+    "photo": "https://http2.mlstatic.com/D_NQ_NP_709331-MLA28343762816_102018-O.webp",
+    "category": "Electronicos",
+    "price": 1,
+    "stock": 1
+  },
+  {
+    "id": "080575284ae7189df8970367",
+    "title": "Pendrive",
+    "photo": "https://http2.mlstatic.com/D_NQ_NP_709331-MLA28343762816_102018-O.webp",
+    "category": "Memorias",
+    "price": 1,
+    "stock": 1
   }
 ]

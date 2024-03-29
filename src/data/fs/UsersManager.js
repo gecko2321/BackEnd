@@ -1,11 +1,9 @@
-
 import fs from "fs";
 import crypto from "crypto";
 
-
 class UserManager {
   constructor() {
-    this.path = "./data/fs/files/users.json";
+    this.path = "./src/data/fs/files/users.json";
 
     this.init();
   }
@@ -16,17 +14,17 @@ class UserManager {
 
       fs.writeFileSync(this.path, stringData);
 
-
       console.log("ARCHIVO USERS CREADO!");
     } else {
       console.log("ARCHIVO USERS YA EXISTE!");
-
     }
   }
   async create(data) {
     try {
       if (!data.email) {
-        throw new Error("INGRESE EMAIL");
+        throw new Error("Enter EMAIL!");
+      } else if (!data.password) {
+        throw new Error("Enter PASSWORD!");
       } else {
         const user = {
           id: crypto.randomBytes(12).toString("hex"),
@@ -35,7 +33,7 @@ class UserManager {
             "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
           email: data.email,
           password: data.password,
-          role: data.role,
+          role: data.role || 0,
         };
 
         let all = await fs.promises.readFile(this.path, "utf-8");
@@ -57,16 +55,13 @@ class UserManager {
   }
 
   async read(role) {
-
     try {
       let all = await fs.promises.readFile(this.path, "utf-8");
 
       all = JSON.parse(all);
 
-
       role && (all = all.filter((each) => each.role === role));
       return all;
-
     } catch (error) {
       console.log(error);
     }
@@ -80,13 +75,33 @@ class UserManager {
       let user = all.find((each) => each.id === id);
 
       if (!user) {
-        throw new Error("NO ENCONTRADO");
+        throw new Error("Not Found!!");
       } else {
         console.log(user);
         return user;
       }
     } catch (error) {
       console.log(error);
+    }
+  }
+  async update(id, data) {
+    try {
+      let all = await this.read();
+      let one = all.find((each) => each.id === id);
+      if (one) {
+        for (let prop in data) {
+          one[prop] = data[prop];
+        }
+        all = JSON.stringify(all, null, 2);
+        await fs.promises.writeFile(this.path, all);
+        return one;
+      } else {
+        const error = new Error("Not Found!!");
+        error.statusCode = 404;
+        throw error;
+      }
+    } catch (error) {
+      throw error;
     }
   }
   async destroy(id) {
@@ -98,7 +113,9 @@ class UserManager {
       let user = all.find((each) => each.id === id);
 
       if (!user) {
-        throw new Error("NO ENCONTRADO");
+        const error = new Error("Not found!!");
+        error.statusCode = 404;
+        throw error;
       } else {
         let filtered = all.filter((each) => each.id !== id);
 
@@ -115,10 +132,8 @@ class UserManager {
   }
 }
 
-
 const usersManager = new UserManager();
 export default usersManager;
-
 
 async function prueba() {
   try {
@@ -130,7 +145,6 @@ async function prueba() {
       password: "12345678",
 
       role: "DBA",
-
     });
     await user.create({
       photo: "photo.png",
@@ -138,7 +152,6 @@ async function prueba() {
       password: "12345678",
 
       role: "DBA",
-
     });
     await user.create({
       photo: "photo.png",
@@ -146,7 +159,6 @@ async function prueba() {
       password: "12345678",
 
       role: "DBA",
-
     });
     await user.create({
       photo: "photo.png",
@@ -154,7 +166,6 @@ async function prueba() {
       password: "12345678",
 
       role: "DBA",
-
     });
 
     const prueba = await user.create({
@@ -163,7 +174,6 @@ async function prueba() {
       password: "12345678",
 
       role: "DBA",
-
     });
 
     await user.read();
@@ -175,4 +185,3 @@ async function prueba() {
 }
 
 //prueba();
-
