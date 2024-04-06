@@ -33,6 +33,17 @@ server.set("view engine", "handlebars");
 server.set("views", __dirname + "/src/views");
 
 //Endpoints
+
+const server = express();
+const port = 8080;
+const ready = () => console.log("server ready on port " + port);
+server.listen(port, ready);
+
+server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
+server.use(morgan("dev"))
+
+//endpoints
 server.use("/", indexRouter);
 server.use(errorHandler);
 server.use(pathHandler);
