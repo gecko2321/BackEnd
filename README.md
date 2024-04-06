@@ -27,3 +27,10 @@ Repositorio para el curso de BackEnd de CoderHouse
 - Se agregan middlewares para errorHandler
 - Se agregan middlewares para pathHandler
 - Se reestructura el arbol de la app segun directorios especificados
+
+# Sprint4
+
+- Se instala express-handlebars
+- Se instala socket.io
+- Se generan las hbs (main, index, products,productsDetail,productsReal,users,usersDetail y usersRegister) utilizando como base un sitio web previamente generado en el curso de frontend (con bootstrap)
+- Se aplican los metodos de socket emit() y on() para la comunicacion entre el servidor y el cliente (envio y recibo nuevos productos/usuarios y refresco online de prodductos)

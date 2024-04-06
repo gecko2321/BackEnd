@@ -68,6 +68,10 @@ class ProductManager {
       let all = await fs.promises.readFile(this.path, "utf-8");
 
       all = JSON.parse(all);
+      let product = all.find((each) => each.id === id);
+      return product;
+
+      all = JSON.parse(all);
 
       let product = all.find((each) => each.id === id);
 
@@ -77,6 +81,7 @@ class ProductManager {
         console.log(product);
         return product;
       }
+
     } catch (error) {
       throw error;
     }

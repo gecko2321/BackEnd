@@ -778,7 +778,7 @@
   {
     "id": "e3ae554cd1f84d1845aa3327",
     "title": "Router",
-    "photo": "router.png",
+    "photo": "../img/productos/10.webp",
     "category": "Redes",
     "price": 250000,
     "stock": 20
@@ -786,7 +786,7 @@
   {
     "id": "513c7a84d9792d20da18315a",
     "title": "Mikrotik",
-    "photo": "mikrotik.png",
+    "photo": "../img/productos/9.webp",
     "category": "Redes",
     "price": 200000,
     "stock": 10
@@ -794,7 +794,7 @@
   {
     "id": "3d200a84d68267ac9674cac3",
     "title": "Firewall",
-    "photo": "firewall.png",
+    "photo": "../img/productos/5.webp",
     "category": "Redes",
     "price": 1,
     "stock": 1
@@ -802,7 +802,7 @@
   {
     "id": "68e9a61666ebc7664bcb7b5f",
     "title": "MicroSD",
-    "photo": "https://http2.mlstatic.com/D_NQ_NP_709331-MLA28343762816_102018-O.webp",
+    "photo": "../img/productos/1.webp",
     "category": "Memorias",
     "price": 1,
     "stock": 1
@@ -810,7 +810,7 @@
   {
     "id": "f540f5a78f8751e1e2f8ab68",
     "title": "MicroSD2",
-    "photo": "https://http2.mlstatic.com/D_NQ_NP_709331-MLA28343762816_102018-O.webp",
+    "photo": "../img/productos/2.webp",
     "category": "Memorias",
     "price": 1,
     "stock": 1
@@ -818,7 +818,7 @@
   {
     "id": "eac9dd21be52a7e0c6cc505d",
     "title": "MicroSD1",
-    "photo": "https://http2.mlstatic.com/D_NQ_NP_709331-MLA28343762816_102018-O.webp",
+    "photo": "../img/productos/3.webp",
     "category": "Electronicos",
     "price": 1,
     "stock": 1
@@ -826,9 +826,33 @@
   {
     "id": "080575284ae7189df8970367",
     "title": "Pendrive",
-    "photo": "https://http2.mlstatic.com/D_NQ_NP_709331-MLA28343762816_102018-O.webp",
+    "photo": "../img/productos/4.webp",
     "category": "Memorias",
     "price": 1,
     "stock": 1
+  },
+  {
+    "id": "803e80bc001282bd79738a83",
+    "title": "Maceta",
+    "photo": "../img/productos/6.webp",
+    "category": "Jardineria",
+    "price": "2560",
+    "stock": "21"
+  },
+  {
+    "id": "5da4154019be5ce67d3eb801",
+    "title": "Taza",
+    "photo": "../img/productos/7.webp",
+    "category": "Ceramicas",
+    "price": "1500",
+    "stock": 1
+  },
+  {
+    "id": "52a65a571da8889f4226b8f0",
+    "title": "Jarron",
+    "photo": "../img/productos/8.webp",
+    "category": "Hogar",
+    "price": "2000",
+    "stock": "3"
   }
 ]
