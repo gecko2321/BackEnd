@@ -1,0 +1,50 @@
+<main class="d-flex flex-column align-items-center w-100 flex-grow-1">
+  <section class="d-flex flex-column align-items-center w-50">
+    <h1 class="bg-success-subtle p-2 text-center text-success w-100">INGRESO DE
+      NUEVO USUARIO</h1>
+    <form class="d-flex flex-column w-50 m-3">
+      <input
+        class="m-2 p-2 text-center"
+        type="text"
+        id="photo"
+        placeholder="Path de la foto"
+      />
+      <input
+        class="m-2 p-2 text-center"
+        type="email"
+        id="email"
+        placeholder="e-Mail"
+      />
+      <input
+        class="m-2 p-2 text-center"
+        type="password"
+        id="password"
+        placeholder="Password"
+      />
+      <input
+        class="m-2 p-2 text-center"
+        type="number"
+        id="role"
+        placeholder="Rol 0-1"
+      />
+      <input
+        class="m-2 p-2 text-center btn btn-success"
+        type="button"
+        id="register"
+        value="INGRESAR!"
+      />
+    </form>
+  </section>
+</main>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+<script>
+  const socket = io();
+  document.querySelector("#register").addEventListener("click", (event) => { let
+  photo = document.querySelector("#photo").value let email =
+  document.querySelector("#email").value let password =
+  document.querySelector("#password").value let role =
+  document.querySelector("#role").value socket.emit("new_user", {
+  photo,email,password,role }) })
+</script>

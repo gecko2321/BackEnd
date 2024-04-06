@@ -1,0 +1,19 @@
+<main class="d-flex flex-column align-items-center w-100 flex-grow-1">
+  {{#if user.id}}
+    <h1 class="bg-success-subtle p-2 text-center text-success w-100">DETALLE DEL
+      USUARIO
+      {{user.id}}</h1>
+    <section
+      class="m-3 w-50 d-flex flex-column justify-content-center align-items-center bg-success-subtle"
+    >
+      <p>ID: {{user.id}}</p>
+      <img src="{{user.photo}}" alt="foto del usuario" width = 100>
+      <p>Correo Electronico: {{user.email}}</p>
+      <p>Rol: {{user.role}}</p>
+
+    </section>
+  {{else}}
+    <h1 class="bg-success-subtle p-2 text-center text-success w-100">USUARIO NO
+      ENCONTRADO</h1>
+  {{/if}}
+</main>

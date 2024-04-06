@@ -1,0 +1,19 @@
+<main class="d-flex flex-column align-items-center w-100 flex-grow-1">
+  {{#if product.id}}
+    <h1 class="bg-success-subtle p-2 text-center text-success w-100">DETALLE DEL
+      PRODUCTO
+      {{product.id}}</h1>
+    <section
+      class="m-3 w-50 d-flex flex-column justify-content-center align-items-center bg-success-subtle"
+    >
+      <p>{{product.title}}</p>
+      <p> PRECIO ${{product.price}}</p>
+      <p>{{product.category}}</p>
+      <img src="{{product.photo}}" alt="Imagen del Producto" />
+
+    </section>
+  {{else}}
+    <h1 class="bg-success-subtle p-2 text-center text-success w-100">PRODUCTO NO
+      ENCONTRADO</h1>
+  {{/if}}
+</main>

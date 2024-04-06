@@ -66,17 +66,9 @@ class ProductManager {
   async readOne(id) {
     try {
       let all = await fs.promises.readFile(this.path, "utf-8");
-
       all = JSON.parse(all);
-
       let product = all.find((each) => each.id === id);
-
-      if (!product) {
-        throw new Error("Not found!!");
-      } else {
-        console.log(product);
-        return product;
-      }
+      return product;
     } catch (error) {
       throw error;
     }
