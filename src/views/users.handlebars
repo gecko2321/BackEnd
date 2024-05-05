@@ -5,7 +5,7 @@
     class="m-3 w-100 d-flex flex-column justify-content-center align-items-center"
   >
 {{#each users}}
-  <a href="/users/{{this.id}}" class="p-3 m-3 w-50 text-light btn btn-success">
+  <a href="/users/{{this._id}}" class="p-3 m-3 w-50 text-light btn btn-success">
     <img src="{{this.photo}}" alt="" width="100">
     -
     {{this.email}}

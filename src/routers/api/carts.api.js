@@ -1,14 +1,16 @@
 import { Router } from "express";
 //import cartsManager from "../../data/fs/CartsManager.js";
-import cartsManager from "../../data/mongo/CartsManager.mongo.js";
+import cartsManager from "../../data/mongo/managers/CartsManager.mongo.js";
 
 const cartsRouter = Router();
 
-cartsRouter.get("/", read);
+//cartsRouter.get("/", read);
+cartsRouter.get("/", paginate);
 cartsRouter.get("/:pid", readOne);
 cartsRouter.post("/", create);
 cartsRouter.put("/:pid", update);
 cartsRouter.delete("/:pid", destroy);
+
 
 async function create(req, res, next) {
   try {
@@ -43,6 +45,26 @@ async function read(req, res, next) {
     return next(error);
   }
 }
+
+async function paginate(req, res, next) {
+  try {
+         const filter ={}
+         if (req.query.user_id){
+           filter.user_id = req.query.user_id
+         }
+         const options ={
+          limit: req.query.limit || 4,
+          page: req.query.page || 1
+         }
+         const cart = await cartsManager.paginate({filter,options});
+         return res.json({
+          statusCode: 200,
+          response: cart
+         })
+       } catch (error) {
+        return next(error);
+      }
+      }
 
 async function readOne(req, res, next) {
   try {
@@ -83,7 +105,7 @@ async function destroy(req, res, next) {
     const one = await cartsManager.destroy(pid);
     return res.json({
       statusCode: 200,
-      response: one,
+      response: one
     });
   } catch (error) {
     return next(error);

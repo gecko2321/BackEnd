@@ -3,8 +3,8 @@ import crypto from "crypto";
 
 class CartManager {
   constructor() {
-    this.path = "./src/data/fs/files/carts.json";
-
+    //this.path = "./files/carts.json"; Para FileSystem
+    this.path = "./src/data/fs/files";
     this.init();
   }
   init() {
@@ -29,7 +29,7 @@ class CartManager {
           user_id: data.user_id || "default",
           product_id: data.product_id || "default",
           quantity: data.quantity || 1,
-          state: data.state || "reserved"
+          state: data.state || "reserved",
         };
 
         let all = await fs.promises.readFile(this.path, "utf-8");
@@ -55,6 +55,7 @@ class CartManager {
       let all = await fs.promises.readFile(this.path, "utf-8");
       all = JSON.parse(all);
       user_id && (all = all.filter((each) => each.user_id === user_id));
+      console.log(all)
       return all;
     } catch (error) {
       throw error;
@@ -80,6 +81,7 @@ class CartManager {
         }
         all = JSON.stringify(all, null, 2);
         await fs.promises.writeFile(this.path, all);
+        console.log(one)
         return one;
       } else {
         const error = new Error("Not found!!");
@@ -121,19 +123,49 @@ class CartManager {
 const cartsManager = new CartManager();
 export default cartsManager;
 
-async function prueba() {
+async function pruebaCreate() {
   try {
     const cart = new CartManager();
 
     await cart.create({
-      title: "Celular",
-      photo: "celular.png",
-      category: "Electronicos",
-      price: 400000,
-      stock: 25,
+      user_id: "ricardo" || "default",
+      product_id: "pixel" || "default",
+      quantity: 1 || 1,
+      state: "reserved" || "reserved",
     });
   } catch (error) {
     console.log(error);
   }
 }
-//prueba();
+
+async function pruebaRead() {
+  try {
+    const cart = new CartManager();
+    await cart.read("lely")
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function pruebaUpdate() {
+  try {
+    const cart = new CartManager();
+    await cart.update("8f56be60c63e3d9b995ff7eb",{user_id: "Lely3",product_id:"Samsung"})
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function pruebaDestroy() {
+  try {
+    const cart = new CartManager();
+    await cart.destroy("8f56be60c63e3d9b995ff7eb")
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//pruebaCreate();
+//pruebaRead();
+//pruebaUpdate()
+//pruebaDestroy()

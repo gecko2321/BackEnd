@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
 
 const collection = "products";
 const schema = new Schema(
@@ -7,7 +8,7 @@ const schema = new Schema(
     category: {
       type: String,
       required: true,
-      enum: ["Tazas", "Platos", "Combo", "Varios"],
+      enum: ["Tazas", "Platos", "Combo", "Jardineria", "Varios"],
       default: "Varios",
     },
     price: { type: Number, required: true, default: 1 },
@@ -15,13 +16,15 @@ const schema = new Schema(
     photo: {
       type: String,
       default:
-        "https://e7.pngegg.com/pngimages/25/936/png-clipart-impruneta-ceramic-terracotta-vase-pottery-terra-cotta-vase-pottery.png",
+        "https://d22fxaf9t8d39k.cloudfront.net/f1901a40e42e5a23cfd96f43a6f2d7f7284f2d641c3b04d8e607479c2b8094c777180.jpeg",
     },
   },
   {
     timestamps: true,
   }
 );
+
+schema.plugin(mongoosePaginate);
 
 const Product = model(collection, schema);
 export default Product;

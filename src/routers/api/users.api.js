@@ -1,6 +1,6 @@
 import { Router } from "express";
 //import usersManager from "../../data/fs/UsersManager.js";
-import usersManager from "../../data/mongo/UsersManager.mongo.js";
+import usersManager from "../../data/mongo/managers/UsersManager.mongo.js";
 
 const usersRouter = Router();
 
@@ -9,6 +9,7 @@ usersRouter.get("/:uid", readOne);
 usersRouter.post("/", create);
 usersRouter.put("/:uid", update);
 usersRouter.delete("/:uid", destroy);
+usersRouter.get("/paginate",paginate)
 
 async function create(req, res, next) {
   try {
@@ -83,6 +84,26 @@ async function destroy(req, res, next) {
       statusCode: 200,
       response: one,
     });
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function paginate(req, res, next) {
+  try {
+    const filter = {}
+    const opts = {}
+    const all = await usersManager.paginate({filter,opts});
+    if (all.length > 0) {
+      return res.json({
+        statusCode: 200,
+        response: all,
+      });
+    } else {
+      const error = new Error("Not found!");
+      error.statusCode = 404;
+      throw error;
+    }
   } catch (error) {
     return next(error);
   }

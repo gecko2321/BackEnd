@@ -1,17 +1,32 @@
 import { Router } from "express";
-import productsManager from "../../data/fs/ProductsManager.js";
-//import productsManager from "../../data/mongo/ProductsManager.mongo.js";
+//import productsManager from "../../data/fs/ProductsManager.js";
+import productsManager from "../../data/mongo/managers/ProductsManager.mongo.js";
 
 const productsRouter = Router();
 
-productsRouter.get("/", async (req, res, next) => {
-  try {
-    const products = await productsManager.read();
-    return res.render("products", { products });
-  } catch (error) {
-    return next(error);
-  }
-});
+ productsRouter.get("/", async (req, res, next) => {
+   try {
+     const products = await productsManager.read();
+     return res.render("products", { products });
+   } catch (error) {
+     return next(error);
+   }
+ });
+
+
+// productsRouter.get("/", async (req, res, next) => {
+//   try {
+//     const filter ={}
+//     if (req.query.product_id){
+//       filter.product_id = req.query.product_id
+//     }
+//     const products = await productsManager.paginate({filter});
+//     return res.render("products", { products });
+//   } catch (error) {
+//     return next(error);
+//   }
+// });
+
 
 productsRouter.get("/real", async (req, res, next) => {
   try {

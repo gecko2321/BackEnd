@@ -1,10 +1,21 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
 
 const collection = "carts";
 const schema = new Schema(
   {
-    user_id: { type: String, required: true },
-    product_id: { type: String, required: true },
+    user_id: {
+      type: Types.ObjectId,
+      required: true,
+      index: true,
+      ref: "users",
+    },
+    product_id: {
+      type: Types.ObjectId,
+      required: true,
+      index: true,
+      ref: "products",
+    },
     quantity: { type: Number, required: true },
     state: {
       type: String,
@@ -17,6 +28,16 @@ const schema = new Schema(
     timestamps: true,
   }
 );
+
+schema.plugin(mongoosePaginate);
+
+schema.pre("find", function () {
+  this.populate("user_id") //agregar selectores
+});
+
+schema.pre("find", function () {
+  this.populate("product_id") //agregar selectores
+});
 
 const Cart = model(collection, schema);
 export default Cart;

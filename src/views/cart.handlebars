@@ -1,0 +1,94 @@
+<body>
+    <div class="container">
+        <h1 class="mt-5">Productos en el Carrito</h1>
+        <div id="cart-items" class="row mt-4">
+            <!-- Las tarjetas de los productos se llenarán aquí -->
+        </div>
+        <div id="pagination" class="mt-4">
+        
+        </div>
+        
+        <div class="text-center mt-4">
+            <button class="btn btn-success" onclick="finalizarCompra()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <script>
+        // Función para obtener productos paginados
+        async function obtenerProductosPaginados(page) {
+            try {
+                const response = await fetch(`http://localhost:8080/api/carts?user_id=6633d717c68de5b1bff2e4c4&page=${page}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    const products = data.response.docs;
+                    const cartItemsContainer = document.getElementById('cart-items');
+                    // Limpiar el contenedor antes de agregar nuevos productos
+                    cartItemsContainer.innerHTML = '';
+                    // Recorre los productos y crea el HTML para cada tarjeta
+                    products.forEach(product => {
+                        // Genera el HTML para la tarjeta de cada producto
+                        const cardHTML = `
+                            <div class="card col-md-4 mx-4 mb-4">                                
+                                <img src="${product.product_id.photo}" width="314" height="314" class="card-img-bottom" alt="${product.product_id.title}">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">${product.product_id.title}</h5>
+                                    <p class="card-text">Precio: $${product.product_id.price}</p>
+                                    <p class="card-text">Cantidad: ${product.quantity}</p> <!-- Aquí puedes mostrar la cantidad -->
+                                    <button class="btn btn-danger btn-sm" onclick="eliminarProducto('${product._id}')">Eliminar</button>
+                                </div>
+                            </div>
+                        `;
+                        // Agregar el HTML generado al contenedor de productos
+                        cartItemsContainer.insertAdjacentHTML('beforeend', cardHTML);
+                    });
+                    // Actualizar los botones de paginación
+                    actualizarBotonesPaginacion(data.response);
+                } else {
+                    console.error('Error al obtener los datos');
+                }
+            } catch (error) {
+                console.error('Error al obtener los datos:', error);
+            }
+        }
+
+        // Función para eliminar un producto del carrito
+        async function eliminarProducto(id) {
+            try {
+                const response = await fetch(`http://localhost:8080/api/carts/${id}`, {
+                    method: 'DELETE',
+                });
+                if (response.ok) {                                   
+                    obtenerProductosPaginados(1); // Cargar la primera página después de eliminar el producto
+                } else {
+                    console.error('Error al eliminar el producto');
+                }
+            } catch (error) {
+                console.error('Error al eliminar el producto:', error);
+            }
+        }
+
+        function actualizarBotonesPaginacion(response) {
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
+            if (response.hasPrevPage) {
+                paginationContainer.insertAdjacentHTML('beforeend', `<button class="btn btn-primary" onclick="obtenerProductosPaginados(${response.prevPage})">Anterior</button>`);
+            }
+            if (response.hasNextPage) {
+                paginationContainer.insertAdjacentHTML('beforeend', `<button class="btn btn-primary ml-2" onclick="obtenerProductosPaginados(${response.nextPage})">Siguiente</button>`);
+            }
+        }
+
+       async function finalizarCompra() {
+           try {
+                const response = await fetch(`http://localhost:8080/api/tickets/6633d717c68de5b1bff2e4c4`, {
+                    method: 'GET',
+                });
+                
+            } catch (error) {
+                console.error('Error al generar ticket', error);
+            }
+        }
+
+        obtenerProductosPaginados(1);
+    </script>
+</body>
