@@ -5,5 +5,33 @@
     "product_id": "Pocophone",
     "quantity": 1,
     "state": "reserved"
+  },
+  {
+    "id": "c54149a5191b35c84b5c5a83",
+    "user_id": "ricardo",
+    "product_id": "pixel",
+    "quantity": 1,
+    "state": "reserved"
+  },
+  {
+    "id": "717f8a9690b2dfdd232527d2",
+    "user_id": "ricardo",
+    "product_id": "pixel",
+    "quantity": 1,
+    "state": "reserved"
+  },
+  {
+    "id": "f07e19a32b7222368321e1fc",
+    "user_id": "ricardo",
+    "product_id": "pixel",
+    "quantity": 1,
+    "state": "reserved"
+  },
+  {
+    "id": "a687531696ddaa10f43a9cfe",
+    "user_id": "ricardo",
+    "product_id": "pixel",
+    "quantity": 1,
+    "state": "reserved"
   }
 ]

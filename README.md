@@ -40,3 +40,15 @@ Repositorio para el curso de BackEnd de CoderHouse
 - Se instala mongoose
 - Se crean los modelos de documentos para llenar la DB
 - Se crean los managers de products, users y carts para gestionar la DB "ceramicagloria" en MongoDB
+
+# Challenge 2
+
+- Se instala mongoose-paginate-v2
+- Se agrega el icono del carrito y se pagina la visual del carrito
+- Se incorpora el metodo aggregate y paginate al manager de mongo
+- Se utiliza el metodo populate para referenciar al producto y al usuario en el carrito
+- Se agregan los botones anterior y siguiente en la paginacion del carrito
+- Se agrega el boton eliminar producto del carrito
+- Se agrega vista de registros de usuario (funcional) y login de usuario
+- Se agrega el boton finalizar compra que genera un documento en la coleccion tickets con el total de la compra y id de usuario que compra
+- Y mucho mas
