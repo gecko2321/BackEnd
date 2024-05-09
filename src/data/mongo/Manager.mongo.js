@@ -10,14 +10,27 @@ class Manager {
       throw error;
     }
   }
-  async read() {
+  async read(opts) {
     try {
-      const all = await this.Model.find().lean();
+      let query = {};
+        if (opts && opts.category) {
+            // Si se proporciona la categoría en opts, agregarla a la consulta
+            query = { category: opts.category };
+        }
+      const all = await this.Model.find(query).lean();
       return all;
     } catch (error) {
       throw error;
     }
   }
+  // async readByCat(category) {
+  //   try {
+  //     const all = await this.Model.find(category).lean();
+  //     return all;
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // }
   async readOne(id) {
     try {
       const one = await this.Model.findOne({_id:id}).lean()
@@ -31,7 +44,7 @@ class Manager {
       options = {...options,lean:true}
       const all = await this.Model.paginate(filter,options);
       if (all.totalDocs ===0){
-        const error = new error("No hay Documentos")
+        const error = new Error("No hay Documentos")
         error.statusCode = 404
         throw error
       }

@@ -1,15 +1,28 @@
-
 <main class="d-flex flex-column align-items-center w-100 flex-grow-1">
-  <h1 class="bg-success-subtle p-2 text-center text-success w-100">Todos Nuestros Productos</h1>
-  <section
-    class="m-3 w-100 d-flex flex-column justify-content-center align-items-center"
-  >
-{{#each products}}
-  <a href="/products/{{this._id}}" class="p-3 m-3 w-50 text-light btn btn-success">
-    {{this.title}}
-    -
-    Precio ${{this.price}}
-  </a>
-{{/each}}
-  </section>
+    <h1 class="bg-success-subtle p-2 text-center text-success w-100">Todos Nuestros Productos</h1>
+    <section class="m-3 w-100 d-flex flex-column justify-content-center align-items-center">
+        <!-- Formulario para seleccionar la categoría -->
+        <form action="/products" method="GET" class="mb-3">
+            <div class="form-group">
+                <label for="category">Filtrar por Categoría:</label>
+                <select name="category" id="category" class="form-control">
+                    <option value="">Todas</option>
+                    <option value="Tazas">Tazas</option>
+                    <option value="Platos">Platos</option>
+                    <option value="Combo">Combo</option>
+                    <option value="Jardineria">Jardineria</option>
+                    <option value="Varios">Varios</option>                    
+                    <!-- Agrega más opciones según las categorías disponibles -->
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </form>
+
+        <!-- Listado de productos -->
+        {{#each products}}
+            <a href="/products/{{this._id}}" class="p-3 m-3 w-50 text-light btn btn-success">
+                {{this.title}} - Precio ${{this.price}}
+            </a>
+        {{/each}}
+    </section>
 </main>

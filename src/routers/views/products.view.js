@@ -4,14 +4,28 @@ import productsManager from "../../data/mongo/managers/ProductsManager.mongo.js"
 
 const productsRouter = Router();
 
+//  productsRouter.get("/", async (req, res, next) => {
+//    try {
+//      const products = await productsManager.read();
+//      return res.render("products", { products });
+//    } catch (error) {
+//      return next(error);
+//    }
+//  });
+
  productsRouter.get("/", async (req, res, next) => {
-   try {
-     const products = await productsManager.read();
-     return res.render("products", { products });
-   } catch (error) {
-     return next(error);
-   }
- });
+  try {
+      let products;
+      if (req.query.category) {
+          products = await productsManager.read({ category: req.query.category });
+      } else {          
+          products = await productsManager.read();
+      }      
+      return res.render("products", { products });
+  } catch (error) {
+      return next(error);
+  }
+});
 
 
 // productsRouter.get("/", async (req, res, next) => {
