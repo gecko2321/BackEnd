@@ -8,8 +8,17 @@
         
         </div>
         
+
+        <div class="text-center mt-4" id="no-products" style="display: none;">
+            <p>No hay ningún producto en el carrito.</p>
+        </div>
+
         <div class="text-center mt-4">
-            <button class="btn btn-success" onclick="finalizarCompra()">Finalizar Compra</button>
+            <button class="btn btn-danger" onclick="eliminarTodosProductos()" id="delete-btn" style="display: none;">Eliminar Productos</button>
+        </div>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-success" onclick="finalizarCompra()" id="finish-btn" style="display: none;">Finalizar Compra</button>
         </div>
     </div>
 
@@ -22,6 +31,21 @@
                     const data = await response.json();
                     const products = data.response.docs;
                     const cartItemsContainer = document.getElementById('cart-items');
+                    const noProductsDiv = document.getElementById('no-products');
+                    const deleteButton = document.getElementById('delete-btn');
+                    const finishButton = document.getElementById('finish-btn');
+
+                    // Si no hay productos, muestra el mensaje y oculta los botones
+                    if (products.length === 0) {
+                        noProductsDiv.style.display = 'block';
+                        deleteButton.style.display = 'none';
+                        finishButton.style.display = 'none';
+                    } else {
+                        noProductsDiv.style.display = 'none';
+                        deleteButton.style.display = 'block';
+                        finishButton.style.display = 'block';
+                    }
+
                     // Limpiar el contenedor antes de agregar nuevos productos
                     cartItemsContainer.innerHTML = '';
                     // Recorre los productos y crea el HTML para cada tarjeta
@@ -31,11 +55,14 @@
                             <div class="card col-md-4 mx-4 mb-4">                                
                                 <img src="${product.product_id.photo}" width="314" height="314" class="card-img-bottom" alt="${product.product_id.title}">
                                 <div class="card-body text-center">
-                                    <h5 class="card-title">${product.product_id.title}</h5>
-                                    <p class="card-text">Precio: $${product.product_id.price}</p>
-                                    <p class="card-text">Cantidad: ${product.quantity}</p> <!-- Aquí puedes mostrar la cantidad -->
-                                    <button class="btn btn-danger btn-sm" onclick="eliminarProducto('${product._id}')">Eliminar</button>
-                                </div>
+    <h5 class="card-title">${product.product_id.title}</h5>
+    <p class="card-text">Precio: $${product.product_id.price}</p>
+    <!-- Utiliza un input numérico para modificar la cantidad -->
+    <label for="quantity-${product._id}">Cantidad:</label>
+    <input type="number" id="quantity-${product._id}" class="form-control" value="${product.quantity}" min="1" onchange="actualizarCantidad('${product._id}', this.value)">
+    <button class="btn btn-danger btn-sm" onclick="eliminarProducto('${product._id}')">Eliminar</button>
+</div>
+
                             </div>
                         `;
                         // Agregar el HTML generado al contenedor de productos
@@ -59,6 +86,8 @@
                 });
                 if (response.ok) {                                   
                     obtenerProductosPaginados(1); // Cargar la primera página después de eliminar el producto
+                    location.reload()
+
                 } else {
                     console.error('Error al eliminar el producto');
                 }
@@ -66,6 +95,26 @@
                 console.error('Error al eliminar el producto:', error);
             }
         }
+
+async function eliminarTodosProductos() {
+    try {
+        const response = await fetch(`http://localhost:8080/api/carts?user_id=6633d717c68de5b1bff2e4c4`);
+        if (response.ok) {
+            const data = await response.json();
+            const products = data.response.docs;
+            // Iterar sobre cada producto y eliminarlo
+            for (const product of products) {
+                await eliminarProducto(product._id);
+            }
+            obtenerProductosPaginados(1); // Recargar los productos después de eliminarlos
+            location.reload()
+        } else {
+            console.error('Error al obtener los datos');
+        }
+    } catch (error) {
+        console.error('Error al eliminar todos los productos:', error);
+    }
+}
 
         function actualizarBotonesPaginacion(response) {
             const paginationContainer = document.getElementById('pagination');
@@ -83,11 +132,33 @@
                 const response = await fetch(`http://localhost:8080/api/tickets/6633d717c68de5b1bff2e4c4`, {
                     method: 'GET',
                 });
-                
+
+                eliminarTodosProductos()
+                location.reload()
             } catch (error) {
                 console.error('Error al generar ticket', error);
             }
         }
+
+async function actualizarCantidad(productId, cantidad) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/carts/${productId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ quantity: cantidad })
+        });
+        if (response.ok) {                                   
+            obtenerProductosPaginados(1); // Cargar la primera página después de actualizar la cantidad
+            location.reload();
+        } else {
+            console.error('Error al actualizar la cantidad del producto');
+        }
+    } catch (error) {
+        console.error('Error al actualizar la cantidad del producto:', error);
+    }
+}
 
         obtenerProductosPaginados(1);
     </script>
