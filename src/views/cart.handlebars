@@ -8,6 +8,7 @@
         
         </div>
         
+
         <div class="text-center mt-4" id="no-products" style="display: none;">
             <p>No hay ningún producto en el carrito.</p>
         </div>
@@ -75,7 +76,6 @@
             } catch (error) {
                 console.error('Error al obtener los datos:', error);
             }
-            
         }
 
         // Función para eliminar un producto del carrito
@@ -87,6 +87,7 @@
                 if (response.ok) {                                   
                     obtenerProductosPaginados(1); // Cargar la primera página después de eliminar el producto
                     location.reload()
+
                 } else {
                     console.error('Error al eliminar el producto');
                 }
@@ -131,6 +132,7 @@ async function eliminarTodosProductos() {
                 const response = await fetch(`http://localhost:8080/api/tickets/6633d717c68de5b1bff2e4c4`, {
                     method: 'GET',
                 });
+
                 eliminarTodosProductos()
                 location.reload()
             } catch (error) {
@@ -157,7 +159,6 @@ async function actualizarCantidad(productId, cantidad) {
         console.error('Error al actualizar la cantidad del producto:', error);
     }
 }
-
 
         obtenerProductosPaginados(1);
     </script>
