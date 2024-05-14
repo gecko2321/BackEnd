@@ -5,12 +5,6 @@
     <form class="d-flex flex-column w-50 m-3">
       <input
         class="m-2 p-2 text-center"
-        type="text"
-        id="photo"
-        placeholder="Path de la foto"
-      />
-      <input
-        class="m-2 p-2 text-center"
         type="email"
         id="email"
         placeholder="e-Mail"
@@ -23,9 +17,15 @@
       />
       <input
         class="m-2 p-2 text-center"
+        type="text"
+        id="photo"
+        placeholder="Path de la foto"
+      />
+      <input
+        class="m-2 p-2 text-center"
         type="number"
-        id="role"
-        placeholder="Rol 0-1"
+        id="age"
+        placeholder="Edad"
       />
       <input
         class="m-2 p-2 text-center btn btn-success"
@@ -37,14 +37,6 @@
   </section>
 </main>
 
-<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
-
-<script>
-  const socket = io();
-  document.querySelector("#register").addEventListener("click", (event) => { let
-  photo = document.querySelector("#photo").value let email =
-  document.querySelector("#email").value let password =
-  document.querySelector("#password").value let role =
-  document.querySelector("#role").value socket.emit("new_user", {
-  photo,email,password,role }) })
-</script>
+{{!-- <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/scripts/userRegister.js"></script>

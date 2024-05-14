@@ -52,3 +52,14 @@ Repositorio para el curso de BackEnd de CoderHouse
 - Se agrega vista de registros de usuario (funcional) y login de usuario
 - Se agrega el boton finalizar compra que genera un documento en la coleccion tickets con el total de la compra y id de usuario que compra
 - Y mucho mas
+
+# Sprint6
+
+- Se instala cookies y sessions
+- Se configura el inicio de sesion y registro de usuarios
+- Se establece el storage en mongo de las sessions
+- Se condiciona la visualizacion de botones del navbar segun el estado online del usuario
+- Se pueden cargar nuevos productos si el usuario tiene ROL = 1
+- Está paginada la vista cart de articulos de un usuario
+- Se utiliza la variable _id del usuario que inicio session para gestionar el carrito, etc
+- Haciendo login con el usuario ricardo.moreno@prueba.com/12345678 se puede ingresar al carrito, agregar productos, etc

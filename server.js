@@ -11,6 +11,10 @@ import socketCb from "./src/routers/index.socket.js";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import dbConnect from "./src/utils/dbConnect.util.js";
+import cookieParser from "cookie-parser";
+import session from "express-session";
+//import fileStore from "session-file-store"
+import MongoStore from "connect-mongo";
 
 //Server HTTP
 const server = express();
@@ -28,10 +32,31 @@ socketServer.on("connection", socketCb);
 export { socketServer };
 
 //Middlewares
+server.use(cookieParser(process.env.SECRET_COOKIE));
+//Para Filestore
+//const FileSession = fileStore(session);
+server.use(
+  session({
+    //FileStore
+    // store: new FileSession({
+    //   path:"./src/data/fs/files/sessions",
+    //   ttl: 60 * 60
+    // }),
+    store: new MongoStore({
+      mongoUrl: process.env.MONGO_URI,
+      ttl: 60 * 60,
+    }),
+    secret: process.env.SECRET_SESSION,
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: 60 * 60 * 1000 },
+  })
+);
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(morgan("dev"));
-server.use(express.static("public"));
+//server.use(express.static("public"));
+server.use(express.static(__dirname + "/public"));
 
 //Handlebars Engine
 server.engine("handlebars", engine());
