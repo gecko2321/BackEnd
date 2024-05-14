@@ -86,18 +86,42 @@
             </div>
           </div>
         </nav>
+        <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
         <a
           href="/carts"
-          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+          class=""
+          id="cart"
         >
           <img
             class="bi me-2"
-            width="70"
-            height="60"
+            width="45"
+            height="35"
             src="/img/carrito.png"
             alt="Imagen logo"
           />
         </a>
+        <a
+          href="/users/login"
+          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+          id="login"
+        >
+          <img
+            class="bi me-2"
+            width="45"
+            height="35"
+            src="/img/ingresar.png"
+            alt="Imagen logo"
+          />
+        </a>
+        <button type="button" class="" id="logout">
+          <img            
+            width="45"
+            height="35"
+            src="/img/logout.png"
+            alt="Imagen logo"
+          />
+        </button>
+      </div>
       </header>
     </div>
 
@@ -173,7 +197,6 @@
         </li>
       </ul>
     </footer>
-
   </body>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -181,6 +204,7 @@
     crossorigin="anonymous"
   ></script>
   <!-- js de wow.js -->
-  <script src="/js/wow.min.js"></script>
+  <script src="/scripts/wow.min.js"></script>
   <script> new WOW().init(); </script>
+  <script src="/scripts/signout.js"></script>
 </html>

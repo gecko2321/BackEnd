@@ -26,10 +26,12 @@
   document.getElementById('agregar-carrito').addEventListener('click', async () => {
     const product_id = '{{product._id}}'; 
     const quantity = document.getElementById('cantidad').value; 
-    const user_id = "6633d717c68de5b1bff2e4c4"
+    //const user_id = "6633d717c68de5b1bff2e4c4"
 
     try {
-      
+       let resp= await fetch("/api/sessions/online")
+    resp = await resp.json()
+    const user_id = resp.user_id
       const response = await fetch('http://localhost:8080/api/carts', {
         method: 'POST',
         headers: {

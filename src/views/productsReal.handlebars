@@ -35,7 +35,7 @@
       <input
         class="m-2 p-2 text-center btn btn-success"
         type="button"
-        id="register"
+        id="ingresarPrd"
         value="INGRESAR!"
       />
     </form>
@@ -48,23 +48,5 @@
 </main>
 
 <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
-<script>
-  const socket = io();
-  socket.on("products", data => {
-    //console.log(data)
-    const template = data
-        .map(each => ` <img style="width: 50%; height: 50%" src="${each.photo}" class="object-fit-cover p-3" alt="${each.id}"> `)
-        .reverse()
-        .splice(0)
-        .join("")
-    document.querySelector("#products").innerHTML = template
-  })
-  document.querySelector("#register").addEventListener("click", (event) => {
-    let title = document.querySelector("#title").value
-    let photo = document.querySelector("#photo").value
-    let category = document.querySelector("#category").value
-    let price = document.querySelector("#price").value
-    let stock = document.querySelector("#stock").value
-    socket.emit("new_product", { title,photo,category,price,stock })
-  })
-</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/scripts/productsReal.js"></script>
