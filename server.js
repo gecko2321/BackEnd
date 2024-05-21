@@ -58,7 +58,6 @@ server.use(morgan("dev"));
 //server.use(express.static("public"));
 server.use(express.static(__dirname + "/public"));
 
-
 //Handlebars Engine
 server.engine("handlebars", engine());
 server.set("view engine", "handlebars");

@@ -4,7 +4,6 @@ import productsManager from "../../data/mongo/managers/ProductsManager.mongo.js"
 import isText from "../../middlewares/isText.mid.js";
 import isValidAdmin from "../../middlewares/isValidAdmin.mid.js";
 
-
 const productsRouter = Router();
 
 //productsRouter.get("/", read);
