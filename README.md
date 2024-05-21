@@ -63,3 +63,11 @@ Repositorio para el curso de BackEnd de CoderHouse
 - Está paginada la vista cart de articulos de un usuario
 - Se utiliza la variable _id del usuario que inicio session para gestionar el carrito, etc
 - Haciendo login con el usuario ricardo.moreno@prueba.com/12345678 se puede ingresar al carrito, agregar productos, etc
+
+# Sprint7
+
+- Se instala el modulo passport
+- Se instala el modulo bcrypt
+- Se utilizan las estrategias de passport y el modulo bcrypt para hashear el password y crear registro de usuarios y login
+- Se condiciona el navbar para que responda segun exista un usuario logueado o no mediante el endpoint sesions/online
+- Haciendo login con el usuario ricardo.moreno@prueba.com/12345678 se puede ingresar al carrito, agregar productos, etc
