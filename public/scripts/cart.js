@@ -3,6 +3,8 @@ async function obtenerProductosPaginados(page) {
   try {
     let resp= await fetch("/api/sessions/online")
     resp = await resp.json()
+    
+    console.log(resp)
     const user_id = resp.user_id
     const response = await fetch(
       `http://localhost:8080/api/carts?user_id=${user_id}&page=${page}`

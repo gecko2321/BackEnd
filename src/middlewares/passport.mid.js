@@ -3,6 +3,8 @@ import { Strategy as LocalStrategy } from "passport-local";
 import usersManager from "../data/mongo/managers/UsersManager.mongo.js";
 import { createHash, verifyHash } from "../utils/hash.util.js";
 import { createToken } from "../utils/token.util.js";
+import {Strategy as JWTStrategy, ExtractJwt} from "passport-jwt"
+
 
 passport.use(
   "register",
@@ -15,7 +17,7 @@ passport.use(
         if (!email || !password) {
           const error = new Error("Please enter email and password!");
           error.statusCode = 400;
-          return done(error);
+          return done(null, null, error);
         }
         const one = await usersManager.readByEmail(email);
         if (one) {
@@ -47,11 +49,11 @@ passport.use(
         }
         const verify = verifyHash(password, one.password);
         if (verify) {
-          req.session.email = email;
-          req.session.online = true;
-          req.session.role = one.role;
-          req.session.user_id = one._id;
-          /*
+          //req.session.email = email;
+          //req.session.online = true;
+          //req.session.role = one.role;
+          //req.session.photo = one.photo;
+          //req.session.user_id = one._id;
           const user = {
             email,
             role: one.role,
@@ -59,14 +61,42 @@ passport.use(
             _id: one._id,
             online: true,
           };
-          const token = createToken(user)
-          user.token = token
-          */
-          return done(null, one);
+          const token = createToken(user);
+          user.token = token;
+          return done(null, user);
+          //agrega la propeidad USER al objeto de requerimientos
+          //esa propiedad user tiene todas las propiedades que estamos definiendo en el objeto correspondiente
         }
         const error = new Error("Invalid credentials");
         error.statusCode = 401;
         return done(error);
+      } catch (error) {
+        return done(error);
+      }
+    }
+  )
+);
+
+passport.use(
+  "jwt",
+  new JWTStrategy(
+    {
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        (req) => req?.cookies["token"],
+      ]),
+      secretOrKey: process.env.SECRET_JWT,
+    },
+    (data, done) => {
+      try {
+        if (data) {
+          
+          return done(null, data);
+          
+        } else {
+          const error = new Error("Forbidden from jwt!");
+          error.statusCode = 403;
+          return done(error);
+        }
       } catch (error) {
         return done(error);
       }
