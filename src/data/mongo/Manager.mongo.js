@@ -41,7 +41,7 @@ class Manager {
   }
   async readByEmail(email) {
     try {
-      const one = await this.Model.findOne({ email });
+      const one = await this.Model.findOne({ email }).lean();
       return one;
     } catch (error) {
       throw error;
@@ -79,6 +79,15 @@ class Manager {
       throw error;
     }
   }
+  async destroyAll(id) {
+    try {
+      const all = await this.Model.deleteMany({ user_id: id }).lean();
+      return all;
+    } catch (error) {
+      throw error;
+    }
+  }
+  
   async aggregate(obj) {
     try {
       const result = await this.Model.aggregate(obj);

@@ -18,6 +18,8 @@ document.querySelector("#loginn").addEventListener("click", async () => {
       timerProgressBar: true,
       showConfirmButton: false,
     }).then(function () {
+      //console.log(response.token)
+      //localStorage.setItem("token", response.token)
       return location.replace("/");
     });
   }

@@ -1,9 +1,9 @@
 // Función para obtener productos paginados
 async function obtenerProductosPaginados(page) {
   try {
-    let resp= await fetch("/api/sessions/online")
-    resp = await resp.json()
-    const user_id = resp.user_id
+    let resp = await fetch("/api/sessions/online");
+    resp = await resp.json();
+    const user_id = resp.user_id;
     const response = await fetch(
       `http://localhost:8080/api/carts?user_id=${user_id}&page=${page}`
     );
@@ -77,26 +77,50 @@ async function eliminarProducto(id) {
 
 async function eliminarTodosProductos() {
   try {
-    let resp= await fetch("/api/sessions/online")
-    resp = await resp.json()
-    const user_id = resp.user_id
+    let resp = await fetch("/api/sessions/online");
+    resp = await resp.json();
+
+    // Agrega depuración para ver la estructura de resp
+    console.log("Respuesta de /api/sessions/online:", resp);
+
+    // Extraer user_id directamente del objeto raíz
+    const user_id = resp.user_id;
+
+    if (!user_id) {
+      throw new Error("No se pudo obtener el user_id");
+    }
+
     const response = await fetch(
-      `http://localhost:8080/api/carts?user_id=${user_id}`
-    );
-    if (response.ok) {
-      const data = await response.json();
-      const products = data.response.docs;
-      // Iterar sobre cada producto y eliminarlo
-      for (const product of products) {
-        await eliminarProducto(product._id);
+      `http://localhost:8080/api/carts/all?user_id=${user_id}`,
+      {
+        method: "DELETE",
       }
-      obtenerProductosPaginados(1); // Recargar los productos después de eliminarlos
-      //location.reload();
+    );
+
+    if (response.ok) {
+      Swal.fire({
+        title: "Éxito",
+        text: "Todos los productos han sido eliminados del carrito",
+        icon: "success",
+      }).then(() => {
+        location.reload();
+      });
     } else {
-      console.error("Error al obtener los datos");
+      const errorData = await response.json();
+      console.error("Error al eliminar todos los productos", errorData);
+      Swal.fire({
+        title: "Error",
+        text: errorData.message || "Ocurrió un error al eliminar los productos",
+        icon: "error",
+      });
     }
   } catch (error) {
     console.error("Error al eliminar todos los productos:", error);
+    Swal.fire({
+      title: "Error",
+      text: error.message || "Ocurrió un error al eliminar los productos",
+      icon: "error",
+    });
   }
 }
 
@@ -119,21 +143,56 @@ function actualizarBotonesPaginacion(response) {
 
 async function finalizarCompra() {
   try {
-    let resp= await fetch("/api/sessions/online")
-    resp = await resp.json()
-    const user_id = resp.user_id
-    const response = await fetch(
-      `http://localhost:8080/api/tickets/${user_id}`,
-      {
-        method: "GET",
+    const result = await Swal.fire({
+      title: '¿Está seguro que desea finalizar la compra?',
+      text: "No podrás revertir esto",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, finalizar compra'
+    });
+
+    if (result.isConfirmed) {
+      let resp = await fetch("/api/sessions/online");
+      resp = await resp.json();
+      const user_id = resp.user_id;
+      const response = await fetch(
+        `http://localhost:8080/api/tickets/${user_id}`,
+        {
+          method: "GET",
+        }
+      );
+
+      if (response.ok) {
+        await eliminarTodosProductos();
+        Swal.fire({
+          title: 'Compra finalizada',
+          text: 'Todos los productos han sido eliminados del carrito',
+          icon: 'success',
+        }).then(() => {
+          location.reload();
+        });
+      } else {
+        const errorData = await response.json();
+        console.error("Error al finalizar la compra", errorData);
+        Swal.fire({
+          title: 'Error',
+          text: errorData.message || 'Ocurrió un error al finalizar la compra',
+          icon: 'error',
+        });
       }
-    );
-    eliminarTodosProductos();
-    location.reload();
+    }
   } catch (error) {
     console.error("Error al generar ticket", error);
+    Swal.fire({
+      title: 'Error',
+      text: error.message || 'Ocurrió un error al generar el ticket',
+      icon: 'error',
+    });
   }
 }
+
 
 async function actualizarCantidad(productId, cantidad) {
   try {
