@@ -8,11 +8,12 @@ import cartsManager from "../../data/mongo/managers/CartsManager.mongo.js";
 class CartsRouter extends CustomRouter {
   init() {
     //cartsRouter.get("/", read);
-    this.read("/", ["USER", "ADMIN"], paginate);
-    this.read("/:pid", ["USER", "ADMIN"], readOne);
+    this.read("/", ["PUBLIC"], paginate);
+    this.read("/:pid", ["PUBLIC"], readOne);
     this.create("/", ["USER", "ADMIN"], create);
     this.update("/:pid", ["USER", "ADMIN"], update);
-    this.destroy("/:pid", ["USER", "ADMIN"], destroy);
+    this.destroy("/all", ["PUBLIC"], destroyAll);
+    this.destroy("/:pid", ["PUBLIC"], destroy);
   }
 }
 
@@ -120,6 +121,30 @@ async function destroy(req, res, next) {
     //   response: one,
     // });
     return res.response200(one);
+  } catch (error) {
+    return next(error);
+  }
+}
+
+async function destroyAll(req, res, next) {
+  try {
+    const { user_id } = req.query;
+
+    if (!user_id) {
+      return res.status(400).json({ message: "user_id es requerido" });
+    }
+
+    const result = await cartsManager.destroyAll(user_id);
+
+    if (result.deletedCount === 0) {
+      return res
+        .status(404)
+        .json({ message: "No se encontraron productos para eliminar" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Todos los productos han sido eliminados del carrito" });
   } catch (error) {
     return next(error);
   }

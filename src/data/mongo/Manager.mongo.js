@@ -79,6 +79,15 @@ class Manager {
       throw error;
     }
   }
+  async destroyAll(id) {
+    try {
+      const all = await this.Model.deleteMany({ user_id: id }).lean();
+      return all;
+    } catch (error) {
+      throw error;
+    }
+  }
+  
   async aggregate(obj) {
     try {
       const result = await this.Model.aggregate(obj);

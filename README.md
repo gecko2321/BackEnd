@@ -71,3 +71,13 @@ Repositorio para el curso de BackEnd de CoderHouse
 - Se utilizan las estrategias de passport y el modulo bcrypt para hashear el password y crear registro de usuarios y login
 - Se condiciona el navbar para que responda segun exista un usuario logueado o no mediante el endpoint sesions/online
 - Haciendo login con el usuario ricardo.moreno@prueba.com/12345678 se puede ingresar al carrito, agregar productos, etc
+
+# Sprint8
+
+- Se instala y aplica jsonwebtoken
+- Se modifica la session para que utilice jwt en cookie en lugar de la tabla de mongo
+- Se aplica el custom router
+- Se normalizan las respuestas mediante el custom router
+- Se aplican las politicas de autenticacion/autorizacion mediante custom router
+- Se finaliza el endpoint /api/tickets para insrtar el total d la compra en la coleccion tickets de mongo
+- Se finaliza el endpoint /api/carts/all para eliminar todos los productos del carrito del usuario logueado
