@@ -55,3 +55,6 @@ fetch("/api/sessions/online")
     // En caso de error, asegurar que el botón de login esté visible
     document.getElementById("login").style.display = "block";
   });
+
+
+  

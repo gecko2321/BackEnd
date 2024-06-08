@@ -10,15 +10,27 @@ export default indexRouter;
 */
 import CustomRouter from "./CustomRouter.router.js";
 import apiRouter from "./api/index.api.js";
-import viewsRouter from "./views/index.views.js"
+import viewsRouter from "./views/index.views.js";
+import { fork } from "child_process";
 
 class IndexRouter extends CustomRouter {
-    init() {
-        this.use("/api", apiRouter)
-        this.use("/", viewsRouter)
-    }
+  init() {
+    this.use("/api", apiRouter);
+    this.use("/", viewsRouter);
+    this.read("/fork", ["PUBLIC"], (req, res, next) => {
+      try {
+        const childProcess = fork("./src/processes/sum.proc.js");
+        childProcess.send("start");
+        childProcess.on("message", (result) => {
+          return res.json({ result });
+        });
+      } catch (error) {
+        return next(error);
+      }
+    });
+  }
 }
 
-const indexRouter = new IndexRouter()
+const indexRouter = new IndexRouter();
 
-export default indexRouter.getRouter()
+export default indexRouter.getRouter();

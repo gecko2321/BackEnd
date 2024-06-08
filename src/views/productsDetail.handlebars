@@ -61,13 +61,18 @@
 
           if (response.ok) {
             Swal.fire({
-              title: "Excelente",
-              text: "Agregaste " + quantity + " {{product.title}} a tu Carrito",
-              imageUrl: "{{product.photo}}",
-              imageWidth: 314,
-              imageHeight: 314,
-              imageAlt: "Custom image"
-            });
+  title: "Excelente",
+  text: "Agregaste " + quantity + " {{product.title}} a tu Carrito",
+  imageUrl: "{{product.photo}}",
+  imageWidth: 314,
+  imageHeight: 314,
+  imageAlt: "Custom image"
+}).then((result) => {
+  if (result.isConfirmed) {
+    window.location.href = "/products";
+  }
+});
+;
           } else {
             throw new Error('Error al agregar al carrito');
           }
