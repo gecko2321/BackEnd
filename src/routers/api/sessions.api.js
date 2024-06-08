@@ -1,5 +1,8 @@
 import CustomRouter from "../CustomRouter.router.js";
+import { Router } from "express";
 import isValidData from "../../middlewares/isValidData.mid.js";
+import passport from "../../middlewares/passport.mid.js";
+import isAuth from "../../middlewares/isAuth.mid.js";
 import passportCb from "../../middlewares/passportCb.mid.js";
 import {
   register,

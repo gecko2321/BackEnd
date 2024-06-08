@@ -81,3 +81,9 @@ Repositorio para el curso de BackEnd de CoderHouse
 - Se aplican las politicas de autenticacion/autorizacion mediante custom router
 - Se finaliza el endpoint /api/tickets para insrtar el total d la compra en la coleccion tickets de mongo
 - Se finaliza el endpoint /api/carts/all para eliminar todos los productos del carrito del usuario logueado
+
+# Sprint9
+
+- Se implementa la division de capas MVC
+- Controllers - Services
+- se utilizan variables de entorno parametrizables en el archivo env.dev y env.prod
