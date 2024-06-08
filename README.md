@@ -86,4 +86,5 @@ Repositorio para el curso de BackEnd de CoderHouse
 
 - Se implementa la division de capas MVC
 - Controllers - Services
-- se utilizan variables de entorno parametrizables en el archivo env.dev y env.prod
+- Se utilizan variables de entorno parametrizables en el archivo env.dev y env.prod
+- Se instalan librerias vite - angular - cors aunque no las voy a utilizar, ya que uso handlebars
