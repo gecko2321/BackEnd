@@ -168,7 +168,7 @@ async function finalizarCompra() {
         await eliminarTodosProductos();
         Swal.fire({
           title: 'Compra finalizada',
-          text: 'Todos los productos han sido eliminados del carrito',
+          //text: 'Todos los productos han sido eliminados del carrito',
           icon: 'success',
         }).then(() => {
           location.reload();

@@ -1,5 +1,4 @@
 //Imports
-import "dotenv/config.js";
 import express from "express";
 import indexRouter from "./src/routers/index.router.js";
 import errorHandler from "./src/middlewares/errorHandler.mid.js";
@@ -15,10 +14,12 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 //import fileStore from "session-file-store"
 import MongoStore from "connect-mongo";
+import argsUtil from "./src/utils/args.util.js";
+import environment from "./src/utils/env.util.js";
 
 //Server HTTP
 const server = express();
-const port = process.env.port || 9000;
+const port = environment.PORT || argsUtil.p;
 const ready = async () => {
   console.log("server ready on port " + port);
   await dbConnect();
@@ -32,7 +33,7 @@ socketServer.on("connection", socketCb);
 export { socketServer };
 
 //Middlewares
-server.use(cookieParser(process.env.SECRET_COOKIE));
+server.use(cookieParser(environment.SECRET_COOKIE));
 //Para Filestore
 //const FileSession = fileStore(session);
 server.use(
@@ -67,3 +68,14 @@ server.set("views", __dirname + "/src/views");
 server.use("/", indexRouter);
 server.use(errorHandler);
 server.use(pathHandler);
+
+// /*
+// console.log(argsUtil)
+// console.log(environment
+// */
+// process.on("exit", (code)=> {
+//   console.log("Justo antes")
+//   console.log(code)
+// })
+
+// process.exit()
