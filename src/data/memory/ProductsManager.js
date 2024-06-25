@@ -1,37 +1,39 @@
+import crypto from "crypto";
+
 class ProductManager {
   static #products = [];
-  create(data) {
+  async create(data) {
     try {
-      const product = {
-        id:
-          ProductManager.#products.length === 0
-            ? 1
-            : ProductManager.#products[ProductManager.#products.length - 1].id +
-              1,
-        title: data.title,
-        photo:
-          data.photo ||
-          "https://http2.mlstatic.com/D_NQ_NP_709331-MLA28343762816_102018-O.webp",
-        category: data.category || "Electronicos",
-        price: data.price || 1,
-        stock: data.stock || 1,
-      };
-      ProductManager.#products.push(product);
+      // const one = {
+      //   id: crypto.randomBytes(12).toString("hex"),
+      //   title: data.title,
+      //   photo:
+      //     data.photo ||
+      //     "https://http2.mlstatic.com/D_NQ_NP_709331-MLA28343762816_102018-O.webp",
+      //   category: data.category || "Varios",
+      //   price: data.price || 1,
+      //   stock: data.stock || 1,
+      // };
+      ProductManager.#products.push(data);
       console.log("Producto Creado");
+      return data      
     } catch (error) {
       console.log(error);
     }
   }
-
-  read() {
+  async read(opts) {
     try {
-      return ProductManager.#products;
+      let all = ProductManager.#products;
+      if (opts && opts.category) {
+        // Si se proporciona la categoría en opts, filtrar los productos por categoría
+        all = all.filter((product) => product.category === opts.category);
+      }
+      return all;
     } catch (error) {
       console.log(error);
     }
   }
-
-  readOne(id) {
+ async readOne(id) {
     try {
       const one = ProductManager.#products.find((each) => each.id === id);
       if (!one) {
@@ -41,6 +43,42 @@ class ProductManager {
       }
     } catch (error) {
       console.log(error);
+    }
+  }
+  async paginate({ filter, options }) {
+    try {
+      let all = ProductManager.#products;
+
+      if (filter && filter.category) {
+        all = all.filter((product) => product.category === filter.category);
+      }
+
+      const page = options.page || 1;
+      const limit = options.limit || 10;
+      const totalDocs = all.length;
+      const totalPages = Math.ceil(totalDocs / limit);
+
+      if (totalDocs === 0) {
+        const error = new Error("No hay Documentos");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      const startIndex = (page - 1) * limit;
+      const endIndex = page * limit;
+      const docs = all.slice(startIndex, endIndex);
+
+      const result = {
+        docs,
+        totalDocs,
+        limit,
+        totalPages,
+        page,
+      };
+
+      return result;
+    } catch (error) {
+      throw error;
     }
   }
   async update(id, data) {
@@ -61,84 +99,85 @@ class ProductManager {
       throw error;
     }
   }
-  destroy(id) {
+ async destroy(id) {
     try {
       this.readOne(id);
-
-      const within = ProductManager.#products.filter((each) => each.id !== id);
-      ProductManager.#products = within;
+      const one = ProductManager.#products.filter((each) => each.id !== id);
+      ProductManager.#products = one;
       console.log("Producto Eliminado");
+      return one      
     } catch (error) {
       console.log(error);
     }
   }
 }
-
-const gestorDeProductos = new ProductManager();
-gestorDeProductos.create({
+const productsManager = new ProductManager();
+export default productsManager
+/*
+productsManager.create({
   title: "Celular",
   photo: "celular.png",
   category: "Electronicos",
   price: 400000,
   stock: 25,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Monitor",
   photo: "monitor.png",
   category: "Electronicos",
   price: 100000,
   stock: 30,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Headphones",
   photo: "headphones.png",
   category: "Audio",
   price: 45000,
   stock: 10,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Microondas",
   photo: "microondas.png",
   category: "Electrodomesticos",
   price: 300000,
   stock: 8,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Televisor",
   photo: "televisor.png",
   category: "Video",
   price: 500000,
   stock: 18,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Licuadora",
   photo: "licuadora.png",
   category: "Electro",
   price: 60000,
   stock: 10,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Juguera",
   photo: "juguera.png",
   category: "Electro",
   price: 30000,
   stock: 11,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Impresora",
   photo: "impresora.png",
   category: "Perifericos",
   price: 250000,
   stock: 20,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Switch",
   photo: "switch.png",
   category: "Redes",
   price: 200000,
   stock: 10,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "CPU",
   photo: "cpu.png",
   category: "Computacion",
@@ -147,70 +186,70 @@ gestorDeProductos.create({
 });
 
 // hasta acá 10
-gestorDeProductos.create({
+productsManager.create({
   title: "Radio",
   photo: "radio.png",
   category: "Electronicos",
   price: 400000,
   stock: 25,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Freidora",
   photo: "freidora.png",
   category: "Electrodomesticos",
   price: 100000,
   stock: 30,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Heladera",
   photo: "heladera.png",
   category: "Electrodomesticos",
   price: 45000,
   stock: 10,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Destapador",
   photo: "destapador.png",
   category: "Electrodomesticos",
   price: 300000,
   stock: 8,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Cefetera",
   photo: "cafetera.png",
   category: "Electrodomesticos",
   price: 500000,
   stock: 18,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Exprimidora",
   photo: "exprimidora.png",
   category: "Electro",
   price: 60000,
   stock: 10,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Netbook",
   photo: "netbook.png",
   category: "Computacion",
   price: 30000,
   stock: 11,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Router",
   photo: "router.png",
   category: "Redes",
   price: 250000,
   stock: 20,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Mikrotik",
   photo: "mikrotik.png",
   category: "Redes",
   price: 200000,
   stock: 10,
 });
-gestorDeProductos.create({
+productsManager.create({
   title: "Firewall",
   photo: "firewall.png",
   category: "Redes",
@@ -218,7 +257,8 @@ gestorDeProductos.create({
   stock: 5,
 });
 
-console.log(gestorDeProductos.read());
-console.log(gestorDeProductos.readOne(2));
-gestorDeProductos.destroy(2);
-console.log(gestorDeProductos.readOne(2));
+console.log(productsManager.read());
+console.log(productsManager.readOne(2));
+productsManager.destroy(2);
+console.log(productsManager.readOne(2));
+*/

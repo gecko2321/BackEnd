@@ -10,7 +10,7 @@ class UsersController {
       //   statusCode: 201,
       //   message: "CREATED ID: " + one.id,
       // });
-      return res.message201("CREATED ID: " + one.id);
+      return res.message201("CREATED ID: " + one._id);
     } catch (error) {
       return next(error);
     }
@@ -45,6 +45,7 @@ class UsersController {
         //    statusCode: 200,
         //    response: one,
         //  });
+        console.log(one)
         return res.response200(one);
       } else {
         const error = new Error("Not found!");

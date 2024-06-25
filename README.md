@@ -88,3 +88,11 @@ Repositorio para el curso de BackEnd de CoderHouse
 - Controllers - Services
 - Se utilizan variables de entorno parametrizables en el archivo env.dev y env.prod
 - Se instalan librerias vite - angular - cors aunque no las voy a utilizar, ya que uso handlebars
+
+# Challenge 3
+
+- Se definen servicios, controladores y repositorios
+- Se parametrizan los scripts npm run start (produccion) npm run dev (desa mongo), npm run devfs (desa fs) y npm run devmem (desa memoria) todos con el puerto 8080
+- Se instala el modulo nodemailer y se desarrolla la solucion para que al registrar un usuario se le envie un mail con un codigo de verificacion
+- Se genera la vista handlebars para verificar dicho codigo
+- Se implementa dao para pivotear las persistencias

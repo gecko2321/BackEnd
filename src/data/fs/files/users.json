@@ -1,44 +1,16 @@
 [
   {
-    "id": "a4256b74db16b4d7440e491d",
+    "_id": "97559652ae44df49d9979e0f",
+    "name": "Ricardo",
+    "lname": "Moreno",
+    "email": "gecko_2321@hotmail.com",
+    "password": "$2b$10$qeVNP9Vr1nGSjCgzLXqGtOyGk5WZRSZl9RV0AvMIIt9gk6.27/nR2",
+    "role": 0,
+    "age": "40",
     "photo": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
-    "email": "usuario2@hotmail.com",
-    "password": "12345678",
-    "role": 1
-  },
-  {
-    "id": "2c255201cc9438c22134fdd8",
-    "photo": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
-    "email": "usuario3@hotmail.com",
-    "password": "12345678",
-    "role": 0
-  },
-  {
-    "id": "41e5b1c0081a9d430b8d068d",
-    "photo": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
-    "email": "usuario4@hotmail.com",
-    "password": "00000000",
-    "role": 1
-  },
-  {
-    "id": "6e7fa8d68aa241a8eea95379",
-    "photo": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
-    "email": "mail@mail.com",
-    "password": "pass1234",
-    "role": 1
-  },
-  {
-    "id": "524ba77ce5f52b43368d074e",
-    "photo": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
-    "email": "postman@hotmail.com",
-    "password": "12345678",
-    "role": 1
-  },
-  {
-    "id": "66612f9b2f1eaf72e282c80a",
-    "photo": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
-    "email": "postman1@hotmail.com",
-    "password": "12345678",
-    "role": 0
+    "verified": true,
+    "verifyCode": "43bca354c15d",
+    "createdAt": "2024-06-25T02:46:58.194Z",
+    "updatedAt": "2024-06-25T02:46:58.194Z"
   }
 ]

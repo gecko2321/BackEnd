@@ -23,14 +23,6 @@ class Manager {
       throw error;
     }
   }
-  // async readByCat(category) {
-  //   try {
-  //     const all = await this.Model.find(category).lean();
-  //     return all;
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
   async readOne(id) {
     try {
       const one = await this.Model.findOne({_id:id}).lean()
@@ -42,6 +34,7 @@ class Manager {
   async readByEmail(email) {
     try {
       const one = await this.Model.findOne({ email }).lean();
+      console.log(one)
       return one;
     } catch (error) {
       throw error;

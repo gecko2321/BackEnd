@@ -14,6 +14,8 @@ const environment = {
   SECRET_COOKIE: process.env.SECRET_COOKIE,
   SECRET_SESSION: process.env.SECRET_SESSION,
   SECRET_JWT: process.env.SECRET_JWT,
+  GOOGLE_EMAIL: process.env.GOOGLE_EMAIL,
+  GOOGLE_PASSWORD: process.env.GOOGLE_PASSWORD
 };
 
 export default environment;

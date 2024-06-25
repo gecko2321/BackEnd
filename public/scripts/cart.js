@@ -31,6 +31,7 @@ async function obtenerProductosPaginados(page) {
       // Recorre los productos y crea el HTML para cada tarjeta
       products.forEach((product) => {
         // Genera el HTML para la tarjeta de cada producto
+        console.log(product)
         const cardHTML = `
                     <div class="card col-md-4 mx-4 mb-4">                                
                         <img src="${product.product_id.photo}" width="314" height="314" class="card-img-bottom" alt="${product.product_id.title}">

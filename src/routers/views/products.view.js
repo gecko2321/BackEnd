@@ -1,50 +1,28 @@
 import { Router } from "express";
 //import productsManager from "../../data/fs/ProductsManager.js";
-import productsManager from "../../data/mongo/managers/ProductsManager.mongo.js";
+//import productsManager from "../../data/mongo/managers/ProductsManager.mongo.js";
+import dao from "../../data/dao.factory.js";
 
 const productsRouter = Router();
+const productsDao = dao.products
 
-//  productsRouter.get("/", async (req, res, next) => {
-//    try {
-//      const products = await productsManager.read();
-//      return res.render("products", { products });
-//    } catch (error) {
-//      return next(error);
-//    }
-//  });
-
- productsRouter.get("/", async (req, res, next) => {
+productsRouter.get("/", async (req, res, next) => {
   try {
-      let products;
-      if (req.query.category) {
-          products = await productsManager.read({ category: req.query.category });
-      } else {          
-          products = await productsManager.read();
-      }      
-      return res.render("products", { products });
+    let products;
+    if (req.query.category) {
+      products = await productsDao.read({ category: req.query.category });
+    } else {
+      products = await productsDao.read();
+    }
+    return res.render("products", { products });
   } catch (error) {
-      return next(error);
+    return next(error);
   }
 });
 
-
-// productsRouter.get("/", async (req, res, next) => {
-//   try {
-//     const filter ={}
-//     if (req.query.product_id){
-//       filter.product_id = req.query.product_id
-//     }
-//     const products = await productsManager.paginate({filter});
-//     return res.render("products", { products });
-//   } catch (error) {
-//     return next(error);
-//   }
-// });
-
-
 productsRouter.get("/real", async (req, res, next) => {
   try {
-    const products = await productsManager.read();
+    const products = await productsDao.read();
     return res.render("productsReal", { products });
   } catch (error) {
     return next(error);
@@ -54,7 +32,7 @@ productsRouter.get("/real", async (req, res, next) => {
 productsRouter.get("/:pid", async (req, res, next) => {
   try {
     const { pid } = req.params;
-    const one = await productsManager.readOne(pid);
+    const one = await productsDao.readOne(pid);
     return res.render("productsDetail", { product: one });
   } catch (error) {
     return next(error);

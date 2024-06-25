@@ -3,8 +3,7 @@ import crypto from "crypto";
 
 class UserManager {
   constructor() {
-    //this.path = "./files/users.json"; Para Filesystem
-    this.path = "./src/data/fs/files";
+    this.path = "./src/data/fs/files/users.json";
     this.init();
   }
   init() {
@@ -21,46 +20,35 @@ class UserManager {
   }
   async create(data) {
     try {
-      if (!data.email) {
-        throw new Error("Enter EMAIL!");
-      } else if (!data.password) {
-        throw new Error("Enter PASSWORD!");
+      if (!data.email || !data.password) {
+        throw new Error("INGRESE EMAIL/PASSWORD");
       } else {
-        const user = {
-          id: crypto.randomBytes(12).toString("hex"),
-          photo:
-            data.photo ||
-            "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
-          email: data.email,
-          password: data.password,
-          role: data.role || 0,
-        };
-
+        // const one = {
+        //   id: crypto.randomBytes(12).toString("hex"),
+        //   email: data.email,
+        //   password: data.password,
+        //   role: data.role || 0,
+        //   photo:
+        //     data.photo ||
+        //     "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
+        //   age: data.age || 18,
+        // };
         let all = await fs.promises.readFile(this.path, "utf-8");
-
         all = JSON.parse(all);
-
-        all.push(user);
-
+        all.push(data);
         all = JSON.stringify(all, null, 2);
-
         await fs.promises.writeFile(this.path, all);
-
-        console.log({ created: user.id });
-        return user;
+        return data;
       }
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   }
-
-  async read(role) {
+  async read(opts) {
     try {
       let all = await fs.promises.readFile(this.path, "utf-8");
-
       all = JSON.parse(all);
-
-      role && (all = all.filter((each) => each.role === role));
+      opts && (all = all.filter((each) => each.opts === opts));
       return all;
     } catch (error) {
       console.log(error);
@@ -72,22 +60,40 @@ class UserManager {
 
       all = JSON.parse(all);
 
-      let user = all.find((each) => each.id === id);
+      let one = all.find((each) => each._id === id);
 
-      if (!user) {
+      if (!one) {
         throw new Error("Not Found!!");
       } else {
-        console.log(user);
-        return user;
+        console.log(one);
+        return one;
       }
     } catch (error) {
       console.log(error);
     }
   }
+  async readByEmail(email) {
+    try {
+      let all = await fs.promises.readFile(this.path, "utf-8");
+      all = JSON.parse(all);
+      let one = all.find((each) => each.email === email);
+      //console.log(all)
+      // if (!one) {
+      //   throw new Error("Not Found!!");
+        
+      // } else {
+      //   return one;        
+      // }
+      return one
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async update(id, data) {
     try {
       let all = await this.read();
-      let one = all.find((each) => each.id === id);
+      let one = all.find((each) => each._id === id);
       if (one) {
         for (let prop in data) {
           one[prop] = data[prop];
@@ -107,27 +113,39 @@ class UserManager {
   async destroy(id) {
     try {
       let all = await fs.promises.readFile(this.path, "utf-8");
-
       all = JSON.parse(all);
-
-      let user = all.find((each) => each.id === id);
-
-      if (!user) {
+      let one = all.find((each) => each._id === id);
+      if (!one) {
         const error = new Error("Not found!!");
         error.statusCode = 404;
         throw error;
       } else {
-        let filtered = all.filter((each) => each.id !== id);
-
+        let filtered = all.filter((each) => each._id !== id);
         filtered = JSON.stringify(filtered, null, 2);
-
         await fs.promises.writeFile(this.path, filtered);
-
-        console.log({ deleted: user.id });
-        return user;
+        console.log({ deleted: one._id });
+        return one;
       }
     } catch (error) {
       console.log(error);
+    }
+  }
+  async destroyAll(user_id) {
+    try {
+      let all = await fs.promises.readFile(this.path, "utf-8");
+      all = JSON.parse(all);
+      let initialLength = all.length;
+      all = all.filter((each) => each.user_id !== user_id);
+      let deletedCount = initialLength - all.length;
+      if (deletedCount === 0) {
+        throw new Error("No hay Documentos");
+      }
+      all = JSON.stringify(all, null, 2);
+      await fs.promises.writeFile(this.path, all);
+      console.log(`Deleted ${deletedCount} users with user_id: ${user_id}`);
+      return { deletedCount };
+    } catch (error) {
+      throw error;
     }
   }
 }
@@ -135,6 +153,7 @@ class UserManager {
 const usersManager = new UserManager();
 export default usersManager;
 
+/*
 async function prueba() {
   try {
     const user = new UserManager();
@@ -185,3 +204,4 @@ async function prueba() {
 }
 
 //prueba();
+*/

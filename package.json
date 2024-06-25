@@ -5,9 +5,10 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node ./server.js -p 9000",
-    "dev": "nodemon ./server.js --env dev",
-    "argv": "nodemon ./server.js -p 8080 --env prod --persistence memory"
+    "start": "node ./server.js -p 9000 --env=prod",
+    "dev": "nodemon ./server.js --env=dev",
+    "devfs": "nodemon ./server.js --ignore *.json --env=dev --persistence fs",
+    "devmem": "nodemon ./server.js --env=dev --persistence memory"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,7 @@
     "mongoose": "^8.3.2",
     "mongoose-paginate-v2": "^1.8.0",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.9.14",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
@@ -34,5 +36,5 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
-  }
+  }  
 }
