@@ -9,20 +9,22 @@ import {
   login,
   online,
   signout,
+  verify,
 } from "../../controllers/sessions.controller.js";
 
 class SessionsRouter extends CustomRouter {
   init() {
     this.create(
       "/register",
-      ["ADMIN"],
+      ["PUBLIC"],
       isValidData,
       passportCb("register"),
       register
     );
     this.create("/login", ["PUBLIC"], passportCb("login"), login);
-    this.read("/online", ["USER", "ADMIN"], passportCb("jwt"), online);
-    this.create("/signout", ["USER", "ADMIN"], passportCb("jwt"), signout);
+    this.read("/online", ["PUBLIC"], passportCb("jwt"), online);
+    this.create("/signout", ["PUBLIC"], passportCb("jwt"), signout);
+    this.create("/verify", ["PUBLIC"], verify);
   }
 }
 

@@ -1,37 +1,20 @@
 [
   {
-    "id": "9fd4cb63687ded287e1d9889",
-    "user_id": "ricardo",
-    "product_id": "Pocophone",
-    "quantity": 1,
-    "state": "reserved"
+    "_id": "7dd971572feb7c13df462c3a",
+    "user_id": "97559652ae44df49d9979e0f",
+    "product_id": "3b277c15b74354413d3a1e74",
+    "quantity": "3",
+    "state": "reserved",
+    "createdAt": "2024-06-25T03:35:43.759Z",
+    "updatedAt": "2024-06-25T03:35:43.759Z"
   },
   {
-    "id": "c54149a5191b35c84b5c5a83",
-    "user_id": "ricardo",
-    "product_id": "pixel",
-    "quantity": 1,
-    "state": "reserved"
-  },
-  {
-    "id": "717f8a9690b2dfdd232527d2",
-    "user_id": "ricardo",
-    "product_id": "pixel",
-    "quantity": 1,
-    "state": "reserved"
-  },
-  {
-    "id": "f07e19a32b7222368321e1fc",
-    "user_id": "ricardo",
-    "product_id": "pixel",
-    "quantity": 1,
-    "state": "reserved"
-  },
-  {
-    "id": "a687531696ddaa10f43a9cfe",
-    "user_id": "ricardo",
-    "product_id": "pixel",
-    "quantity": 1,
-    "state": "reserved"
+    "_id": "3aa8c9385b3575a17b04133c",
+    "user_id": "97559652ae44df49d9979e0f",
+    "product_id": "3b277c15b74354413d3a1e74",
+    "quantity": "2",
+    "state": "reserved",
+    "createdAt": "2024-06-25T03:39:12.892Z",
+    "updatedAt": "2024-06-25T03:39:12.892Z"
   }
 ]

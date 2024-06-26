@@ -3,8 +3,11 @@ import { Strategy as LocalStrategy } from "passport-local";
 import usersManager from "../data/mongo/managers/UsersManager.mongo.js";
 import { createHash, verifyHash } from "../utils/hash.util.js";
 import { createToken } from "../utils/token.util.js";
-import {Strategy as JWTStrategy, ExtractJwt} from "passport-jwt"
+import { Strategy as JWTStrategy, ExtractJwt } from "passport-jwt";
 import environment from "../utils/env.util.js";
+import usersRepository from "../repositories/users.rep.js";
+import UsersDTO from "../dto/users.dto.js";
+import sendEmail from "../utils/mailing.utils.js";
 
 passport.use(
   "register",
@@ -19,7 +22,8 @@ passport.use(
           error.statusCode = 400;
           return done(null, null, error);
         }
-        const one = await usersManager.readByEmail(email);
+        //const one = await usersManager.readByEmail(email);
+        const one = await usersRepository.readByEmailRepository(email);
         if (one) {
           const error = new Error("Bad auth from register!");
           error.statusCode = 401;
@@ -27,7 +31,11 @@ passport.use(
         }
         const hashPassword = createHash(password);
         req.body.password = hashPassword;
-        const user = await usersManager.create(req.body);
+        //const user = await usersManager.create(req.body);
+        const data = new UsersDTO(req.body);
+        const user = await usersRepository.createRepository(data);
+        //despues de crear el usuario debemos enviar el correo con un codigo para la verificacion del usuario, esto esta en el DTO de usuarios
+        await sendEmail({ to: email, name: user.name, code: user.verifyCode });
         return done(null, user);
       } catch (error) {
         return done(error);
@@ -41,14 +49,16 @@ passport.use(
     { passReqToCallback: true, usernameField: "email" },
     async (req, email, password, done) => {
       try {
-        const one = await usersManager.readByEmail(email);
+        //const one = await usersManager.readByEmail(email);
+        const one = await usersRepository.readByEmailRepository(email);
         if (!one) {
           const error = new Error("Bad auth from login!");
           error.statusCode = 401;
           return done(error);
         }
-        const verify = verifyHash(password, one.password);
-        if (verify) {
+        const verifyPass = verifyHash(password, one.password);
+        const verifyAccount = one.verified
+        if (verifyPass || verifyAccount) {
           //req.session.email = email;
           //req.session.online = true;
           //req.session.role = one.role;
@@ -89,9 +99,8 @@ passport.use(
     (data, done) => {
       try {
         if (data) {
-          
+          //console.log(data)
           return done(null, data);
-          
         } else {
           const error = new Error("Forbidden from jwt!");
           error.statusCode = 403;

@@ -20,10 +20,12 @@ import cors from "cors"
 
 //Server HTTP
 const server = express();
-const port = environment.PORT || argsUtil.p;
+//const port = environment.PORT || argsUtil.p;
+const port = argsUtil.p;
 const ready = async () => {
   console.log("server ready on port " + port);
-  await dbConnect();
+  //await dbConnect();
+  //hay que incluir la conexion a mongo desde el patron factory
 };
 const nodeServer = createServer(server);
 nodeServer.listen(port, ready);
@@ -37,6 +39,7 @@ export { socketServer };
 server.use(cookieParser(environment.SECRET_COOKIE));
 //Para Filestore
 //const FileSession = fileStore(session);
+/*
 server.use(
   session({
     //FileStore
@@ -54,6 +57,7 @@ server.use(
     cookie: { maxAge: 60 * 60 * 1000 },
   })
 );
+*/
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(morgan("dev"));

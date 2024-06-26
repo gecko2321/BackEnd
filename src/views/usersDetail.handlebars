@@ -1,3 +1,4 @@
+
 <main class="d-flex flex-column align-items-center w-100 flex-grow-1">
   {{#if user._id}}
     <h1 class="bg-success-subtle p-2 text-center text-success w-100">DETALLE DEL
@@ -7,13 +8,67 @@
       class="m-3 w-50 d-flex flex-column justify-content-center align-items-center bg-success-subtle"
     >
       <p>ID: {{user._id}}</p>
+      <p>Nombre: {{user.name}}</p>
+      <p>Apellido: {{user.lname}}</p>
       <img src="{{user.photo}}" alt="foto del usuario" width="100" />
       <p>Correo Electronico: {{user.email}}</p>
       <p>Rol: {{user.role}}</p>
-
+      <p>Age: {{user.age}}</p>
     </section>
   {{else}}
     <h1 class="bg-success-subtle p-2 text-center text-success w-100">USUARIO NO
       ENCONTRADO</h1>
   {{/if}}
 </main>
+
+
+{{!-- 
+<main class="d-flex flex-column align-items-center w-100 flex-grow-1" id="user-details">
+  <!-- Placeholder para los detalles del usuario -->
+</main>
+
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const params = new URLSearchParams(window.location.search);
+    const uid = params.get('uid');
+    
+    if (uid) {
+      try {
+        const response = await fetch(`http://localhost:8080/api/users/${uid}`);
+        if (response.ok) {
+          const data = await response.json();
+          const user = data[0]; // Asumiendo que data es un array de objetos y queremos el primer objeto
+
+          if (user) {
+            document.getElementById('user-details').innerHTML = `
+              <h1 class="bg-success-subtle p-2 text-center text-success w-100">DETALLE DEL USUARIO ${user._id}</h1>
+              <section class="m-3 w-50 d-flex flex-column justify-content-center align-items-center bg-success-subtle">
+                <p>ID: ${user._id}</p>
+                <img src="${user.photo}" alt="foto del usuario" width="100" />
+                <p>Correo Electronico: ${user.email}</p>
+                <p>Rol: ${user.role}</p>
+                <p>Edad: ${user.age}</p>
+              </section>
+            `;
+          } else {
+            document.getElementById('user-details').innerHTML = `
+              <h1 class="bg-success-subtle p-2 text-center text-success w-100">USUARIO NO ENCONTRADO</h1>
+            `;
+          }
+        } else {
+          document.getElementById('user-details').innerHTML = `
+            <h1 class="bg-success-subtle p-2 text-center text-success w-100">ERROR AL OBTENER USUARIO</h1>
+          `;
+        }
+      } catch (error) {
+        document.getElementById('user-details').innerHTML = `
+          <h1 class="bg-success-subtle p-2 text-center text-success w-100">ERROR: ${error.message}</h1>
+        `;
+      }
+    } else {
+      document.getElementById('user-details').innerHTML = `
+        <h1 class="bg-success-subtle p-2 text-center text-success w-100">UID NO PROPORCIONADO</h1>
+      `;
+    }
+  });
+</script> --}}

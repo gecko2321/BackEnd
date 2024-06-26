@@ -1,13 +1,24 @@
 import { Router } from "express";
 //import usersManager from "../../data/fs/UsersManager.js";
-import usersManager from "../../data/mongo/managers/UsersManager.mongo.js";
+//import usersManager from "../../data/mongo/managers/UsersManager.mongo.js";
+import dao from "../../data/dao.factory.js";
 
 const usersRouter = Router();
+const usersDao = dao.users
 
 usersRouter.get("/", async (req, res, next) => {
   try {
-    const users = await usersManager.read();
+    const users = await usersDao.read();
     return res.render("users", { users });
+  } catch (error) {
+    return next(error);
+  }
+});
+
+usersRouter.get("/verify", async (req, res, next) => {
+  try {
+    const users = await usersDao.read();
+    return res.render("usersVerify", { users });
   } catch (error) {
     return next(error);
   }
@@ -15,7 +26,7 @@ usersRouter.get("/", async (req, res, next) => {
 
 usersRouter.get("/register", async (req, res, next) => {
   try {
-    const users = await usersManager.read();
+    const users = await usersDao.read();
     return res.render("usersRegister", { users });
   } catch (error) {
     return next(error);
@@ -24,7 +35,7 @@ usersRouter.get("/register", async (req, res, next) => {
 
 usersRouter.get("/login", async (req, res, next) => {
   try {
-    const users = await usersManager.read();
+    const users = await usersDao.read();
     return res.render("usersLogin", { users });
   } catch (error) {
     return next(error);
@@ -34,7 +45,8 @@ usersRouter.get("/login", async (req, res, next) => {
 usersRouter.get("/:uid", async (req, res, next) => {
   try {
     const { uid } = req.params;
-    const one = await usersManager.readOne(uid);
+    const one = await usersDao.readOne(uid);
+    console.log(one)
     return res.render("usersDetail", { user: one });
   } catch (error) {
     return next(error);
