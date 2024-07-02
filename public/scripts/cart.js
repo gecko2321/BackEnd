@@ -5,7 +5,7 @@ async function obtenerProductosPaginados(page) {
     resp = await resp.json();
     const user_id = resp.user_id;
     const response = await fetch(
-      `http://localhost:8080/api/carts?user_id=${user_id}&page=${page}`
+      `/api/carts?user_id=${user_id}&page=${page}`
     );
     if (response.ok) {
       const data = await response.json();
@@ -62,7 +62,7 @@ async function obtenerProductosPaginados(page) {
 // Función para eliminar un producto del carrito
 async function eliminarProducto(id) {
   try {
-    const response = await fetch(`http://localhost:8080/api/carts/${id}`, {
+    const response = await fetch(`/api/carts/${id}`, {
       method: "DELETE",
     });
     if (response.ok) {
@@ -92,7 +92,7 @@ async function eliminarTodosProductos() {
     }
 
     const response = await fetch(
-      `http://localhost:8080/api/carts/all?user_id=${user_id}`,
+      `/api/carts/all?user_id=${user_id}`,
       {
         method: "DELETE",
       }
@@ -159,7 +159,7 @@ async function finalizarCompra() {
       resp = await resp.json();
       const user_id = resp.user_id;
       const response = await fetch(
-        `http://localhost:8080/api/tickets/${user_id}`,
+        `/api/tickets/${user_id}`,
         {
           method: "GET",
         }
@@ -198,7 +198,7 @@ async function finalizarCompra() {
 async function actualizarCantidad(productId, cantidad) {
   try {
     const response = await fetch(
-      `http://localhost:8080/api/carts/${productId}`,
+      `/api/carts/${productId}`,
       {
         method: "PUT",
         headers: {

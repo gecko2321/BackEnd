@@ -8,6 +8,8 @@ import environment from "../utils/env.util.js";
 import usersRepository from "../repositories/users.rep.js";
 import UsersDTO from "../dto/users.dto.js";
 import sendEmail from "../utils/mailing.utils.js";
+import CustomError from "../utils/errors/CustomError.js";
+import errors from "../utils/errors/errors.js";
 
 passport.use(
   "register",
@@ -18,19 +20,24 @@ passport.use(
         //LA ESTRATEGIA NECESARIA PARA REGISTRAR A UN USUARIO
         //QUE CONSTA DE TODO LO QUE VALIDAMOS EN LOS MIDDLEWARES
         if (!email || !password) {
-          const error = new Error("Please enter email and password!");
-          error.statusCode = 400;
+          //const error = new Error("Please enter email and password!");
+          //error.statusCode = 400;
+          const error = CustomError.new(errors.enter_mail_pass)
           return done(null, null, error);
         }
         //const one = await usersManager.readByEmail(email);
         const one = await usersRepository.readByEmailRepository(email);
         if (one) {
-          const error = new Error("Bad auth from register!");
-          error.statusCode = 401;
+          //const error = new Error("Bad auth from register!");
+          //error.statusCode = 401;
+          const error = CustomError.new(errors.auth)
           return done(error);
         }
+        console.log(password)
         const hashPassword = createHash(password);
+        console.log(hashPassword)
         req.body.password = hashPassword;
+        console.log(req.body.password)
         //const user = await usersManager.create(req.body);
         const data = new UsersDTO(req.body);
         const user = await usersRepository.createRepository(data);
@@ -52,13 +59,19 @@ passport.use(
         //const one = await usersManager.readByEmail(email);
         const one = await usersRepository.readByEmailRepository(email);
         if (!one) {
-          const error = new Error("Bad auth from login!");
-          error.statusCode = 401;
+          //const error = new Error("Bad auth from login!");
+          //error.statusCode = 401;
+          console.log(errors.auth)
+          const error = CustomError.new(errors.auth)
           return done(error);
         }
         const verifyPass = verifyHash(password, one.password);
-        const verifyAccount = one.verified
-        if (verifyPass || verifyAccount) {
+        const verifyAccount = one.verified;
+        //console.log(one)
+        //console.log(password)
+        console.log(verifyPass)
+        console.log(verifyAccount)
+        if (verifyPass && verifyAccount) {
           //req.session.email = email;
           //req.session.online = true;
           //req.session.role = one.role;

@@ -29,7 +29,7 @@ switch (persistence) {
     console.log("fs")
     break;
   default:
-    console.log("connected to MONGO por DAO");
+    //console.log("connected to MONGO por DAO");
     //lleno dao con las importaciones de mongo
         dbConnect()
         const {default : usersManagerMongo } = await import ("./mongo/managers/UsersManager.mongo.js")
@@ -37,7 +37,6 @@ switch (persistence) {
         const {default : cartsManagerMongo } = await import ("./mongo/managers/CartsManager.mongo.js")
     //traer todos los managers de todos los recursos
     dao= {users: usersManagerMongo, products: productsManagerMongo, carts: cartsManagerMongo}
-    console.log("mongo")
     //por defecto mongo
     break;
 }

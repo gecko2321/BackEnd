@@ -17,7 +17,7 @@ class UsersDTO {
     this.photo =
       data.photo ||
       "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png";
-    (this.verified = false),
+    (this.verified = data.verified),
       (this.verifyCode = crypto.randomBytes(6).toString("hex")),
       //verificar si corresponde o no evaluar el heasheo de la contraseña
       //porque el enrutador de sessions (/api/sessions/register) está usando PASSPORT!!!

@@ -3,8 +3,8 @@
     <h1 class="bg-success-subtle p-2 text-center text-success w-100">DETALLE DEL PRODUCTO {{product._id}}</h1>
     <section class="m-3 w-50 d-flex flex-column justify-content-center align-items-center bg-success-subtle">
       <p>{{product.title}}</p>
-      <p>PRECIO ${{product.price}}</p>
-      <p>{{product.category}}</p>
+      <p>Precio: ${{product.price}}</p>
+      <p>Categoria: {{product.category}}</p>
       <img src="{{product.photo}}" height="314" width="314" alt="Imagen del Producto" />
 
       <div class="mb-3">
@@ -47,7 +47,7 @@
 
             if (resp.statusCode === 200) {
           const user_id = resp.user_id;
-          const response = await fetch('http://localhost:8080/api/carts', {
+          const response = await fetch('/api/carts', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

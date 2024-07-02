@@ -15,7 +15,7 @@ class CartManager {
 
       console.log("ARCHIVO CARTS CREADO!");
     } else {
-      console.log("ARCHIVO CARTS YA EXISTE!");
+      //console.log("ARCHIVO CARTS YA EXISTE!");
     }
   }
   async create(data) {
