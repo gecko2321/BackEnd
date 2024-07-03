@@ -57,6 +57,7 @@ class CustomRouter {
             const user = await usersRepository.readByEmailRepository(email);
             //proteger contraseña del usuario!!!
             req.user = user;
+            console.log(user)
             return next();
           } else return res.error403();
         } catch (error) {

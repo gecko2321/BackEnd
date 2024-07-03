@@ -17,7 +17,7 @@ document.querySelector("#register").addEventListener("click", async () => {
     photo: document.querySelector("#photo").value,
     age: document.querySelector("#age").value,
   };
-  console.log(data);
+  //console.log(data);
 
   const opts = {
     method: "POST",

@@ -17,7 +17,7 @@ class Manager {
             // Si se proporciona la categoría en opts, agregarla a la consulta
             query = { category: opts.category };
         }
-      const all = await this.Model.find(query).lean();
+      const all = await this.Model.find(query).sort("name").lean();
       return all;
     } catch (error) {
       throw error;
@@ -34,7 +34,6 @@ class Manager {
   async readByEmail(email) {
     try {
       const one = await this.Model.findOne({ email }).lean();
-      console.log(one)
       return one;
     } catch (error) {
       throw error;

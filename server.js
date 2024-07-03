@@ -16,7 +16,8 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import argsUtil from "./src/utils/args.util.js";
 import environment from "./src/utils/env.util.js";
-import cors from "cors"
+import cors from "cors";
+import compression from "express-compression";
 
 //Server HTTP
 const server = express();
@@ -62,7 +63,12 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(morgan("dev"));
 server.use(express.static(__dirname + "/public"));
-server.use(cors({origin:true,credentials:true})) //para que funcione react por el tema puertos
+server.use(cors({ origin: true, credentials: true })); //para que funcione react por el tema puertos
+server.use(
+  compression({
+    brotli: { enabled: true, zlib: {} },
+  })
+);
 
 //Handlebars Engine
 server.engine("handlebars", engine());
@@ -71,8 +77,8 @@ server.set("views", __dirname + "/src/views");
 
 //Endpoints
 server.use("/", indexRouter);
-server.use(errorHandler);
 server.use(pathHandler);
+server.use(errorHandler);
 
 // /*
 // console.log(argsUtil)

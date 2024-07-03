@@ -29,12 +29,16 @@ async function read(req, res, next) {
 async function paginate(req, res, next) {
   try {
     const filter = {};
-    if (req.query.product_id) {
-      filter.product_id = req.query.product_id;
-    }
+    // if (req.query.product_id) {
+    //   filter.product_id = req.query.product_id;
+    // }
+    if (req.query.category) {
+      filter.category = req.query.category; // Cambiar a category si así está en tu modelo
+  }
     const options = {
-      limit: req.query.limit || 5,
+      limit: req.query.limit || 9,
       page: req.query.page || 1,
+      sort: "title"
     };
     const products = await paginateService({ filter, options });
     return res.paginate(products);

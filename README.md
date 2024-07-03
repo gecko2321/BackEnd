@@ -96,3 +96,9 @@ Repositorio para el curso de BackEnd de CoderHouse
 - Se instala el modulo nodemailer y se desarrolla la solucion para que al registrar un usuario se le envie un mail con un codigo de verificacion
 - Se genera la vista handlebars para verificar dicho codigo
 - Se implementa dao para pivotear las persistencias
+
+# Sprint10
+
+- Se implementa mocks. 1000 articulos y 20 users en devs
+- Se implementa brotli
+- Se pagina y ordena la renderizacion de productos

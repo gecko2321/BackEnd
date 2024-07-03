@@ -1,4 +1,4 @@
-import { genSaltSync, hashSync, compareSync } from "bcrypt";
+import { genSaltSync, hashSync, compareSync,compare } from "bcrypt";
 
 const createHash = (password) => {
   const salt = genSaltSync(10);
@@ -7,7 +7,11 @@ const createHash = (password) => {
 };
 
 const verifyHash = (reqBodyPass, mongoPass) => {
+  //console.log(reqBodyPass)
+  //console.log(mongoPass)
   const verify = compareSync(reqBodyPass, mongoPass);
+  //const verify = compare(reqBodyPass, mongoPass);
+  //console.log(verify)
   return verify;
 };
 
