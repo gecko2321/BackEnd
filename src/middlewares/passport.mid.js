@@ -33,11 +33,8 @@ passport.use(
           const error = CustomError.new(errors.auth)
           return done(error);
         }
-        console.log(password)
-        const hashPassword = createHash(password);
-        console.log(hashPassword)
+        const hashPassword = createHash(password);        
         req.body.password = hashPassword;
-        console.log(req.body.password)
         //const user = await usersManager.create(req.body);
         const data = new UsersDTO(req.body);
         const user = await usersRepository.createRepository(data);
@@ -61,7 +58,7 @@ passport.use(
         if (!one) {
           //const error = new Error("Bad auth from login!");
           //error.statusCode = 401;
-          console.log(errors.auth)
+          
           const error = CustomError.new(errors.auth)
           return done(error);
         }
@@ -69,8 +66,7 @@ passport.use(
         const verifyAccount = one.verified;
         //console.log(one)
         //console.log(password)
-        console.log(verifyPass)
-        console.log(verifyAccount)
+        
         if (verifyPass && verifyAccount) {
           //req.session.email = email;
           //req.session.online = true;
@@ -111,8 +107,7 @@ passport.use(
     },
     (data, done) => {
       try {
-        if (data) {
-          //console.log(data)
+        if (data) {          
           return done(null, data);
         } else {
           const error = new Error("Forbidden from jwt!");

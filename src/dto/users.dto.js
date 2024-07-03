@@ -11,7 +11,8 @@ class UsersDTO {
     this.name = data.name;
     this.lname = data.lname;
     this.email = data.email;
-    this.password = createHash(data.password);
+    //this.password = createHash(data.password);
+    this.password = data.password;
     this.role = data.role || 0;
     this.age = data.age || 18;
     this.photo =
