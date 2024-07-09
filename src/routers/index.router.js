@@ -16,17 +16,7 @@ import { fork } from "child_process";
 
 class IndexRouter extends CustomRouter {
   init() {
-    this.create("/api/nodemailer", ["PUBLIC"],async(req,res,next)=>{
-      try {
-        const {email,name} = req.body
-        await sendEmail({to:email,name})
-        return res.message200("Email Sent")
-      } catch (error) {
-        next(error)
-      }
-    })
-    this.use("/api", apiRouter);
-    this.use("/", viewsRouter);
+ 
     this.read("/fork", ["PUBLIC"], (req, res, next) => {
       try {
         const childProcess = fork("./src/processes/sum.proc.js");
@@ -38,6 +28,39 @@ class IndexRouter extends CustomRouter {
         return next(error);
       }
     });
+    this.create("/api/nodemailer", ["PUBLIC"], async (req, res, next) => {
+      try {
+        const { email, name } = req.body;
+        await sendEmail({ to: email, name });
+        return res.message200("Email Sent");
+      } catch (error) {
+        next(error);
+      }
+    });
+    this.read("/api/simplex", ["PUBLIC"], (req, res, next) => {
+      try {
+        let total = 1;
+        for (let i = 1; i < 100; i++) {
+          total = i * i;
+        }
+        return res.send({ total });
+      } catch (error) {
+        return next(error);
+      }
+    });
+    this.read("/api/complex", ["PUBLIC"], (req, res, next) => {
+      try {
+        let total = 1;
+        for (let i = 1; i < 2000000000; i++) {
+          total = i * i;
+        }
+        return res.send({ total });
+      } catch (error) {
+        return next(error);
+      }
+    });
+    this.use("/api", apiRouter);
+    this.use("/", viewsRouter);
   }
 }
 
