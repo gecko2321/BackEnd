@@ -102,3 +102,10 @@ Repositorio para el curso de BackEnd de CoderHouse
 - Se implementa mocks. 1000 articulos y 20 users en devs
 - Se implementa brotli
 - Se pagina y ordena la renderizacion de productos
+
+# Sprint11
+
+- Implementacion de Winston para loggear errores
+- Se parametriza un logger para loggear eventos en consola y file en produccion y un loggerdev para loggear eventos en consola en desarrollo
+- Los distintos loggers se utilizan segun el parametro env
+- Se genera el endpoint api/loggers para probar

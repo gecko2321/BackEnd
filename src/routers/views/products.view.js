@@ -1,7 +1,7 @@
 import { Router } from "express";
 //import productsManager from "../../data/fs/ProductsManager.js";
 //import productsManager from "../../data/mongo/managers/ProductsManager.mongo.js";
-import dao from "../../data/dao.factory.js";
+import {dao} from "../../data/dao.factory.js";
 
 const productsRouter = Router();
 const productsDao = dao.products

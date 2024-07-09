@@ -1,4 +1,4 @@
-import dao from "../data/dao.factory.js";
+import {dao} from "../data/dao.factory.js";
 import CartsDTO from "../dto/carts.dto.js";
 const { carts } = dao;
 //REPOSITORIO ES LA CAPA QUE LLAMA A DAO (DAO importa la persistencia que corresponda)

@@ -3,7 +3,7 @@ import express from "express";
 import indexRouter from "./src/routers/index.router.js";
 import errorHandler from "./src/middlewares/errorHandler.mid.js";
 import pathHandler from "./src/middlewares/pathHandler.mid.js";
-import morgan from "morgan";
+//import morgan from "morgan";
 import { engine } from "express-handlebars";
 import __dirname from "./utils.js";
 import socketCb from "./src/routers/index.socket.js";
@@ -18,6 +18,9 @@ import argsUtil from "./src/utils/args.util.js";
 import environment from "./src/utils/env.util.js";
 import cors from "cors";
 import compression from "express-compression";
+import winston from "./src/middlewares/winston.mid.js";
+import cluster from "cluster"
+import { cpus } from "os";
 
 //Server HTTP
 const server = express();
@@ -28,8 +31,20 @@ const ready = async () => {
   //await dbConnect();
   //hay que incluir la conexion a mongo desde el patron factory
 };
+const numOfProc = cpus().length
+
+if (cluster.isPrimary) {
+  for (let i = 1; i<= numOfProc; i++){
+    cluster.fork()
+  }
+  
+  console.log("proceso primario")
+} else {
+  console.log("proceso worker"+process.pid)
+  server.listen(port, ready);
+}
 const nodeServer = createServer(server);
-nodeServer.listen(port, ready);
+
 
 //Server TCP
 const socketServer = new Server(nodeServer);
@@ -61,7 +76,8 @@ server.use(
 */
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
-server.use(morgan("dev"));
+//server.use(morgan("dev"));
+server.use(winston);
 server.use(express.static(__dirname + "/public"));
 server.use(cors({ origin: true, credentials: true })); //para que funcione react por el tema puertos
 server.use(

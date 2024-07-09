@@ -1,7 +1,7 @@
 import { Router } from "express";
 //import usersManager from "../../data/fs/UsersManager.js";
 //import usersManager from "../../data/mongo/managers/UsersManager.mongo.js";
-import dao from "../../data/dao.factory.js";
+import {dao} from "../../data/dao.factory.js";
 
 const usersRouter = Router();
 const usersDao = dao.users
