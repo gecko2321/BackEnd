@@ -1,0 +1,445 @@
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        user_id:
+          type: string
+          description: ID del usuario propietario del carrito
+        product_id:
+          type: string
+          description: ID del producto adquirido
+        quantity:
+          type: number
+          description: Cantidad adquirida del producto
+        state:
+          type: string
+          description: Estado del producto ("reserved", "paid", "delivered")
+      example:
+        user_id: ID_de_usuario_ObjectID
+        product_id: ID_de_producto_ObjectID
+        quantity: 15
+        state: paid        
+
+  responses:
+    Message200c:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud exitosa
+        message:
+          type: string
+          description: Descripción del éxito de la operación
+      example:
+        statusCode: 200
+        message: Verified User!
+
+    Message201c:
+      type: object
+      properties:
+        statusCode:
+          type: number          
+          description: Código de estado de la solicitud exitosa en la creación
+        message:
+          type: string
+          description: Descripción del éxito de la creación
+      example:
+        statusCode: 201
+        message: Created ID 232123212321 
+
+    Message200Onec:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud exitosa con datos devueltos
+        response:
+          type: object
+          description: Objeto con los datos del recurso solicitado
+      example:
+        statusCode: 200
+        response:
+          id_: ID_del_Carro
+          user_id: ID_de_usuario_ObjectID
+          product_id: ID_de_producto_ObjectID
+          quantity: 15
+          state: paid
+
+    Message200Allc:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud exitosa con datos devueltos
+        response:
+          type: array
+          description: Array de objetos con los datos del recurso solicitado
+      example:
+        statusCode: 200
+        response:
+          - id_: ID_del_Carro
+            user_id: ID_de_usuario_ObjectID
+            product_id: ID_de_producto_ObjectID
+            quantity: 15
+            state: paid
+          - id_: ID_del_Carro2
+            user_id: ID_de_usuario_ObjectID
+            product_id: ID_de_producto_ObjectID
+            quantity: 15
+            state: paid
+
+    Paginatec:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud exitosa con datos paginados
+        response:
+          type: array
+          description: Array de objetos paginados y ordenados
+        info:
+          type: object
+          description: Información de paginación
+          properties:
+            next:
+              type: string
+              nullable: true
+            prev:
+              type: string
+              nullable: true
+      example:
+        statusCode: 200
+        response:
+          - id_: ID_del_Carro
+            user_id: ID_de_usuario_ObjectID
+            product_id: ID_de_producto_ObjectID
+            quantity: 15
+            state: paid
+          - id_: ID_del_Carro2
+            user_id: ID_de_usuario_ObjectID
+            product_id: ID_de_producto_ObjectID
+            quantity: 15
+            state: paid
+        info:
+          next: null
+          prev: null
+
+    Error400c:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida por problemas del cliente
+        message:
+          type: string
+          description: Descripción del error del cliente
+      example:
+        statusCode: 400
+        message: Incomplete data on middleware
+
+    Error401c:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida de autenticación
+        message:
+          type: string
+          description: Descripción del fallo de autenticación
+      example:
+        statusCode: 401
+        message: Bad Auth from policies!!
+
+    Error403c:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida de autorización
+        message:
+          type: string
+          description: Descripción del fallo de autorización
+      example:
+        statusCode: 403
+        message: Forbidden from policies
+
+    Error404c:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida por no encontrar el recurso solicitado
+        message:
+          type: string
+          description: Descripción del recurso no encontrado
+      example:
+        statusCode: 404
+        message: Not Found Docs
+
+    Error500c:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida por error fatal en el servidor
+        message:
+          type: string
+          description: Descripción del fallo de la operación en el servidor
+      example:
+        statusCode: 500
+        message: Coder API ERROR
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token        
+
+paths:
+  /api/carts:
+    post:
+      summary: Create a cart in the server
+      tags:
+        - Cart
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        description: Datos para registrar un carrito
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cart"
+      responses:        
+        201:
+          description: Exito en el registro de un carrito
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message201c"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400c"
+        401:
+          description: Fallo por falta de autenticacion
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401c"
+        403:
+          description: Fallo en la autorizacion
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error403c"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500c"
+    get:
+      summary: Retreive all carts
+      tags:
+        - Cart
+      responses:
+        200:
+          description: Cart Get Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message200Allc"
+        201:
+          description: Exito en el registro de un producto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message201c"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400c"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401c"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500c"
+  /api/carts/{pid}:
+    get:
+      summary: Get a cart by ID
+      tags:
+        - Cart
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: Unique identifier of the cart to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Cart Get Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message200Onec"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400c"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401c"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500c"
+    put:
+      summary: Update a cart by ID
+      tags:
+        - Cart
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: Unique identifier of the cart to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      responses:
+        200:
+          description: Cart Update Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message200Onec"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400c"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401c"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500c"
+    delete:
+      summary: Delete a product of a cart by ID
+      tags:
+        - Cart
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: Unique identifier of the item of the cart to delete
+          schema:
+            type: string
+      responses:
+        200:
+          description: Item of the cart Deleted Successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message200Onec"      
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400c"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401c"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500c"
+  /api/carts/all:
+    delete:
+      summary: Delete all carts of a user
+      tags:
+        - Cart
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          description: user_id for delete cart
+          schema:
+            type: string
+      responses:
+        200:
+          description: Cart Deleted Successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message200c" 
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400c"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401c"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500c"

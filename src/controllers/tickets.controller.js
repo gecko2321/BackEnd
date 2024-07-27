@@ -47,8 +47,23 @@ class TicketsController {
       return next(error);
     }
   }
+  async readOne(req, res, next) {
+    try {
+      const { uid } = req.params;
+      const one = await readOneService(uid);
+      if (one) {
+        return res.response200(one);
+      } else {
+        const error = new Error("Not found!");
+        error.statusCode = 404;
+        throw error;
+      }
+    } catch (error) {
+      return next(error);
+    }
+  }
 }
 
 const ticketsController = new TicketsController();
-const { ticket } = ticketsController;
-export { ticket };
+const { ticket,readOne } = ticketsController;
+export { ticket,readOne };
