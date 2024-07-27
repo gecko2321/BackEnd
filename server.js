@@ -21,6 +21,9 @@ import compression from "express-compression";
 import winston from "./src/middlewares/winston.mid.js";
 import cluster from "cluster"
 import { cpus } from "os";
+import configs from "./src/utils/swagger.util.js"
+import swaggerJSDoc from "swagger-jsdoc";
+import {serve,setup} from "swagger-ui-express"
 
 //Server HTTP
 const server = express();
@@ -50,6 +53,8 @@ const nodeServer = createServer(server);
 const socketServer = new Server(nodeServer);
 socketServer.on("connection", socketCb);
 export { socketServer };
+
+const specs = swaggerJSDoc(configs)
 
 //Middlewares
 server.use(cookieParser(environment.SECRET_COOKIE));
@@ -85,7 +90,7 @@ server.use(
     brotli: { enabled: true, zlib: {} },
   })
 );
-
+server.use("/api/docs", serve, setup(specs));
 //Handlebars Engine
 server.engine("handlebars", engine());
 server.set("view engine", "handlebars");

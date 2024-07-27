@@ -11,17 +11,20 @@ import {
   signout,
   verify,
 } from "../../controllers/sessions.controller.js";
+import validate from "../../middlewares/joi.mid.js"
+import usersSchema from "../../schemas/user.schema.js";
 
 class SessionsRouter extends CustomRouter {
   init() {
     this.create(
       "/register",
       ["PUBLIC"],
+      validate(usersSchema),
       isValidData,
       passportCb("register"),
       register
     );
-    this.create("/login", ["PUBLIC"], passportCb("login"), login);
+    this.create("/login", ["PUBLIC"],passportCb("login"), login);
     this.read("/online", ["PUBLIC"], passportCb("jwt"), online);
     this.create("/signout", ["PUBLIC"], passportCb("jwt"), signout);
     this.create("/verify", ["PUBLIC"], verify);
