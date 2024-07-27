@@ -109,3 +109,7 @@ Repositorio para el curso de BackEnd de CoderHouse
 - Se parametriza un logger para loggear eventos en consola y file en produccion y un loggerdev para loggear eventos en consola en desarrollo
 - Los distintos loggers se utilizan segun el parametro env
 - Se genera el endpoint api/loggers para probar
+
+# Sprint14
+
+- Instalacion y configuracion de Swagger para todos los endpoints y cruds
