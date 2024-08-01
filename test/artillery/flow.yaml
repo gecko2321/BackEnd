@@ -13,13 +13,21 @@ scenarios:
           url: /sessions/login
           json:
             email: gecko_2321@hotmail.com
-            password: "12345678"
+            password: "Password1"
       - log: read all products
       - get:
           url: /products
+      - log: read all users
+      - get:
+          url: /users
       - log: create product
       - post:
           url: /products
           json:
             title: artillery
             category: Varios
+            price: 1500
+            stock: 25
+      - log: signout
+      - post:
+          url: /sessions/signout

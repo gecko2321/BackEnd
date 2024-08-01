@@ -16,7 +16,9 @@
     "flow": "artillery run ./test/artillery/flow.yaml -o ./test/artillery/flow.json",
     "report": "artillery report ./test/artillery/flow.json",
     "image": "docker build -t ceramicagloria .",
-    "mocha": "mocha ./test/mocha/products.test.js"
+    "mocha": "mocha ./test/mocha/products.test.js",
+    "chai": "mocha ./test/chai",
+    "super": "mocha ./test/supertest"
   },
   "keywords": [],
   "author": "",

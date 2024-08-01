@@ -19,7 +19,7 @@ class ProductsRouter extends CustomRouter {
     this.read("/:pid", ["PUBLIC"], readOne);
     //Para utilizar por interface grafica, con validacion de permisos y administracion
     this.create("/", ["ADMIN"],validate(productsSchema), isValidAdmin, isText, create);
-    //Para utilizar desde postman, swagger, etc sin validacion de permisos
+    //Para utilizar desde postman, swagger, supertest, etc sin validacion de permisos
     //this.create("/", ["PUBLIC"],validate(productsSchema), isText, create);
     this.update("/:pid", ["ADMIN"], update);
     this.destroy("/:pid", ["ADMIN"], destroy);
