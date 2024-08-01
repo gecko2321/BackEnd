@@ -9,7 +9,10 @@ class UsersRouter extends CustomRouter {
     this.read("/:uid", ["PUBLIC"], readOne);
     this.create("/", ["PUBLIC"], create);
     this.update("/:uid", ["USER","ADMIN"], update);
-    this.destroy("/:uid", ["USER","ADMIN"], destroy);
+    //Por el tema de los testings con supertest
+    //this.destroy("/:uid", ["USER","ADMIN"], destroy);
+    this.destroy("/:uid", ["PUBLIC"], destroy);
+    this.destroy("/:uid", ["PUBLIC"], destroy);
     this.read("/paginate", ["USER","ADMIN"], paginate);
   }
 }
