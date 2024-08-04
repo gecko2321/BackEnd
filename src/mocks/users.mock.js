@@ -11,7 +11,7 @@ async function createData() {
         name: faker.person.firstName(),
         lname: faker.person.lastName(),
         email: faker.internet.exampleEmail(),
-        password: "12345678",
+        password: "Password1",
         role: 0,
         age: faker.number.int({ min: 18, max: 70 }),
         photo: faker.image.avatar(),

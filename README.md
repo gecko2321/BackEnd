@@ -113,3 +113,7 @@ Repositorio para el curso de BackEnd de CoderHouse
 # Sprint14
 
 - Instalacion y configuracion de Swagger para todos los endpoints y cruds
+- Instalacion de CHAI
+- Instalacion de MOCHA
+- Instalacion de SUPERTEST
+- Configuracion Artillery (Simplex - Complex - Flow)
