@@ -3,7 +3,7 @@ import { readOne, ticket } from "../../controllers/tickets.controller.js";
 
 class TicketsRouter extends CustomRouter {
   init() {
-    this.read("/:uid", ["ADMIN", "USER"], ticket);
+    this.read("/:uid", ["ADMIN", "USER","PREM"], ticket);
     //this.read("/:uid", ["ADMIN", "USER"], readOne)
   }
 }

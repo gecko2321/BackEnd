@@ -34,11 +34,26 @@ components:
         name: Ricardo
         lname: Moreno
         email: gecko_2321@hotmail.com
-        password: "12345678"
+        password: "Password1"
         role: 1
         age: 40
         photo: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
-
+    RestorePassword:
+      type: object
+      properties:        
+        email:
+          type: string
+          description: Correo electrónico del usuario
+        verifyCode:
+          type: string
+          description: Código de verificación del usuario
+        newpassword:
+          type: string
+          description: Nuevo Password
+      example:
+        email: gecko_2321@hotmail.com
+        code: 9b01ee824fc4
+        newpassword: "Password1"
   responses:
     Message200:
       type: object
@@ -67,7 +82,6 @@ components:
       example:
         statusCode: 201
         message: User Registered!
-
     Response200One:
       type: object
       properties:
@@ -105,14 +119,14 @@ components:
           - name: Ricardo
             lname: Moreno
             email: gecko_2321@hotmail.com
-            password: "12345678"
+            password: "Password1"
             role: 1
             age: 40
             photo: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
           - name: Prueba
             lname: Swagger
             email: gecko_2321@hotmail.com
-            password: "12345678"
+            password: "Password1"
             role: 1
             age: 18
             photo: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
@@ -143,14 +157,14 @@ components:
           - name: Ricardo
             lname: Moreno
             email: gecko_2321@hotmail.com
-            password: "12345678"
+            password: "Password1"
             role: 1
             age: 40
             photo: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
           - name: Prueba
             lname: Swagger
             email: gecko_2321@hotmail.com
-            password: "12345678"
+            password: "Password1"
             role: 1
             age: 18
             photo: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
@@ -371,6 +385,84 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/responses/Error401"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500"
+  /api/sessions/password:
+    post:
+      summary: Envio de codigo de verificacion para reestablecimiento de password
+      tags:
+        - User
+      requestBody:
+        required: true
+        description: VerifyCode para reestablecer password, enviar email en body
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: Mail Enviado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message200"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500"
+    put:
+      summary: Restore Password
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestorePassword'
+      responses:
+        200:
+          description: Password Restaurado Correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Response200One"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401"
+        404:
+          description: Documento no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error404"
         500:
           description: Fallo por error fatal en el servidor
           content:

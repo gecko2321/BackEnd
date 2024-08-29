@@ -1,2 +1,31 @@
 [31mFATAL[39m: This is a FATAL level log
 [33mERROR[39m: This is an ERROR level log
+[33mERROR[39m: POST /api/sessions/login 401 - 12:57:06 - Invalid credentials
+[33mERROR[39m: POST /api/sessions/login 401 - 12:45:48 - Invalid credentials
+[33mERROR[39m: POST /api/products 400 - 12:49:51 - "photo" must be a valid uri
+[33mERROR[39m: POST /api/products 400 - 12:49:59 - "photo" must be a valid uri
+[33mERROR[39m: POST /api/products 400 - 12:50:05 - "photo" must be a valid uri
+[33mERROR[39m: POST /api/products 400 - 12:53:37 - "photo" is not allowed
+[33mERROR[39m: POST /api/products 400 - 12:54:04 - "photo" is not allowed
+[33mERROR[39m: GET /api/carts?user_id=667de238dc545f02bd025bf5&page=1 404 - 01:11:36 - No hay Documentos
+[33mERROR[39m: GET /api/products/me?page=1&supplier_id=667de238dc545f02bd025bf5 404 - 01:11:53 - No hay Documentos
+[33mERROR[39m: GET /api/carts?user_id=667de238dc545f02bd025bf5&page=1 404 - 01:23:08 - No hay Documentos
+[33mERROR[39m: POST /api/payments/checkout undefined - 01:25:07 - Error: You did not provide an API key. You need to provide your API key in the Authorization header, using Bearer auth (e.g. 'Authorization: Bearer YOUR_SECRET_KEY'). See https://stripe.com/docs/api#authentication for details, or we can help at https://support.stripe.com/.
+[33mERROR[39m: POST /api/payments/checkout undefined - 01:25:57 - Error: You did not provide an API key. You need to provide your API key in the Authorization header, using Bearer auth (e.g. 'Authorization: Bearer YOUR_SECRET_KEY'). See https://stripe.com/docs/api#authentication for details, or we can help at https://support.stripe.com/.
+[33mERROR[39m: PUT /667de237dc545f02bd025bec 400 - 01:28:03 - invalid signature
+[33mERROR[39m: PUT /667de237dc545f02bd025bec?=667de237dc545f02bd025bec 400 - 01:28:30 - invalid signature
+[33mERROR[39m: PUT /667de237dc545f02bd025bec 400 - 01:28:53 - invalid signature
+[33mERROR[39m: PUT /667de237dc545f02bd025bec 400 - 01:28:55 - invalid signature
+[33mERROR[39m: POST /api/sessions/login 401 - 01:29:57 - Invalid credentials
+[33mERROR[39m: GET /api/carts?user_id=667de237dc545f02bd025bef&page=1 404 - 01:37:13 - No hay Documentos
+[33mERROR[39m: GET /api/carts?user_id=667de237dc545f02bd025bec&page=1 404 - 01:39:19 - No hay Documentos
+[33mERROR[39m: GET /api/carts?user_id=667de237dc545f02bd025bec&page=1 404 - 01:41:16 - No hay Documentos
+[33mERROR[39m: POST /api/payments/checkout undefined - 01:45:01 - Error: Not a valid URL
+[33mERROR[39m: POST /api/payments/checkout undefined - 01:45:07 - Error: Not a valid URL
+[33mERROR[39m: POST /api/payments/checkout undefined - 01:54:30 - Error: Not a valid URL
+[33mERROR[39m: GET /api/carts?user_id=667de237dc545f02bd025bec&page=1 404 - 01:59:04 - No hay Documentos
+[33mERROR[39m: GET / 401 - 08:53:07 - Bad auth from policies!}
+[33mERROR[39m: GET /api/products/paginateme undefined - 09:05:28 - Cast to ObjectId failed for value "paginateme" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /api/products/paginateMe undefined - 09:05:35 - Cast to ObjectId failed for value "paginateMe" (type string) at path "_id" for model "products"
+[33mERROR[39m: GET /me 400 - 09:06:29 - jwt expired
+[33mERROR[39m: GET /me 400 - 09:06:32 - jwt expired

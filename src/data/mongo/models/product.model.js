@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 
 const collection = "products";
@@ -18,6 +18,12 @@ const schema = new Schema(
       default:
         "https://d22fxaf9t8d39k.cloudfront.net/f1901a40e42e5a23cfd96f43a6f2d7f7284f2d641c3b04d8e607479c2b8094c777180.jpeg",
     },
+    supplier_id: {
+      type: Types.ObjectId,
+      required: true,
+      index: true,
+      ref: "users",
+    },
   },
   {
     timestamps: true,
@@ -25,6 +31,10 @@ const schema = new Schema(
 );
 
 schema.plugin(mongoosePaginate);
+
+schema.pre("find", function () {
+  this.populate("supplier_id"); //agregar selectores
+});
 
 const Product = model(collection, schema);
 export default Product;

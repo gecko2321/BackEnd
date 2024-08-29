@@ -10,22 +10,28 @@ class Manager {
       throw error;
     }
   }
+
   async read(opts) {
     try {
       let query = {};
-        if (opts && opts.category) {
-            // Si se proporciona la categoría en opts, agregarla a la consulta
-            query = { category: opts.category };
-        }
+      if (opts && opts.category) {
+        // Si se proporciona la categoría en opts, agregarla a la consulta
+        query = { category: opts.category };
+      }
+
+      if (opts && opts.user_id) {
+        query = { user_id: opts.user_id };
+      }
       const all = await this.Model.find(query).sort("name").lean();
       return all;
     } catch (error) {
       throw error;
     }
   }
+
   async readOne(id) {
     try {
-      const one = await this.Model.findOne({_id:id}).lean()
+      const one = await this.Model.findOne({ _id: id }).lean();
       return one;
     } catch (error) {
       throw error;
@@ -39,14 +45,14 @@ class Manager {
       throw error;
     }
   }
-  async paginate({filter,options}) {
+  async paginate({ filter, options }) {
     try {
-      options = {...options,lean:true}
-      const all = await this.Model.paginate(filter,options);
-      if (all.totalDocs ===0){
-        const error = new Error("No hay Documentos")
-        error.statusCode = 404
-        throw error
+      options = { ...options, lean: true };
+      const all = await this.Model.paginate(filter, options);
+      if (all.totalDocs === 0) {
+        const error = new Error("No hay Documentos");
+        error.statusCode = 404;
+        throw error;
       }
       return all;
     } catch (error) {
@@ -79,7 +85,7 @@ class Manager {
       throw error;
     }
   }
-  
+
   async aggregate(obj) {
     try {
       const result = await this.Model.aggregate(obj);

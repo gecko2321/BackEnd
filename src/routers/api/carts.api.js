@@ -13,12 +13,12 @@ import {
 class CartsRouter extends CustomRouter {
   init() {
     //cartsRouter.get("/", read);
-    this.read("/", ["USER","ADMIN"], paginate);
-    this.read("/:pid", ["USER","ADMIN"], readOne);
-    this.create("/", ["USER","ADMIN"], create);
-    this.update("/:pid", ["USER","ADMIN"], update);
-    this.destroy("/all", ["USER","ADMIN"], destroyAll);
-    this.destroy("/:pid", ["USER","ADMIN"], destroy);
+    this.read("/", ["USER", "ADMIN", "PREM"], paginate);
+    this.read("/:pid", ["USER", "ADMIN", "PREM"], readOne);
+    this.create("/", ["USER", "ADMIN", "PREM"], create);
+    this.update("/:pid", ["USER", "ADMIN", "PREM"], update);
+    this.destroy("/all", ["USER", "ADMIN", "PREM"], destroyAll);
+    this.destroy("/:pid", ["USER", "ADMIN", "PREM"], destroy);
   }
 }
 

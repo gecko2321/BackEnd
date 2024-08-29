@@ -1,3 +1,4 @@
+
 document.querySelector("#logout").onclick = async () => {
   // Muestra la alerta de confirmación
   const result = await Swal.fire({
@@ -37,15 +38,29 @@ fetch("/api/sessions/online")
   .then((data) => {
     // Verificar si la respuesta es exitosa (statusCode = 200)
     if (data.statusCode === 200) {
-      // Usuario en línea, mostrar las etiquetas cart y logout
-      document.getElementById("cart").style.display = "block";
+      // Usuario en línea, mostrar las etiquetas logout
       document.getElementById("logout").style.display = "block";
       // Ocultar el botón de login
       document.getElementById("login").style.display = "none";
+
+      // Verificar si el rol del usuario es 1 para mostrar el enlace de usuarios
+      if (data.role === 1) {
+        document.getElementById("usuarios").style.display = "block";
+      } else {
+        document.getElementById("usuarios").style.display = "none";
+      }
+      
+      // Verificar si el rol del usuario es diferente de 1 para mostrar el cart
+      if (data.role !== 1) {
+        document.getElementById("cart").style.display = "block";
+      } else {
+        document.getElementById("cart").style.display = "none";
+      }
     } else {
-      // Usuario no está en línea, ocultar las etiquetas cart y logout
+      // Usuario no está en línea, ocultar las etiquetas cart, logout y usuarios
       document.getElementById("cart").style.display = "none";
       document.getElementById("logout").style.display = "none";
+      document.getElementById("usuarios").style.display = "none";
       // Mostrar el botón de login
       document.getElementById("login").style.display = "block";
     }
@@ -55,6 +70,3 @@ fetch("/api/sessions/online")
     // En caso de error, asegurar que el botón de login esté visible
     document.getElementById("login").style.display = "block";
   });
-
-
-  

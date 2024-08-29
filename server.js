@@ -19,11 +19,11 @@ import environment from "./src/utils/env.util.js";
 import cors from "cors";
 import compression from "express-compression";
 import winston from "./src/middlewares/winston.mid.js";
-import cluster from "cluster"
+import cluster from "cluster";
 import { cpus } from "os";
-import configs from "./src/utils/swagger.util.js"
+import configs from "./src/utils/swagger.util.js";
 import swaggerJSDoc from "swagger-jsdoc";
-import {serve,setup} from "swagger-ui-express"
+import { serve, setup } from "swagger-ui-express";
 
 //Server HTTP
 const server = express();
@@ -34,27 +34,26 @@ const ready = async () => {
   //await dbConnect();
   //hay que incluir la conexion a mongo desde el patron factory
 };
-const numOfProc = cpus().length
+const numOfProc = cpus().length;
 
 if (cluster.isPrimary) {
-  for (let i = 1; i<= numOfProc; i++){
-    cluster.fork()
+  for (let i = 1; i <= numOfProc; i++) {
+    cluster.fork();
   }
-  
-  console.log("proceso primario")
+
+  console.log("proceso primario");
 } else {
-  console.log("proceso worker"+process.pid)
+  console.log("proceso worker" + process.pid);
   server.listen(port, ready);
 }
 const nodeServer = createServer(server);
-
 
 //Server TCP
 const socketServer = new Server(nodeServer);
 socketServer.on("connection", socketCb);
 export { socketServer };
 
-const specs = swaggerJSDoc(configs)
+const specs = swaggerJSDoc(configs);
 
 //Middlewares
 server.use(cookieParser(environment.SECRET_COOKIE));

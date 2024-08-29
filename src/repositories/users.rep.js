@@ -51,6 +51,7 @@ class UsersRepository {
     };
     updateRepository = async (uid, data) => {
       try {
+        data = new UsersDTO(data)
         const one = await this.model.update(uid, data);
         return one;
       } catch (error) {

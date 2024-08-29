@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: white;
+  background-color: #f3e8dc; /* Color cálido similar a la arcilla */
 }
 
 .iframe {
@@ -16,7 +16,7 @@ body {
 .tituloHeader {
   font-family: "Roboto", sans-serif;
   font-size: xx-large;
-  color: #f15a29;
+  color: #8b5e34; /* Color más acorde con la cerámica */
   text-align: center;
   text-decoration: solid;
   padding: 1rem;
@@ -25,7 +25,7 @@ body {
 .titulo {
   font-family: "Roboto", sans-serif;
   font-size: xx-large;
-  color: #f15a29;
+  color: #8b5e34; /* Color más acorde con la cerámica */
   text-align: center;
   padding: 1rem;
 }
@@ -33,7 +33,7 @@ body {
 .texto {
   font-family: "Economica", sans-serif;
   font-size: x-large;
-  color: #f15a29;
+  color: #8b5e34; /* Color más acorde con la cerámica */
 }
 
 .c-item {
@@ -47,12 +47,12 @@ body {
 }
 
 .navbar {
-  background-color: white;
+  background-color: #e6d5c3; /* Fondo cálido para el encabezado */
 }
 .navbar a {
   font-family: "Roboto", sans-serif;
   font-size: large;
-  color: #f15a29;
+  color: #8b5e34; /* Color más acorde con la cerámica */
 }
 .navbar a:hover {
   color: #414042;
@@ -106,7 +106,7 @@ body {
 }
 .productos figure {
   width: 30%;
-  border: solid 1px pink;
+  border: solid 1px #8b5e34; /* Color más acorde con la cerámica */
   border-radius: 10px;
   margin-bottom: 20px;
   padding: 10px 20px;
@@ -124,7 +124,7 @@ body {
 }
 .productos figure button {
   border: none;
-  background-color: #f15a29;
+  background-color: #8b5e34; /* Color más acorde con la cerámica */
   padding: 3px;
   color: white;
   border-radius: 4px;
@@ -150,14 +150,12 @@ body {
   }
 }
 @media (width < 768px) {
-  /* nav */
   .productos figure {
     flex-direction: column;
     width: 80%;
   }
 }
 @media (width < 576px) {
-  /* nav */
   .productos figure {
     flex-direction: column;
     width: 100%;
@@ -169,14 +167,30 @@ body {
 
 /*# sourceMappingURL=style.css.map */
 
-
-.ingreso{ 
-flex-direction: column;
-text-align: left;
-}
-
-.buscar{ 
+.ingreso {
   flex-direction: column;
   text-align: left;
-  
-  }
+}
+
+.buscar {
+  flex-direction: column;
+  text-align: left;
+}
+
+.header, .footer {
+    background-color: #e6d5c3; /* Fondo cálido para encabezado y pie de página */
+    border: none; /* Sin bordes para un estilo más limpio */
+}
+
+.footer span {
+    color: #4a4a4a; /* Color del texto en el pie de página */
+}
+
+.footer .nav .text-body-secondary {
+    color: #8b5e34; /* Color de los enlaces en el pie de página */
+}
+
+#logo img {
+  width: 60px;  /* Ajusta el tamaño según tus necesidades */
+  height: auto; /* Mantiene la proporción de la imagen */
+}

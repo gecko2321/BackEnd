@@ -10,6 +10,8 @@ import {
   online,
   signout,
   verify,
+  restorePassword,
+  sendCodeToRestore
 } from "../../controllers/sessions.controller.js";
 import validate from "../../middlewares/joi.mid.js"
 import usersSchema from "../../schemas/user.schema.js";
@@ -28,6 +30,8 @@ class SessionsRouter extends CustomRouter {
     this.read("/online", ["PUBLIC"], passportCb("jwt"), online);
     this.create("/signout", ["PUBLIC"], passportCb("jwt"), signout);
     this.create("/verify", ["PUBLIC"], verify);
+    this.update("/password", ["PUBLIC"], restorePassword); //para reestablecer el password de un mail con su codigo de verificacion
+    this.create ("/password",["PUBLIC"], sendCodeToRestore) //para enviar un mail con el codigo de verificacion
   }
 }
 

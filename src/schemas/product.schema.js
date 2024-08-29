@@ -25,7 +25,7 @@ const productsSchema = joi.object({
     .messages({
       "any.required": "El stock es requerido",      
     }),
-  photo: joi.string().uri(),  
+  photo: joi.string(),  
 });
 
 export default productsSchema;

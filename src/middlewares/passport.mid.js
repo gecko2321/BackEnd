@@ -7,7 +7,7 @@ import { Strategy as JWTStrategy, ExtractJwt } from "passport-jwt";
 import environment from "../utils/env.util.js";
 import usersRepository from "../repositories/users.rep.js";
 import UsersDTO from "../dto/users.dto.js";
-import sendEmail from "../utils/mailing.utils.js";
+import {sendEmail} from "../utils/mailing.utils.js";
 import CustomError from "../utils/errors/CustomError.js";
 import errors from "../utils/errors/errors.js";
 
@@ -33,10 +33,19 @@ passport.use(
           const error = CustomError.new(errors.auth)
           return done(error);
         }
+       
+        /*
         const hashPassword = createHash(password);        
         req.body.password = hashPassword;
+        */
+
         //const user = await usersManager.create(req.body);
+        
+        /*
         const data = new UsersDTO(req.body);
+        */
+        const data= req.body
+
         const user = await usersRepository.createRepository(data);
         //despues de crear el usuario debemos enviar el correo con un codigo para la verificacion del usuario, esto esta en el DTO de usuarios
         await sendEmail({ to: email, name: user.name, code: user.verifyCode });

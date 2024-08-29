@@ -4,16 +4,19 @@ import { createHash } from "../utils/hash.util.js";
 
 const persistence = argsUtil.persistence;
 
+
 class UsersDTO {
+  
   constructor(data) {
+    
     persistence !== "mongo" &&
       (this._id = crypto.randomBytes(12).toString("hex"));
     this.name = data.name;
     this.lname = data.lname;
     this.email = data.email;
-    //this.password = createHash(data.password);
-    this.password = data.password;
-    this.role = data.role || 0;
+    this.password = createHash(data.password);
+    //this.password = data.password;
+    this.role = data.role;
     this.age = data.age || 18;
     this.photo =
       data.photo ||

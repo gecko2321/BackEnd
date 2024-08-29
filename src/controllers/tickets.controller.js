@@ -65,5 +65,5 @@ class TicketsController {
 }
 
 const ticketsController = new TicketsController();
-const { ticket,readOne } = ticketsController;
-export { ticket,readOne };
+const { ticket, readOne } = ticketsController;
+export { ticket, readOne };

@@ -8,7 +8,7 @@ const cartsDao = dao.carts
 cartsRouter.get("/", async (req, res, next) => {
     try {
       const carts = await cartsDao.read();
-      return res.render("cart", { carts });
+      return res.render("cart", { carts,title: "Carrito de Compras" });
     } catch (error) {
       return next(error);
     }

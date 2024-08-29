@@ -1,74 +1,50 @@
 
+
 <main class="d-flex flex-column align-items-center w-100 flex-grow-1">
   {{#if user._id}}
-    <h1 class="bg-success-subtle p-2 text-center text-success w-100">DETALLE DEL
-      USUARIO
-      {{user._id}}</h1>
-    <section
-      class="m-3 w-50 d-flex flex-column justify-content-center align-items-center bg-success-subtle"
-    >
-      <p>ID: {{user._id}}</p>
-      <p>Nombre: {{user.name}}</p>
-      <p>Apellido: {{user.lname}}</p>
-      <img src="{{user.photo}}" alt="foto del usuario" width="100" />
-      <p>Correo Electronico: {{user.email}}</p>
-      <p>Rol: {{user.role}}</p>
-      <p>Age: {{user.age}}</p>
+    <h1 class="bg-success-subtle p-2 text-center text-success w-100">DETALLE DEL USUARIO {{user._id}}</h1>
+
+    <!-- Formulario de Edición -->
+    <section class="m-3 w-75 d-flex flex-column justify-content-center align-items-center bg-light p-3">
+      <form id="edit-user-form" class="w-100">
+        <div class="form-group mb-3">
+          <label for="name">Nombre:</label>
+          <input type="text" id="name" name="name" class="form-control w-100" value="{{user.name}}" required />
+        </div>
+        <div class="form-group mb-3">
+          <label for="lname">Apellido:</label>
+          <input type="text" id="lname" name="lname" class="form-control w-100" value="{{user.lname}}" required />
+        </div>
+        <div class="form-group mb-3">
+          <label for="email">Correo Electrónico:</label>
+          <input type="email" id="email" name="email" class="form-control w-100" value="{{user.email}}" required />
+        </div>
+        <div class="form-group mb-3">
+          <label for="age">Edad:</label>
+          <input type="number" id="age" name="age" class="form-control w-100" value="{{user.age}}" required />
+        </div>
+        <div class="form-group mb-3">
+          <label for="photo">Foto (URL):</label>
+          <input type="url" id="photo" name="photo" class="form-control w-100" value="{{user.photo}}" />
+        </div>
+        <div class="form-group mb-3">
+          <label for="role">Rol:</label>
+        <input type="number" id="role" name="role" class="form-control w-100" value="{{user.role}}" />
+        </div>
+        <div class="form-group form-check mb-3">
+          <input type="checkbox" id="verified" name="verified" class="form-check-input" {{#if user.verified}}checked{{/if}}>
+          <label for="verified" class="form-check-label">Verificado</label>
+        </div>
+        <div class="form-group mb-3">
+          <label for="verifyCode">Código de Verificación:</label>
+          <input type="text" id="verifyCode" name="verifyCode" class="form-control w-100" value="{{user.verifyCode}}" required />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
+      </form>
     </section>
   {{else}}
-    <h1 class="bg-success-subtle p-2 text-center text-success w-100">USUARIO NO
-      ENCONTRADO</h1>
+    <h1 class="bg-success-subtle p-2 text-center text-success w-100">USUARIO NO ENCONTRADO</h1>
   {{/if}}
 </main>
 
-
-{{!-- 
-<main class="d-flex flex-column align-items-center w-100 flex-grow-1" id="user-details">
-  <!-- Placeholder para los detalles del usuario -->
-</main>
-
-<script>
-  document.addEventListener("DOMContentLoaded", async () => {
-    const params = new URLSearchParams(window.location.search);
-    const uid = params.get('uid');
-    
-    if (uid) {
-      try {
-        const response = await fetch(`http://localhost:8080/api/users/${uid}`);
-        if (response.ok) {
-          const data = await response.json();
-          const user = data[0]; // Asumiendo que data es un array de objetos y queremos el primer objeto
-
-          if (user) {
-            document.getElementById('user-details').innerHTML = `
-              <h1 class="bg-success-subtle p-2 text-center text-success w-100">DETALLE DEL USUARIO ${user._id}</h1>
-              <section class="m-3 w-50 d-flex flex-column justify-content-center align-items-center bg-success-subtle">
-                <p>ID: ${user._id}</p>
-                <img src="${user.photo}" alt="foto del usuario" width="100" />
-                <p>Correo Electronico: ${user.email}</p>
-                <p>Rol: ${user.role}</p>
-                <p>Edad: ${user.age}</p>
-              </section>
-            `;
-          } else {
-            document.getElementById('user-details').innerHTML = `
-              <h1 class="bg-success-subtle p-2 text-center text-success w-100">USUARIO NO ENCONTRADO</h1>
-            `;
-          }
-        } else {
-          document.getElementById('user-details').innerHTML = `
-            <h1 class="bg-success-subtle p-2 text-center text-success w-100">ERROR AL OBTENER USUARIO</h1>
-          `;
-        }
-      } catch (error) {
-        document.getElementById('user-details').innerHTML = `
-          <h1 class="bg-success-subtle p-2 text-center text-success w-100">ERROR: ${error.message}</h1>
-        `;
-      }
-    } else {
-      document.getElementById('user-details').innerHTML = `
-        <h1 class="bg-success-subtle p-2 text-center text-success w-100">UID NO PROPORCIONADO</h1>
-      `;
-    }
-  });
-</script> --}}
+<script src="/scripts/usersDetail.js"></script>
