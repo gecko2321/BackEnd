@@ -1,0 +1,650 @@
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Nombre del usuario a registrar
+        lname:
+          type: string
+          description: Apellido del usuario a registrar
+        email:
+          type: string
+          description: Correo electrónico del usuario
+        password:
+          type: string
+          description: Contraseña del usuario
+        role:
+          type: number
+          description: Permisos según el rol del usuario
+        age:
+          type: number
+          description: Edad del usuario
+        photo:
+          type: string
+          description: Foto del usuario, si aplica
+        verified:
+          type: boolean
+          description: Estado de verificación del usuario
+        verifyCode:
+          type: string
+          description: Código de verificación del usuario
+      example:
+        name: Ricardo
+        lname: Moreno
+        email: gecko_2321@hotmail.com
+        password: "Password1"
+        role: 1
+        age: 40
+        photo: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+    RestorePassword:
+      type: object
+      properties:        
+        email:
+          type: string
+          description: Correo electrónico del usuario
+        verifyCode:
+          type: string
+          description: Código de verificación del usuario
+        newpassword:
+          type: string
+          description: Nuevo Password
+      example:
+        email: gecko_2321@hotmail.com
+        code: 9b01ee824fc4
+        newpassword: "Password1"
+  responses:
+    Message200:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud exitosa
+        message:
+          type: string
+          description: Descripción del éxito de la operación
+      example:
+        statusCode: 200
+        message: Verified User!
+
+    Message201:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud exitosa en la creación
+        message:
+          type: string
+          description: Descripción del éxito de la creación
+      example:
+        statusCode: 201
+        message: User Registered!
+    Response200One:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud exitosa con datos devueltos
+        response:
+          type: object
+          description: Objeto con los datos del recurso solicitado
+      example:
+        statusCode: 200
+        response:
+          name: Ricardo
+          lname: Moreno
+          email: gecko_2321@hotmail.com
+          password: "12345678"
+          role: 1
+          age: 40
+          photo: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+
+    Response200All:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud exitosa con datos devueltos
+        response:
+          type: array
+          description: Array de objetos con los datos del recurso solicitado
+      example:
+        statusCode: 200
+        response:
+          - name: Ricardo
+            lname: Moreno
+            email: gecko_2321@hotmail.com
+            password: "Password1"
+            role: 1
+            age: 40
+            photo: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+          - name: Prueba
+            lname: Swagger
+            email: gecko_2321@hotmail.com
+            password: "Password1"
+            role: 1
+            age: 18
+            photo: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+
+    Paginate:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud exitosa con datos paginados
+        response:
+          type: array
+          description: Array de objetos paginados y ordenados
+        info:
+          type: object
+          description: Información de paginación
+          properties:
+            next:
+              type: string
+              nullable: true
+            prev:
+              type: string
+              nullable: true
+      example:
+        statusCode: 200
+        response:
+          - name: Ricardo
+            lname: Moreno
+            email: gecko_2321@hotmail.com
+            password: "Password1"
+            role: 1
+            age: 40
+            photo: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+          - name: Prueba
+            lname: Swagger
+            email: gecko_2321@hotmail.com
+            password: "Password1"
+            role: 1
+            age: 18
+            photo: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"
+        info:
+          next: null
+          prev: null
+
+    Error400:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida por problemas del cliente
+        message:
+          type: string
+          description: Descripción del error del cliente
+      example:
+        statusCode: 400
+        message: Incomplete data on middleware
+
+    Error401:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida de autenticación
+        message:
+          type: string
+          description: Descripción del fallo de autenticación
+      example:
+        statusCode: 401
+        message: Bad Auth from policies!!
+
+    Error403:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida de autorización
+        message:
+          type: string
+          description: Descripción del fallo de autorización
+      example:
+        statusCode: 403
+        message: Forbidden from policies
+
+    Error404:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida por no encontrar el recurso solicitado
+        message:
+          type: string
+          description: Descripción del recurso no encontrado
+      example:
+        statusCode: 404
+        message: Not Found Docs
+
+    Error500:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida por error fatal en el servidor
+        message:
+          type: string
+          description: Descripción del fallo de la operación en el servidor
+      example:
+        statusCode: 500
+        message: Coder API ERROR
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token   
+
+paths:
+  /api/sessions/register:
+    post:
+      summary: Create a New user
+      tags:
+        - User
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        description: Datos para registrar un usuario
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        201:
+          description: Éxito en el registro de un usuario
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message201"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500"
+  /api/sessions/login:
+    post:
+      summary: User Login
+      tags:
+        - User
+      requestBody:
+        required: true
+        description: Datos para loguear un usuario
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: Loguin Correcto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message200"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500"
+  /api/sessions/online:
+    get:
+      summary: Check online status of a User
+      tags:
+        - User
+      responses:
+        200:
+          description: Its Online
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message200"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500"
+  /api/sessions/signout:
+    post:
+      summary: User SignOut
+      tags:
+        - User
+      requestBody:
+        required: true
+        description: Datos para signout de un usuario
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: SignOut
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message200"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500"
+  /api/sessions/password:
+    post:
+      summary: Envio de codigo de verificacion para reestablecimiento de password
+      tags:
+        - User
+      requestBody:
+        required: true
+        description: VerifyCode para reestablecer password, enviar email en body
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: Mail Enviado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message200"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500"
+    put:
+      summary: Restore Password
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestorePassword'
+      responses:
+        200:
+          description: Password Restaurado Correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Response200One"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401"
+        404:
+          description: Documento no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error404"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500"
+  /api/users:
+    get:
+      summary: Retreive all Users
+      tags:
+        - User
+      responses:
+        200:
+          description: Users Get Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Response200All"
+        201:
+          description: Exito en el registro de un usuario
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message201"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500"
+  /api/users/{uid}:
+    get:
+      summary: Get a user by ID
+      tags:
+        - User
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: Unique identifier of the user to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: User Get Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Response200One"
+        201:
+          description: Exito en el registro de un Usuario
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message201"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401"
+        404:
+          description: Documento no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error404"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500"
+    put:
+      summary: Update a user by ID
+      tags:
+        - User
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: Unique identifier of the user to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        200:
+          description: User Update Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Response200One"
+        201:
+          description: Exito en el registro de un usuario
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message201"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401"
+        404:
+          description: Documento no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error404"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500"
+    delete:
+      summary: Delete a user by ID
+      tags:
+        - User
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: Unique identifier of the user to delete
+          schema:
+            type: string
+      responses:
+        200:
+          description: User Deleted Successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Response200One"      
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500"  

@@ -1,0 +1,93 @@
+<main class="d-flex flex-column align-items-center w-100 flex-grow-1">
+  {{#if product._id}}
+    <h1 class="bg-success-subtle p-2 text-center text-success w-100">DETALLE DEL PRODUCTO {{product._id}}</h1>
+    <section class="m-3 w-50 d-flex flex-column justify-content-center align-items-center bg-success-subtle">
+      <p>{{product.title}}</p>
+      <p>Precio: ${{product.price}}</p>
+      <p>Categoria: {{product.category}}</p>
+      <img src="{{product.photo}}" height="314" width="314" alt="Imagen del Producto" />
+
+      <div class="mb-3">
+        {{!-- <label for="cantidad">Cantidad:</label> --}}
+        <input type="number" id="cantidad" name="cantidad" min="1" value="1" style="display: none;">
+      </div>
+
+      <button class="btn btn-primary" id="agregar-carrito" style="display: none;">Agregar al Carrito</button>
+    </section>
+  {{else}}
+    <h1 class="bg-success-subtle p-2 text-center text-success w-100">PRODUCTO NO ENCONTRADO</h1>
+  {{/if}}
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    let resp = await fetch("/api/sessions/online");
+    resp = await resp.json();
+    console.log(resp);
+
+    if (resp.statusCode === 200) {
+      // Verificar si el rol del usuario es diferente de 1 para mostrar los elementos
+      if (resp.role !== 1) {
+        document.getElementById('agregar-carrito').style.display = 'block';
+        document.getElementById('cantidad').style.display = 'block';
+      } else {
+        document.getElementById('agregar-carrito').style.display = 'none';
+        document.getElementById('cantidad').style.display = 'none';
+      }
+    }
+  } catch (error) {
+    console.error('Error verificando la sesión:', error);
+  }
+});
+
+    document.getElementById('agregar-carrito').addEventListener('click', async () => {
+      const product_id = '{{product._id}}'; 
+      const quantity = document.getElementById('cantidad').value;
+
+      try {
+        let resp = await fetch("/api/sessions/online");
+        resp = await resp.json();
+
+            if (resp.statusCode === 200) {
+          const user_id = resp.user_id;
+          const response = await fetch('/api/carts', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              user_id,
+              product_id,
+              quantity
+            })
+          });
+
+          if (response.ok) {
+            Swal.fire({
+  title: "Excelente",
+  text: "Agregaste " + quantity + " {{product.title}} a tu Carrito",
+  imageUrl: "{{product.photo}}",
+  imageWidth: 314,
+  imageHeight: 314,
+  imageAlt: "Custom image"
+}).then((result) => {
+  if (result.isConfirmed) {
+    window.location.href = "/products";
+  }
+});
+;
+          } else {
+            throw new Error('Error al agregar al carrito');
+          }
+        } else {
+          alert('Debe estar en línea para agregar al carrito');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('Error al agregar al carrito');
+      }
+    });
+</script>

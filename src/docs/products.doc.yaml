@@ -1,0 +1,466 @@
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Nombre del producto a registrar
+        category:
+          type: string
+          description: Categoria del producto a registrar
+        price:
+          type: number
+          description: Precio del producto
+        stock:
+          type: number
+          description: Stock del producto
+        photo:
+          type: string
+          description: Foto del producto        
+      example:
+        title: PruebaSwagger
+        category: Varios
+        price: 1
+        stock: 1
+        photo: "https://d22fxaf9t8d39k.cloudfront.net/f1901a40e42e5a23cfd96f43a6f2d7f7284f2d641c3b04d8e607479c2b8094c777180.jpeg"
+
+  responses:
+    Message200p:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud exitosa
+        message:
+          type: string
+          description: Descripción del éxito de la operación
+      example:
+        statusCode: 200
+        message: Verified User!
+
+    Message201p:
+      type: object
+      properties:
+        statusCode:
+          type: number          
+          description: Código de estado de la solicitud exitosa en la creación
+        message:
+          type: string
+          description: Descripción del éxito de la creación
+      example:
+        statusCode: 201
+        message: Created ID 232123212321 
+
+    Message200Onep:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud exitosa con datos devueltos
+        response:
+          type: object
+          description: Objeto con los datos del recurso solicitado
+      example:
+        statusCode: 200
+        response:
+          _ID: idinventado99999999999999999
+          title: PruebaSwagger
+          category: Varios
+          price: 1
+          stock: 1
+          photo: "https://d22fxaf9t8d39k.cloudfront.net/f1901a40e42e5a23cfd96f43a6f2d7f7284f2d641c3b04d8e607479c2b8094c777180.jpeg"
+
+    Message200Allp:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud exitosa con datos devueltos
+        response:
+          type: array
+          description: Array de objetos con los datos del recurso solicitado
+      example:
+        statusCode: 200
+        response:
+          - title: PruebaSwagger
+            category: Varios
+            price: 1
+            stock: 1
+            photo: "https://d22fxaf9t8d39k.cloudfront.net/f1901a40e42e5a23cfd96f43a6f2d7f7284f2d641c3b04d8e607479c2b8094c777180.jpeg"
+          - title: PruebaSwagger2
+            category: Varios
+            price: 1
+            stock: 1
+            photo: "https://d22fxaf9t8d39k.cloudfront.net/f1901a40e42e5a23cfd96f43a6f2d7f7284f2d641c3b04d8e607479c2b8094c777180.jpeg"
+
+    Paginatep:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud exitosa con datos paginados
+        response:
+          type: array
+          description: Array de objetos paginados y ordenados
+        info:
+          type: object
+          description: Información de paginación
+          properties:
+            next:
+              type: string
+              nullable: true
+            prev:
+              type: string
+              nullable: true
+      example:
+        statusCode: 200
+        response:
+          - title: PruebaSwaggerPagin1
+            category: Varios
+            price: 1
+            stock: 1
+            photo: "https://d22fxaf9t8d39k.cloudfront.net/f1901a40e42e5a23cfd96f43a6f2d7f7284f2d641c3b04d8e607479c2b8094c777180.jpeg"
+          - title: PruebaSwaggerPagin2
+            category: Varios
+            price: 1
+            stock: 1
+            photo: "https://d22fxaf9t8d39k.cloudfront.net/f1901a40e42e5a23cfd96f43a6f2d7f7284f2d641c3b04d8e607479c2b8094c777180.jpeg"
+        info:
+          next: null
+          prev: null
+
+    Error400p:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida por problemas del cliente
+        message:
+          type: string
+          description: Descripción del error del cliente
+      example:
+        statusCode: 400
+        message: Incomplete data on middleware
+
+    Error401p:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida de autenticación
+        message:
+          type: string
+          description: Descripción del fallo de autenticación
+      example:
+        statusCode: 401
+        message: Bad Auth from policies!!
+
+    Error403p:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida de autorización
+        message:
+          type: string
+          description: Descripción del fallo de autorización
+      example:
+        statusCode: 403
+        message: Forbidden from policies
+
+    Error404p:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida por no encontrar el recurso solicitado
+        message:
+          type: string
+          description: Descripción del recurso no encontrado
+      example:
+        statusCode: 404
+        message: Not Found Docs
+
+    Error500p:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int64
+          description: Código de estado de la solicitud fallida por error fatal en el servidor
+        message:
+          type: string
+          description: Descripción del fallo de la operación en el servidor
+      example:
+        statusCode: 500
+        message: Coder API ERROR
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token        
+
+paths:
+  /api/products:
+    post:
+      summary: Create a product in the server
+      tags:
+        - Product
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        description: Datos para registrar un producto
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:        
+        201:
+          description: Exito en el registro de un producto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message201p"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400p"
+        401:
+          description: Fallo por falta de autenticacion
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401p"
+        403:
+          description: Fallo en la autorizacion
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error403p"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500p"
+    get:
+      summary: Retreive all products
+      tags:
+        - Product
+      responses:
+        200:
+          description: Products Get Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message200Allp"
+        201:
+          description: Exito en el registro de un producto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message201p"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400p"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401p"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500p"
+  /api/products/{pid}:
+    get:
+      summary: Get a product by ID
+      tags:
+        - Product
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: Unique identifier of the product to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Products Get Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message200Onep"
+        201:
+          description: Exito en el registro de un producto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message201p"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400p"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401p"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500p"
+    put:
+      summary: Update a product by ID
+      tags:
+        - Product
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: Unique identifier of the product to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        200:
+          description: Product Update Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message200Onep"
+        201:
+          description: Exito en el registro de un producto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message201p"
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400p"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401p"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500p"
+    delete:
+      summary: Delete a product by ID
+      tags:
+        - Product
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: Unique identifier of the product to delete
+          schema:
+            type: string
+      responses:
+        200:
+          description: Product Deleted Successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Message200Onep"      
+        400:
+          description: Fallo por datos incompletos o incorrectos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400p"
+        401:
+          description: Fallo por autorizacion de policies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401p"
+        500:
+          description: Fallo por error fatal en el servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500p"
+  /api/products/paginate:
+    get:
+      summary: Retrieve all products with paginate and category filter
+      tags:
+        - Product
+      parameters:
+        - name: category
+          in: query
+          required: false
+          description: Category to filter products
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          description: Page number for pagination
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Products Get Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Paginatep"
+        400:
+          description: Bad request due to incorrect or incomplete data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error400p"
+        401:
+          description: Unauthorized request due to failed authentication
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error401p"
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/Error500p"

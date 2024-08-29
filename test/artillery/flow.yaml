@@ -1,0 +1,33 @@
+config:
+  pluggins:
+    metrics-by-endpoint : {}
+  target: http://localhost:8080/api
+  phases:
+    - duration: 5
+      arrivalRate: 25
+scenarios:
+  - name: login
+    flow:
+      - log: login
+      - post: 
+          url: /sessions/login
+          json:
+            email: gecko_2321@hotmail.com
+            password: "Password1"
+      - log: read all products
+      - get:
+          url: /products
+      - log: read all users
+      - get:
+          url: /users
+      - log: create product
+      - post:
+          url: /products
+          json:
+            title: artillery
+            category: Varios
+            price: 1500
+            stock: 25
+      - log: signout
+      - post:
+          url: /sessions/signout

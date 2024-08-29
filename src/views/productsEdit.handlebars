@@ -1,0 +1,34 @@
+
+<head>
+    <link rel="stylesheet" href="/css/editProduct.css">
+</head>
+
+<main class="container">
+    <h1 class="text-center mt-4">Editar Producto</h1>
+   <form id="editProductForm">
+    <div class="form-group">
+        <label for="title">Título</label>
+        <input type="text" class="form-control" id="title" name="title">
+    </div>
+    <div class="form-group">
+        <label for="category">Categoría</label>
+        <input type="text" class="form-control" id="category" name="category">
+    </div>
+    <div class="form-group">
+        <label for="price">Precio</label>
+        <input type="number" class="form-control" id="price" name="price">
+    </div>
+    <div class="form-group">
+        <label for="stock">Stock</label>
+        <input type="number" class="form-control" id="stock" name="stock">
+    </div>
+    <div class="form-group">
+        <label for="photo">URL de la foto</label>
+        <input type="text" class="form-control" id="photo" name="photo">
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+</form>
+
+</main>
+
+<script src="/scripts/productsEdit.js"></script>

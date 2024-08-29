@@ -1,0 +1,37 @@
+<body>
+  <div class="container">
+    <h1 class="mt-5">Productos en el Carrito</h1>
+    <div id="cart-items" class="row mt-4">
+      <!-- Las tarjetas de los productos se llenarán aquí -->
+    </div>
+    <div id="pagination" class="mt-4">
+
+    </div>
+
+    <div class="text-center mt-4" id="no-products" style="display: none;">
+      <p>No hay ningún producto en el carrito.</p>
+    </div>
+
+    <div class="text-center mt-4">
+      <button
+        class="btn btn-danger"
+        onclick="eliminarTodosProductos()"
+        id="delete-btn"
+        style="display: none;"
+      >Eliminar Productos</button>
+    </div>
+
+    <div class="text-center mt-4">
+      <button
+        class="btn btn-success"
+        onclick="finalizarCompra()"
+        id="finish-btn"
+        style="display: none;"
+      >Finalizar Compra</button>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/scripts/cart.js"></script>
+
+</body>

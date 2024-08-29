@@ -1,0 +1,12 @@
+[
+  {
+    "_id": "3b277c15b74354413d3a1e74",
+    "title": "Adornos",
+    "category": "Varios",
+    "price": 1400,
+    "stock": 20,
+    "photo": "/img/productos/10.webp",
+    "createdAt": "2024-06-23T23:15:37.872Z",
+    "updatedAt": "2024-06-23T23:15:37.872Z"
+  }
+]

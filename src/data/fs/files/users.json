@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "97559652ae44df49d9979e0f",
+    "name": "Ricardo",
+    "lname": "Moreno",
+    "email": "gecko_2321@hotmail.com",
+    "password": "$2b$10$qeVNP9Vr1nGSjCgzLXqGtOyGk5WZRSZl9RV0AvMIIt9gk6.27/nR2",
+    "role": 0,
+    "age": "40",
+    "photo": "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
+    "verified": true,
+    "verifyCode": "43bca354c15d",
+    "createdAt": "2024-06-25T02:46:58.194Z",
+    "updatedAt": "2024-06-25T02:46:58.194Z"
+  }
+]

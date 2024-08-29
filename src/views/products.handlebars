@@ -1,0 +1,43 @@
+
+<head>
+    <!-- Otros elementos del head -->
+    <link rel="stylesheet" href="/css/products.css">
+</head>
+
+
+<main class="d-flex flex-column align-items-center w-100 flex-grow-1">
+    <h1 class="bg-success-subtle p-2 text-center text-success w-100">Todos Nuestros Productos</h1>
+    <section class="m-3 w-100 d-flex flex-column justify-content-center align-items-center">
+        <!-- Formulario para seleccionar la categoría -->
+        <form id="filterForm" class="mb-3">
+            <div class="form-group">
+                <label for="category">Filtrar por Categoría:</label>
+                <select name="category" id="category" class="form-control">
+                    <option value="">Todas</option>
+                    <option value="Tazas">Tazas</option>
+                    <option value="Platos">Platos</option>
+                    <option value="Combo">Combo</option>
+                    <option value="Jardineria">Jardineria</option>
+                    <option value="Varios">Varios</option>
+                    <!-- Agrega más opciones según las categorías disponibles -->
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </form>
+
+        <!-- Contenedor para el listado de productos -->
+        <div id="productsContainer" class="w-100 d-flex flex-column justify-content-center align-items-center">
+            <!-- Los productos se cargarán aquí -->
+        </div>
+
+        <!-- Contenedor para la paginación -->
+        <div id="paginationContainer" class="mt-3">
+            <!-- Los botones de paginación se cargarán aquí -->
+        </div>
+    </section>
+
+    <!-- Enlazar el script externo -->
+    <script src="/scripts/products.js"></script>
+    
+</main> 
+

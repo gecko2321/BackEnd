@@ -1,0 +1,35 @@
+<main class="d-flex flex-column align-items-center w-100 flex-grow-1">
+  <section class="d-flex flex-column align-items-center w-50">
+    <h1 class="bg-success-subtle p-2 text-center text-success w-100">
+      LOGIN DE USUARIO
+    </h1>
+    <form class="d-flex flex-column w-50 m-3">
+      <input
+        class="m-2 p-2 text-center"
+        type="email"
+        id="email"
+        placeholder="e-Mail"
+      />
+      <input
+        class="m-2 p-2 text-center"
+        type="password"
+        id="password"
+        placeholder="Password"
+      />
+      <input
+        class="m-2 p-2 text-center btn btn-success"
+        type="button"
+        id="loginn"
+        value="INGRESAR!"
+      />
+    </form>
+
+    <div class="d-flex justify-content-between mt-3 w-100">
+      <a href="/users/register" class="btn btn-primary">Registrarse</a>
+      <a href="/users/restorepassword" class="btn btn-warning">Restablecer Contraseña</a>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/scripts/usersLogin.js"></script>
