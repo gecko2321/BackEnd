@@ -128,3 +128,9 @@ Repositorio para el curso de BackEnd de CoderHouse
 - Un user comun puede ver y comprar todos los productos
 - Se agregó la opcion de re-establecer el password
 - Se configuró stripe como pasarela de pagos
+    
+    -  Para probar la funcionalidad del sitio:
+      -  Usuario ADMIN: gecko_2321@hotmail.com
+      -  Usuario PREM: Quentin.Doyle@example.net
+      -  Usuario Comun: Clemens.Nolan@example.net
+      -  Password default para todos los usuarios: Password1
