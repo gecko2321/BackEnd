@@ -117,3 +117,14 @@ Repositorio para el curso de BackEnd de CoderHouse
 - Instalacion de MOCHA
 - Instalacion de SUPERTEST
 - Configuracion Artillery (Simplex - Complex - Flow)
+
+# Sprint15 - Entrega Final
+
+- Se agrega el rol de usuario PREM = 2 a las policies de autenticacion
+- Se configura lo necesario para que el usuario PREM pueda gestionar sus productos y comprar los del resto
+- Se agrega el campo supplier_id al modelo product y se referencia con el id del usuario proveedor
+- Se implementa meddleware para validar los permisos que corresponden segun rol
+- El admin no puede comprar productos
+- Un user comun puede ver y comprar todos los productos
+- Se agregó la opcion de re-establecer el password
+- Se configuró stripe como pasarela de pagos
