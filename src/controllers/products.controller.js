@@ -3,6 +3,7 @@ import { createService, destroyService, paginateService, readOneService, readSer
 async function create(req, res, next) {
   try {
     const data = req.body;
+    data.user_id = req.user._id;
     const one = await createService(data);
     return res.message201("CREATED ID: " + one._id);
   } catch (error) {
@@ -26,6 +27,7 @@ async function read(req, res, next) {
   }
 }
 
+
 async function paginate(req, res, next) {
   try {
     const filter = {};
@@ -35,6 +37,11 @@ async function paginate(req, res, next) {
     if (req.query.category) {
       filter.category = req.query.category; // Cambiar a category si así está en tu modelo
   }
+ 
+    if (req.query.supplier_id) {
+      filter.supplier_id = {$ne: req.query.supplier_id}
+    }
+
     const options = {
       limit: req.query.limit || 9,
       page: req.query.page || 1,
@@ -46,6 +53,33 @@ async function paginate(req, res, next) {
     return next(error);
   }
 }
+
+
+async function paginateMe(req, res, next) {
+  try {
+    const filter = {};
+
+    if (req.query.category) {
+      filter.category = req.query.category; // Cambiar a category si así está en tu modelo
+  }
+ 
+  // Apply supplier filter if supplier_id is provided
+  if (req.query.supplier_id) {
+    filter.supplier_id = req.query.supplier_id; // Match supplier_id exactly
+  }
+
+    const options = {
+      limit: req.query.limit || 9,
+      page: req.query.page || 1,
+      sort: "title"
+    };
+    const products = await paginateService({ filter, options });
+    return res.paginate(products);
+  } catch (error) {
+    return next(error);
+  }
+}
+
 
 async function readOne(req, res, next) {
   try {
@@ -84,4 +118,4 @@ async function destroy(req, res, next) {
   }
 }
 
-export { create, read, paginate, readOne, update, destroy };
+export { create, read, paginate,paginateMe, readOne, update, destroy };

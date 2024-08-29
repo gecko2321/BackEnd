@@ -2,6 +2,8 @@ import {
   readByEmailService,
   updateService,
 } from "../services/users.service.js";
+import { createHash } from "../utils/hash.util.js";
+import { sendEmailRestorePassword } from "../utils/mailing.utils.js";
 
 class SessionsController {
   async register(req, res, next) {
@@ -30,6 +32,7 @@ class SessionsController {
           statusCode: 200,
           message: "Is onlineeee!",
           user_id: req.user._id,
+          role: req.user.role,
         });
       }
       return res.json({
@@ -69,8 +72,60 @@ class SessionsController {
       return res.error400("Invalid Credentials");
     }
   }
+
+  async restorePassword(req, res, next) {
+    const { email, code, newpassword } = req.body;
+    const one = await readByEmailService(email);
+    const verified = code === one.verifyCode;
+    //console.log (one)
+    //console.log (code)
+    if (verified) {
+      console.log(one);
+      console.log(newpassword);
+      const newpasswordhash = createHash(newpassword);
+      console.log(newpasswordhash);
+      updateService(one._id, { password: newpasswordhash });
+      return res.message200("Password Restored");
+    } else {
+      return res.error400("Invalid Credentials");
+    }
+  }
+
+  async sendCodeToRestore(req, res, next) {
+    const { email } = req.body;
+    const one = await readByEmailService(email);
+    const verified = email === one.email;
+    //console.log (one)
+    //console.log (code)
+    if (verified) {
+      await sendEmailRestorePassword({
+        to: email,
+        name: one.name,
+        code: one.verifyCode,
+      });
+      return res.message200("Email sent");
+    } else {
+      return res.error400("Invalid Credentials");
+    }
+  }
 }
 
 const sessionsController = new SessionsController();
-const { register, login, online, signout, verify } = sessionsController;
-export { register, login, online, signout, verify };
+const {
+  register,
+  login,
+  online,
+  signout,
+  verify,
+  restorePassword,
+  sendCodeToRestore,
+} = sessionsController;
+export {
+  register,
+  login,
+  online,
+  signout,
+  verify,
+  restorePassword,
+  sendCodeToRestore,
+};

@@ -8,7 +8,7 @@ indexRouter.use("/api", apiRouter);
 
 export default indexRouter;
 */
-import sendEmail from "../utils/mailing.utils.js";
+import {sendEmail} from "../utils/mailing.utils.js";
 import CustomRouter from "./CustomRouter.router.js";
 import apiRouter from "./api/index.api.js";
 import viewsRouter from "./views/index.views.js";
